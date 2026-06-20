@@ -1,0 +1,10 @@
+.env
+progress.db
+logs/
+__pycache__/
+*.pyc
+
+# Copyrighted book-derived content — kept out of the public repo
+rag/chunks.json
+media/book_figures/
+webapp/static/pdfs/

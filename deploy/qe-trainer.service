@@ -1,0 +1,20 @@
+[Unit]
+Description=Tesla QE Trainer Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=qebot
+Group=qebot
+WorkingDirectory=/opt/qe-trainer
+# bot.py loads /opt/qe-trainer/.env itself (TELEGRAM_BOT_TOKEN, ANTHROPIC_API_KEY)
+ExecStart=/opt/qe-trainer/.venv/bin/python /opt/qe-trainer/bot.py
+Restart=always
+RestartSec=5
+# basic hardening
+NoNewPrivileges=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

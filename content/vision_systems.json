@@ -1,0 +1,51 @@
+{
+  "module": "vision_systems",
+  "title": "Machine Vision & Eines Inspection Systems",
+  "source_book": "Mastering Eines Vision Systems Software Basics (weekend course)",
+  "topics": [
+    {
+      "id": "vision-01",
+      "title": "Eines Vision Systems in Automotive Quality Control",
+      "source": "Eines Course Modules 1-3",
+      "summary": "Eines makes inline machine-vision inspection systems used across automotive manufacturing, from the Press Shop through Paint to Final Assembly. The software is adaptive ('homemade'/customizable AI) and emphasizes inline inspection with minimal setup. Operators interact through dashboards that visualize and track defects in real time, while AI/ML classifies defects automatically without the user writing code. Typical operation of a paint-tunnel style system: calibrate the cameras, scan the vehicle/part, then review the dashboard outputs. Configuration usually means uploading a model (e.g., CAD) and setting thresholds rather than programming.",
+      "key_points": [
+        "Eines covers the line from Press Shop to Final Assembly (incl. paint tunnels, final assembly checks).",
+        "Dashboards visualize/track defects in real time; AI classifies defects automatically.",
+        "Operating flow: calibrate cameras → scan part/vehicle → review dashboard.",
+        "Configuration = upload a model (CAD) + set thresholds; no coding for basics.",
+        "Vision automation reduces the subjectivity of manual visual inspection."
+      ],
+      "flashcards": [
+        {"q": "What are the three basic steps to operate a paint-tunnel vision system?", "a": "Calibrate the cameras, scan the vehicle/part, then review the dashboard outputs."},
+        {"q": "How does an operator typically 'configure' an Eines inspection?", "a": "By uploading a model (e.g., CAD) and setting defect thresholds — no coding needed for basics."},
+        {"q": "Across what range of the plant does Eines apply?", "a": "From the Press Shop through Paint to Final Assembly."}
+      ],
+      "quiz": [
+        {"q": "The main advantage of an AI vision system over manual visual inspection is that it:", "choices": ["Needs no cameras", "Reduces subjectivity and classifies defects consistently", "Eliminates the dashboard", "Requires custom code per part"], "answer": "B", "explanation": "Automated vision reduces human subjectivity and classifies defects consistently and repeatably."},
+        {"q": "Setting up an inspection in Eines typically involves:", "choices": ["Writing C++ code", "Uploading a model (CAD) and setting thresholds", "Rewiring the PLC", "Manual calipers"], "answer": "B", "explanation": "Configuration is point-and-click: load a model and set thresholds, no coding for basics."}
+      ]
+    },
+    {
+      "id": "vision-02",
+      "title": "Vision Inspection Concepts: Defect Detection & Gap/Flush",
+      "source": "Eines Course Modules 4-5",
+      "summary": "Machine vision in automotive does two big jobs: surface defect detection (dents, scratches, paint defects) and dimensional checks such as gap & flush measurement between body panels. AI/ML lets the system adapt to new defect types without recertification, and error-proofing (e.g., Multi-Error Proofing) verifies that the right parts/features are present using software-defined checklists. A useful mental model from the course: a full inspection is setup → scan → analyze, with results feeding a dashboard and reports. Free tools like OpenCV (edge detection as a stand-in for 'gap measurement') can simulate the underlying concepts.",
+      "key_points": [
+        "Two core vision tasks: surface defect detection and gap/flush dimensional measurement.",
+        "AI/ML adapts to new defects without recertification.",
+        "Error-proofing (Multi-Error Proofing) uses software-defined checklists to verify presence/correctness.",
+        "Inspection mental model: setup → scan → analyze → dashboard/report.",
+        "OpenCV edge detection can simulate gap-measurement concepts for learning."
+      ],
+      "flashcards": [
+        {"q": "Name the two main jobs automotive machine vision performs.", "a": "Surface defect detection (scratches/dents/paint) and dimensional checks like gap & flush measurement."},
+        {"q": "What does Multi-Error Proofing do?", "a": "Uses software-defined checklists to verify the correct parts/features are present (error-proofing)."},
+        {"q": "What is the general inspection workflow?", "a": "Setup → scan → analyze, with outputs to a dashboard and reports."}
+      ],
+      "quiz": [
+        {"q": "Measuring the gap and flush between two body panels is an example of:", "choices": ["Surface defect detection", "Dimensional vision measurement", "Torque verification", "Paint thickness"], "answer": "B", "explanation": "Gap & flush is a dimensional (geometric) measurement task for vision systems."},
+        {"q": "A benefit of AI/ML in the inspection software is that it:", "choices": ["Removes the need for cameras", "Adapts to new defect types without recertification", "Requires manual recoding for each defect", "Only works offline"], "answer": "B", "explanation": "ML models adapt to new defect patterns without formal recertification."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "module": "sevenD",
+  "title": "Structured Problem Solving (GM 7-Diamonds)",
+  "source_book": "GM GMS 7 Diamonds Problem Solving Guide (IBC Vehicles, 2025)",
+  "topics": [
+    {
+      "id": "sevenD-01",
+      "title": "What the 7 Diamonds Process Is",
+      "source": "7 Diamonds Guide, Ch.1-2",
+      "summary": "A structured 7-step framework that forces manufacturing to verify its own process, tooling, and parts before a problem is escalated to Engineering.",
+      "reading": "Most problems on a production line are not new engineering problems — they are known problems wearing a disguise. The 7 Diamonds process is built on one data-backed insight: roughly 70% of quality and build issues trace back to non-standard operations or tooling misuse, not to a flawed design. If that is true, then the most expensive thing a plant can do is route a problem straight to Engineering before checking whether the line is even running to standard.\n\nSo the process works like a funnel of gates. Each 'diamond' is a decision point with a named owner who must answer a yes/no question and prove it with evidence. You cannot skip a diamond, and you cannot pass one on opinion — Diamond 1 is not 'I think we followed the process,' it is 'here is the standardized work and here is proof we ran to it.' Engineering is engaged only after manufacturing has confirmed compliance through the early diamonds.\n\nThe payoff is not just speed. By forcing verification first, the process produces four things the guide explicitly calls out: a thorough understanding of the issue, clear identification of the problem owner, effective and sustainable corrective actions, and permanent resolution that prevents recurrence. The discipline is what makes the fix stick — a containment that protects the customer today is worthless if the root cause walks back in next shift.",
+      "key_points": [
+        "Premise: ~70% of build issues come from non-standard operations or tooling misuse, not design.",
+        "Each diamond is a gated decision point with a named owner and evidence — no skipping, no opinions.",
+        "Engineering is engaged only after manufacturing proves compliance (Diamonds 1-3).",
+        "Goal is permanent resolution: understand → own → correct → prevent recurrence."
+      ],
+      "media": {
+        "image": "media/diagrams/sevenD_flow.png",
+        "image_caption": "The seven gated diamonds, from manufacturing verification to engineering analysis",
+        "video": {"title": "8D / structured problem solving overview", "url": "https://www.youtube.com/watch?v=AB6OLB2Hc4w"},
+        "web_notes": "The 7 Diamonds is GM/IBC's manufacturing-first cousin of the classic 8D discipline. Both share the same backbone — contain first, find the true root cause, verify the fix holds — but 7 Diamonds front-loads shop-floor verification because that is statistically where the cause usually lives."
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A line has intermittent door rattles. The supervisor's instinct is to raise an engineering change to add foam padding. Using the 7 Diamonds philosophy, argue why that is the wrong first move — and what should happen instead.",
+          "model_answer": "Jumping to an engineering change spends design effort before manufacturing has proven it is running to standard — and ~70% of the time the cause is non-standard work or tooling, not the design. Adding foam would likely MASK a process problem (e.g., a missed clip, wrong torque, worn fixture) while adding permanent cost to every unit. The right move is to work the early diamonds: verify the standardized process is being followed (D1), the correct, serviceable tooling is used (D2), and the specified parts are installed (D3). Only if the rattle survives that verification does engineering escalation become justified."
+        },
+        {
+          "prompt": "A team spent two weeks on a deep statistical study, then found an operator had been skipping a torque step. In 7 Diamonds terms, what did they get wrong, and what did it cost them?",
+          "model_answer": "They inverted the funnel — they ran a late, expensive diamond (deep analysis) before confirming Diamond 1 (Correct Process). The torque step is a standardized-work adherence issue that Diamond 1 is designed to catch on day one. The cost was two weeks of effort and delayed containment for the customer, all avoidable by gating in order."
+        }
+      ],
+      "flashcards": [
+        {"q": "Why does 7 Diamonds verify manufacturing before escalating to Engineering?", "a": "Because ~70% of build issues come from non-standard operations or tooling misuse — so it is fastest and cheapest to rule those out first."},
+        {"q": "What makes a diamond 'passed' — and what does NOT count?", "a": "Evidence that the question is satisfied. Opinion ('we probably followed it') does not count; you must show proof."},
+        {"q": "What four outcomes is the process designed to produce?", "a": "Thorough understanding, a clear problem owner, effective/sustainable corrective action, and permanent prevention of recurrence."}
+      ],
+      "quiz": [
+        {"q": "A team runs a two-week Red-X study and then discovers the operator was skipping a torque step. By 7 Diamonds logic, the core mistake was:", "choices": ["Using Red-X at all — it is never valid", "Not confirming Diamond 1 (Correct Process) before deep investigation", "Escalating to Engineering too late", "Failing to scrap the suspect parts"], "answer": "B", "explanation": "Deep analysis is a late diamond. Diamond 1 (standardized-work adherence) should have caught the skipped step first — the funnel must be worked in order."},
+        {"q": "The '70%' figure is the justification for which design choice in the process?", "choices": ["Sampling 70% of parts", "Requiring a 70% capability index", "Verifying process/tool/part BEFORE engaging Engineering", "Escalating after 70 hours"], "answer": "C", "explanation": "Because most causes are non-standard operations/tooling, manufacturing verification is gated first."},
+        {"q": "Which statement would correctly 'pass' Diamond 1 in a 7 Diamonds review?", "choices": ["\"We're confident the team followed the process.\"", "\"Here is the standardized work sheet and the audit showing we ran to it.\"", "\"The design looks fine to us.\"", "\"We swapped the suspect parts and it improved.\""], "answer": "B", "explanation": "Diamonds are passed on evidence, not opinion. Option B shows proof of adherence; the others are opinion or belong to other diamonds."}
+      ]
+    },
+    {
+      "id": "sevenD-02",
+      "title": "Diamonds 1-3: Manufacturing Verification",
+      "source": "7 Diamonds Guide, Ch.3",
+      "summary": "The first three diamonds prove the line is running to standard — correct process, correct tool, correct part — before anything escalates.",
+      "reading": "The first three diamonds exist to answer one question: 'Are we actually doing the job the way it is supposed to be done?' They are deliberately ordered, because each rules out the cheapest, most common cause before moving on.\n\nDiamond 1 — Correct Process (owned by the Production Supervisor / Team Leader). Verify adherence to standardized work. This is not 'do we have a process,' it is 'did this unit get built to it' — checking sequence, settings, and that no shortcut crept in. A surprising share of problems die here.\n\nDiamond 2 — Correct Tool (owned by the Maintenance Supervisor). Confirm the specified tooling is the one in use AND that it is serviceable. A worn locating pin, a fixture out of calibration, or a substitute tool 'borrowed' from another station all fail Diamond 2 even when the operator followed the process perfectly.\n\nDiamond 3 — Correct Part (owned by the Team Members). Confirm the specified part and material are installed — right revision, right supplier lot, not a look-alike. Only when all three are confirmed and the problem still persists does the issue earn the right to move toward the deeper diamonds and, eventually, Engineering. The ordering matters: confirming the part is pointless if the tool that seats it is worn, and chasing the tool is pointless if the operator isn't running the standard sequence.",
+      "key_points": [
+        "Diamond 1 Correct Process → was THIS unit built to standardized work (Production Supervisor)?",
+        "Diamond 2 Correct Tool → is the specified tool in use AND serviceable (Maintenance Supervisor)?",
+        "Diamond 3 Correct Part → right part/revision/lot actually installed (Team Members)?",
+        "Order is intentional — each rules out the cheapest, most common cause first."
+      ],
+      "media": {
+        "image": "media/diagrams/sevenD_flow.png",
+        "image_caption": "Diamonds 1-3 are the manufacturing-verification gate"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "An operator demonstrably followed the standardized work to the letter, yet parts are still out of spec. Which diamond(s) are now the prime suspects, and what specifically would you check?",
+          "model_answer": "Diamond 1 is satisfied (process adherence proven), so suspicion shifts to Diamond 2 (Correct Tool) and Diamond 3 (Correct Part). For D2: is the specified fixture/gauge in use, and is it worn, damaged, or out of calibration? For D3: is the installed part the right revision and supplier lot, or a look-alike substitute? Following a good process with a worn tool or wrong-revision part still yields bad parts."
+        }
+      ],
+      "flashcards": [
+        {"q": "What does each of Diamonds 1, 2, 3 verify, and who owns it?", "a": "D1 Correct Process (Production Supervisor), D2 Correct Tool (Maintenance Supervisor), D3 Correct Part (Team Members)."},
+        {"q": "Why is the order Process → Tool → Part deliberate?", "a": "Each rules out the cheapest/most common cause first; checking a part is pointless if the tool seating it is worn or the process wasn't followed."},
+        {"q": "Does 'we have a documented process' satisfy Diamond 1?", "a": "No — you must show THIS unit was actually built to the standardized work, not merely that a standard exists."}
+      ],
+      "quiz": [
+        {"q": "You have proven the operator followed standardized work exactly, but defects continue. The most logical NEXT checks are:", "choices": ["Re-audit the process again", "Tool condition (D2) and installed part/revision (D3)", "Open a Level 2 engineering analysis", "Launch a tolerance stack study"], "answer": "B", "explanation": "With D1 satisfied, suspicion moves to the next gates: a worn/incorrect tool or a wrong part can defeat a perfect process."},
+        {"q": "A fixture's locating pin is visibly worn but still 'works.' Which diamond does this fail?", "choices": ["Diamond 1 Correct Process", "Diamond 2 Correct Tool", "Diamond 3 Correct Part", "Diamond 7 Level 2"], "answer": "B", "explanation": "Diamond 2 requires the specified tool AND that it is serviceable — a worn locator fails it."},
+        {"q": "Stores issued a look-alike bracket from a superseded revision and it was installed. This is a failure of:", "choices": ["Diamond 3 Correct Part", "Diamond 1 Correct Process", "Diamond 5 Red-X", "Containment"], "answer": "A", "explanation": "Wrong revision / look-alike part is exactly the Correct Part (D3) check."}
+      ]
+    },
+    {
+      "id": "sevenD-03",
+      "title": "Diamonds 4-7: Deeper Investigation",
+      "source": "7 Diamonds Guide, Ch.5+",
+      "summary": "When a problem survives manufacturing verification, the later diamonds escalate from quick localization to full engineering analysis.",
+      "reading": "If a problem survives Diamonds 1-3, manufacturing has earned the right to dig deeper — and the later diamonds escalate in both effort and rigor.\n\nDiamond 4 — Parts Swap (4a) / Parts Quality (4b). The fastest localizer: swap a suspect part or sub-assembly with a known-good one. If the problem moves with the part, you've localized it to the part; if it stays, the part is exonerated and attention shifts to the station or process. 4b widens this to incoming part quality — is the supplier shipping conforming parts?\n\nDiamond 5 — Process Change (5a) / Red-X Study (5b). 5a asks whether a recent change (new operator, new lot, setting change, maintenance) correlates with the problem's onset. 5b is the Shainin 'Red X' study: a structured, data-driven hunt for the single dominant cause of variation. The Red-X philosophy is that among many possible causes, one usually dominates — find it by talking to the parts (comparisons, swaps, isolation) rather than brainstorming.\n\nDiamond 6 — Tolerance Study. Examines whether the problem is born of tolerance stack-up or interaction: each part is individually in spec, but the accumulation across the assembly produces a failure at the extremes. This is invisible to single-part inspection.\n\nDiamond 7 — Level 2 Analysis. Full engineering-level analysis for the hardest, lowest-frequency problems — the cases that defeat every earlier diamond. By the time a problem reaches Diamond 7, manufacturing has already eliminated the common causes, so engineering effort is spent only where it is truly warranted.",
+      "key_points": [
+        "D4 Parts Swap/Quality — swap known-good to localize; check incoming supplier quality.",
+        "D5 Process Change / Red-X — correlate recent changes; Shainin Red-X isolates the ONE dominant cause.",
+        "D6 Tolerance Study — each part in spec, but stack-up/interaction fails at the extremes.",
+        "D7 Level 2 — full engineering analysis, reserved for problems that survive every earlier gate."
+      ],
+      "media": {
+        "image": "media/diagrams/fishbone.png",
+        "image_caption": "Cause-and-effect thinking feeds the deeper diamonds"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "Every individual part measures within tolerance, yet ~3% of assemblies bind at final fit. Which diamond is this, why do single-part inspections miss it, and how would you confirm it?",
+          "model_answer": "This is Diamond 6 (Tolerance Study). Single-part inspection passes because each part is individually in spec; the failure is born from tolerance STACK-UP — the worst-case accumulation across mating parts exceeds the available clearance only when several parts land near the same extreme. Confirm it by measuring the actual stack on binding vs. non-binding assemblies, or by deliberately building 'max-material' combinations and checking fit. The fix is usually re-budgeting the tolerance chain, not tightening one part."
+        },
+        {
+          "prompt": "A defect appeared suddenly last Tuesday after months of clean production. Which diamond should you reach for first, and what is your single most useful question?",
+          "model_answer": "Diamond 5a (Process Change). A sudden onset after stable production screams 'something changed.' The most useful question is 'what changed around last Tuesday?' — new part lot, new operator/shift, a maintenance/PM event, a setting or tooling change. Correlating the onset to a change is faster and cheaper than a full Red-X, and often points straight at the cause."
+        }
+      ],
+      "flashcards": [
+        {"q": "What is the Shainin Red-X study (Diamond 5b) trying to find?", "a": "The single DOMINANT cause of variation among many candidates — found by 'talking to the parts' (comparisons, swaps, isolation) rather than brainstorming."},
+        {"q": "What hallmark points you to a Diamond 6 tolerance study?", "a": "Every part is individually in spec, yet assemblies still fail — a sign of tolerance stack-up/interaction at the extremes."},
+        {"q": "Why is Diamond 7 (Level 2) reserved for last?", "a": "Earlier diamonds have already eliminated the common causes, so expensive engineering analysis is spent only where it's truly needed."}
+      ],
+      "quiz": [
+        {"q": "A defect starts abruptly after 6 months of clean builds. The FASTEST high-value diamond to apply is:", "choices": ["Diamond 7 Level 2 Analysis", "Diamond 6 Tolerance Study", "Diamond 5a Process Change ('what changed?')", "Diamond 1 Correct Process"], "answer": "C", "explanation": "Sudden onset after stability points to a recent change; correlating the onset (D5a) is faster and cheaper than deep studies."},
+        {"q": "Swapping a suspect sub-assembly with a known-good one and watching whether the defect 'moves with the part' is:", "choices": ["Diamond 6 Tolerance Study", "Diamond 4a Parts Swap", "Diamond 5b Red-X", "Containment"], "answer": "B", "explanation": "Parts Swap (D4a) localizes the problem to the part vs. the station."},
+        {"q": "All parts are in spec but 3% of assemblies bind. The dominant suspect is:", "choices": ["Operator error", "Tolerance stack-up (Diamond 6)", "Wrong part revision (Diamond 3)", "Worn tool (Diamond 2)"], "answer": "B", "explanation": "In-spec parts that still fail in combination is the signature of tolerance stack-up — a Diamond 6 study."},
+        {"q": "The Red-X philosophy assumes that, among many possible causes of variation:", "choices": ["All causes contribute equally", "One usually dominates and can be isolated from the data", "The cause is always the design", "Causes can't be ranked"], "answer": "B", "explanation": "Shainin's premise is a single dominant 'Red X' that data comparisons can isolate."}
+      ]
+    },
+    {
+      "id": "sevenD-04",
+      "title": "The PCB, 5 Whys & a Worked Case Study",
+      "source": "7 Diamonds Guide, Ch.4 & Case Study",
+      "summary": "The Problem Communication Brief carries a problem through the diamonds; the 5 Whys drives from symptom to root cause. We work a real plant case end to end.",
+      "reading": "The Problem Communication Brief (PCB) is the standard document that carries a concern through the 7 Diamonds at IBC. Its five sections force a complete story: Admin Data (problem ID, date, assigned personnel); Problem Description (the fault, the part, the location, the frequency — be specific, not 'door is bad'); Containment (immediate actions and checks to protect the customer NOW); Analysis (a fishbone diagram plus 5 Whys to reach true root cause); and Solutions (final countermeasures PLUS trend monitoring to confirm the fix holds).\n\nTwo ideas do the heavy lifting. Containment is not the fix — it is the firewall. It protects the next operation and the customer while you investigate, and a problem is never 'closed' on containment alone. The 5 Whys is the engine of the Analysis section: you ask 'why?' repeatedly, each answer becoming the next question, until you pass from the visible symptom to a cause you can actually act on. Stop too early and you fix a symptom; the defect returns.\n\nA real strength of the PCB is that it separates description from cause from countermeasure — teams that skip straight to 'the solution' almost always solve the wrong problem. Note in the case below how the 5 Whys walks past the obvious ('weld nut missing') to a process gap (it was missed in sub-assembly and not caught), which is where a durable countermeasure actually lives.",
+      "key_points": [
+        "PCB sections: Admin Data, Problem Description, Containment, Analysis (fishbone + 5 Whys), Solutions.",
+        "Containment is a firewall, not the fix — a problem is never closed on containment alone.",
+        "5 Whys: each answer becomes the next question, symptom → actionable root cause.",
+        "Solutions must include trend monitoring to prove the countermeasure holds."
+      ],
+      "media": {
+        "image": "media/diagrams/fishbone.png",
+        "image_caption": "The Analysis section pairs a fishbone with the 5 Whys",
+        "video": {"title": "5 Whys root cause analysis explained", "url": "https://www.youtube.com/watch?v=6gE7QFlEU8Y"}
+      },
+      "case_study": {
+        "title": "Missing Weld Nut — LH Side Load Door (real IBC case)",
+        "scenario": "Fault: weld nut missing on the LH side load door, in the door-lock area. Frequency: ~2 occurrences per week. The defect is found downstream in general assembly when the door striker cannot be fitted.",
+        "walkthrough": [
+          "Containment (protect the customer first): 100% inspection of sub-assemblies before loading; 100% check of supplied parts in stores; a supplementary QA check added at the BIW SIP station.",
+          "5 Whys: (1) Why can't the striker be fitted? — there's no threaded boss in the LH door. (2) Why no boss? — the weld nut is missing. (3) Why is the weld nut missing? — it wasn't added in the sub-assembly process. (4) Why was it missed? — it slipped through the sub-assembly step with no detection. (5) Why no detection? — the supplier/sub-assembly process had no error-proofing or check to catch a missing weld nut.",
+          "Root cause: not 'the operator forgot' — a sub-assembly process with no error-proofing or downstream detection for a missing weld nut.",
+          "Solution: durable countermeasure at the source (e.g., weld-nut presence detection / poka-yoke in sub-assembly) PLUS trend monitoring of occurrence rate to confirm it falls to zero and stays there."
+        ]
+      },
+      "critical_thinking": [
+        {
+          "prompt": "In the weld-nut case, why is '100% inspection before loading' a poor PERMANENT solution even though it stops escapes today?",
+          "model_answer": "100% inspection is containment — a firewall, not a fix. It is costly, relies on fallible human attention (inspectors miss ~15-20% of defects), and does nothing about the cause: a sub-assembly step that can produce a missing weld nut undetected. A permanent solution must error-proof the source (presence detection / poka-yoke) so the defect cannot be created or cannot pass undetected, with trend monitoring to confirm it holds. Inspection is the bridge you stand on only until the real fix is in."
+        },
+        {
+          "prompt": "Run your own 5 Whys: a CNC machine intermittently produces oversized bores. Write five 'why' levels that move from symptom to an actionable root cause (don't stop at 'the tool is worn').",
+          "model_answer": "Example chain: (1) Why oversized bores? — the boring tool is cutting wide. (2) Why cutting wide? — the insert is worn beyond its limit. (3) Why running a worn insert? — it wasn't changed at its scheduled tool-life count. (4) Why not changed on schedule? — there's no tool-life counter / change is left to operator judgment. (5) Why left to judgment? — the standardized work has no enforced tool-change trigger or alarm. Actionable root cause: missing tool-life management. Countermeasure: a tool-life counter that forces a change at N parts, plus an alarm — not just 'replace the insert.'"
+        }
+      ],
+      "flashcards": [
+        {"q": "What are the five PCB sections?", "a": "Admin Data, Problem Description, Containment, Analysis (fishbone + 5 Whys), Solutions."},
+        {"q": "Is containment the solution? Why or why not?", "a": "No — containment is a firewall that protects the customer while you investigate; the problem is never closed on containment alone."},
+        {"q": "In the weld-nut case, what was the TRUE root cause (not the symptom)?", "a": "A sub-assembly process with no error-proofing or detection for a missing weld nut — not simply 'the nut was missing.'"},
+        {"q": "What must the Solutions section always include besides the countermeasure?", "a": "Trend monitoring to confirm the countermeasure actually holds over time."}
+      ],
+      "quiz": [
+        {"q": "In the weld-nut case, '100% inspection before loading' is best classified as:", "choices": ["The permanent solution", "Containment (a temporary firewall)", "The root cause", "A tolerance study"], "answer": "B", "explanation": "It protects the customer now but doesn't address the cause; a durable fix must error-proof the source."},
+        {"q": "A team's 5 Whys stops at 'the operator forgot the weld nut' and they retrain the operator. The likely outcome is:", "choices": ["Permanent resolution", "The defect recurs, because the real cause (no error-proofing/detection) is untouched", "The PCB is complete", "Containment is no longer needed"], "answer": "B", "explanation": "Stopping at a symptom-level 'cause' (human error) yields a symptom-level fix (retraining) and recurrence; the process gap remains."},
+        {"q": "Why does the PCB deliberately separate 'Problem Description,' 'Analysis,' and 'Solutions' into different sections?", "choices": ["For paperwork compliance only", "To stop teams jumping to a solution before they understand the true cause", "To assign blame", "To speed up containment"], "answer": "B", "explanation": "Separating description from cause from countermeasure prevents the classic error of solving the wrong problem."},
+        {"q": "The best evidence that a 5 Whys reached a TRUE root cause is that the final 'why':", "choices": ["Blames a specific person", "Points to something you can change in the process/system to prevent recurrence", "Is exactly five levels deep", "Matches the original symptom"], "answer": "B", "explanation": "A true root cause is actionable at the system/process level — fixing it prevents recurrence; depth isn't fixed at exactly five."}
+      ]
+    }
+  ]
+}

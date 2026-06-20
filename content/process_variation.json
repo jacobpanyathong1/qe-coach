@@ -1,0 +1,245 @@
+{
+  "module": "process_variation",
+  "title": "Process Variation & Reduction",
+  "source_book": "Statistical Engineering: An Algorithm for Reducing Variation in Manufacturing Processes (MacKay & Steiner); Council for Six Sigma Certification",
+  "topics": [
+    {
+      "id": "pv-01",
+      "title": "Variation Is the Enemy",
+      "source": "Statistical Engineering, Ch.1-2",
+      "summary": "Every process varies; that variation is the source of defects, scrap, and customer complaints. The whole job of quality engineering is to understand and shrink it.",
+      "reading": "No two parts are ever identical. Run the same machine, with the same operator, on the same material, and the measured output still wanders. That scatter — variation — is not a nuisance on top of the 'real' value; it IS the thing quality engineering exists to manage. Defects happen when variation pushes a characteristic past a specification limit, so reducing variation is how you simultaneously cut scrap, warranty cost, and customer complaints.\n\nIt helps to separate two questions about any set of measurements: where is it centered (location), and how spread out is it (variation)? You can be perfectly centered on target and still make bad parts if the spread is too wide; you can have tiny spread but be off-target. Centering is usually an easy adjustment; reducing spread is the hard, valuable work — and it is what 'process variation reduction' means.\n\nThere is a second, sneaky source of scatter: the measurement system itself. What you observe is the true process variation PLUS measurement variation. If your gauge is noisy, you can chase 'process' problems that are really gauge problems. That is why a disciplined approach quantifies a baseline first and checks the measurement system before hunting causes — you cannot reduce what you cannot trust your numbers to show.",
+      "key_points": [
+        "Variation is the root source of defects — a characteristic fails when variation crosses a spec limit.",
+        "Separate location (center) from spread (variation); reducing spread is the hard, valuable work.",
+        "Observed variation = true process variation + measurement variation.",
+        "Quantify a baseline and trust your measurement before chasing causes."
+      ],
+      "media": {
+        "image": "media/diagrams/histogram.png",
+        "image_caption": "A process's spread is its variation — defects live in the tails past the spec limits"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "Two machines both run a 10.0 mm target. Machine A averages 10.0 with a wide spread; Machine B averages 10.2 with a very tight spread. Tolerance is 10.0 ±0.3. Which is the better quality problem to have, and why?",
+          "model_answer": "Machine B is the better situation. Its variation (spread) is small; it is simply off-center by 0.2, which is usually a quick adjustment (re-center the process to 10.0) and then nearly all parts fall inside ±0.3. Machine A is centered but its wide spread means parts already cross both limits, and reducing spread is slow, investigative work. In short: an off-center, low-variation process is an easy fix; an on-center, high-variation process is the real engineering challenge."
+        },
+        {
+          "prompt": "A team reports a process is 'out of control' based on caliper readings, but the part feature is only 0.05 mm wide in tolerance. What should they verify before launching an investigation, and why?",
+          "model_answer": "They should check the measurement system first. Observed variation = process + measurement variation, and a hand caliper may not resolve a 0.05 mm tolerance — its repeatability could be a large fraction of the spread. If measurement variation is dominant, the 'process' instability is an artifact of the gauge. Quantify gauge R&R; if the gauge eats too much of the tolerance, fix/replace the measurement before chasing the process."
+        }
+      ],
+      "flashcards": [
+        {"q": "Why is variation, not the average, usually the hard quality problem?", "a": "Centering is typically an easy adjustment; reducing spread (variation) is slow investigative work — and wide spread is what pushes parts past spec limits."},
+        {"q": "What does 'observed variation = process variation + measurement variation' warn you about?", "a": "A noisy gauge can masquerade as a process problem; check the measurement system before hunting process causes."},
+        {"q": "Define location vs. spread.", "a": "Location = where the data is centered (the average); spread = how dispersed it is (the variation/standard deviation)."}
+      ],
+      "quiz": [
+        {"q": "A process is dead-on target but 8% of parts are out of spec. The priority action is:", "choices": ["Re-center the process", "Reduce the process spread (variation)", "Loosen the tolerance", "Add 100% inspection permanently"], "answer": "B", "explanation": "On-target but failing means the spread is too wide — variation reduction is the fix, not re-centering."},
+        {"q": "Observed variation looks high, but a Gauge R&R shows the gauge consumes 45% of the tolerance. The most likely truth is:", "choices": ["The process is highly capable", "Much of the 'process' variation is actually measurement variation", "The spec is wrong", "The operators need retraining on the machine"], "answer": "B", "explanation": "A gauge eating ~45% of tolerance injects large measurement variation into the observed numbers — fix the measurement first."},
+        {"q": "Which pair is correctly matched?", "choices": ["Location = spread; spread = average", "Location = center/average; spread = variation/dispersion", "Location = tolerance; spread = target", "Location = Cpk; spread = Cp"], "answer": "B", "explanation": "Location is the center (mean); spread is the dispersion (variation)."}
+      ]
+    },
+    {
+      "id": "pv-02",
+      "title": "Common vs Special Cause — and the Two Costly Mistakes",
+      "source": "Statistical Engineering Ch.2; Six Sigma Guide (Shewhart/Deming)",
+      "summary": "Variation comes in two flavors that demand opposite responses — and confusing them is the most expensive mistake in process control.",
+      "reading": "Walter Shewhart split process variation into two kinds, and W. Edwards Deming built a management philosophy on the distinction. Common-cause variation is the inherent, always-present background scatter of a stable process — the sum of many small, random influences baked into the system itself. Special-cause (assignable) variation is something out of the ordinary: a tool breaks, a new material lot arrives, a setting drifts. It shows up as a signal — a point beyond the control limits or a non-random pattern.\n\nThe reason this matters is that the two demand OPPOSITE responses, and Deming named the two ways to get it wrong. Mistake 1 (tampering): reacting to common-cause noise as if it were a special cause — adjusting a stable process after a single off-center part. Counter-intuitively, this ADDS variation; Deming's funnel experiment shows that 'correcting' random scatter makes the output worse, not better. Mistake 2: ignoring a special cause, treating a real signal as if it were just noise — so a genuine problem runs on undetected.\n\nThe practical payoff: a control chart is the tool that tells the two apart, so you know which response is correct. And there is a hard truth for managers — if a process is stable (only common cause) but not good enough, you cannot fix it by chasing individual points or blaming operators. Common-cause variation is a property of the SYSTEM; reducing it requires changing the system (the equipment, the method, the design), which is engineering and management work, not shop-floor reaction.",
+      "key_points": [
+        "Common cause = inherent, random, always-present (a property of the system).",
+        "Special cause = assignable, intermittent, shows up as a control-chart signal.",
+        "Mistake 1 (tampering): treating common cause as special — ADDS variation (Deming's funnel).",
+        "Mistake 2: treating a special cause as common — a real problem goes undetected.",
+        "Reducing common-cause variation requires changing the SYSTEM, not blaming operators."
+      ],
+      "media": {
+        "image": "media/diagrams/variation_causes.png",
+        "image_caption": "Stable common-cause variation, then a special-cause shift appears"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "An operator nudges the machine setting a little after every part that isn't exactly on target, trying to 'help.' The process was stable. Predict what happens to the output variation and explain using Deming's idea.",
+          "model_answer": "The variation gets WORSE. The operator is tampering — reacting to common-cause noise as if each deviation had an assignable cause. Each 'correction' is itself based on random scatter, so adjustments overshoot in the opposite direction and the output bounces more widely than if left alone. This is exactly Deming's funnel experiment: adjusting a stable process inflates its variation. The correct response to a stable process is to leave the knobs alone and improve the system if more capability is needed."
+        },
+        {
+          "prompt": "A control chart shows 9 consecutive points above the centerline but none outside the limits. Is this common or special cause, and what's the risk of calling it 'fine, nothing's out of limits'?",
+          "model_answer": "A run of 9 on one side is a non-random pattern — a special-cause signal (a shift), even though no point breached a limit. Calling it 'fine' is Mistake 2: ignoring a real special cause because you only watched for points outside the limits. The risk is that a genuine process shift (new lot, drift, tool change) goes uninvestigated and produces a sustained quality problem. The run rules exist precisely to catch shifts before a limit is crossed."
+        }
+      ],
+      "flashcards": [
+        {"q": "What is tampering, and what does it do to a stable process?", "a": "Reacting to common-cause noise as if it were special (adjusting after random deviations). It ADDS variation — shown by Deming's funnel experiment."},
+        {"q": "How do you reduce common-cause variation?", "a": "Change the system itself (equipment, method, design) — it cannot be fixed by reacting to individual points or blaming operators."},
+        {"q": "Name Deming's two mistakes in responding to variation.", "a": "Mistake 1: treat common cause as special (tamper). Mistake 2: treat special cause as common (ignore a real signal)."}
+      ],
+      "quiz": [
+        {"q": "A process shows only common-cause variation but yields 4% defects. The correct action is to:", "choices": ["Adjust the machine after each bad part", "Change the system (method/equipment/design) to reduce inherent variation", "Discipline the operator", "Widen the control limits"], "answer": "B", "explanation": "Common-cause variation is a system property; only a system change reduces it. Reacting point-by-point is tampering."},
+        {"q": "Deming's funnel experiment demonstrates that:", "choices": ["100% inspection is best", "Adjusting a stable process in response to random scatter increases variation", "Special causes are rare", "Control limits should be ±2σ"], "answer": "B", "explanation": "Tampering with a stable process makes the output spread worse, not better."},
+        {"q": "Eight points in a row below the centerline (none beyond a limit) should be treated as:", "choices": ["Common cause — ignore it", "A special-cause signal worth investigating", "A measurement error by definition", "Proof the process improved"], "answer": "B", "explanation": "A long run on one side is a non-random pattern — a special-cause shift, even with no point outside the limits."},
+        {"q": "Treating a genuine tool-breakage signal as 'just normal scatter' is an example of:", "choices": ["Mistake 1 (tampering)", "Mistake 2 (missing a special cause)", "Robust design", "Feedforward control"], "answer": "B", "explanation": "Ignoring a real special cause as if it were common cause is Deming's Mistake 2."}
+      ]
+    },
+    {
+      "id": "pv-03",
+      "title": "Families of Variation",
+      "source": "Statistical Engineering, Ch.10-11 (Multivari)",
+      "summary": "Variation isn't one blob — it lives in 'families' (within-part, part-to-part, time-to-time, stream-to-stream). Finding which family is biggest narrows the hunt for the cause.",
+      "reading": "When a characteristic varies, the scatter is not formless — it can be split into families that describe WHERE in space and time the variation lives. Common families: within-part (one part measured at several positions), part-to-part (consecutive parts), time-to-time (across hours, shifts, or days), and stream-to-stream (across cavities, spindles, or fixtures running in parallel). There are also upstream/downstream families and assembly-vs-component families.\n\nThe power of this idea is strategic. A dominant cause of variation must produce its effect within one (or a combination) of these families. So instead of brainstorming a long list of possible causes and testing them one by one, you run an investigation — classically a multivari study — that estimates how much variation each family contributes, and you let the data point you at the family that holds the dominant cause. If part-to-part variation dwarfs within-part and time-to-time (as in the multivari chart), the cause changes from part to part — look at things that vary part-to-part (incoming material, a per-part handling step), not at slow drifts or fixture differences.\n\nThis is detective work by elimination: each comparison rules out whole families at once. If the variation is almost all stream-to-stream, you've eliminated time and within-part causes and can focus on what differs between the cavities/spindles. Narrowing to the right family before testing specific causes is what makes variation reduction efficient rather than a fishing expedition.",
+      "key_points": [
+        "Families: within-part, part-to-part, time-to-time, stream-to-stream (+ upstream/downstream, assembly/component).",
+        "A dominant cause must act within some family — so find the big family first.",
+        "A multivari study estimates each family's contribution from the data.",
+        "Narrowing to the right family eliminates whole groups of causes at once."
+      ],
+      "media": {
+        "image": "media/diagrams/variation_families.png",
+        "image_caption": "Multivari: part-to-part dominates here, so hunt causes that vary part-to-part"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A multivari study on a molded part shows that almost all the variation is stream-to-stream (cavity-to-cavity) in an 8-cavity mold, with little part-to-part or time-to-time. Where do you look, and which causes have you just eliminated?",
+          "model_answer": "Look at what differs between the 8 cavities — cavity dimensions, gate sizes, cooling-line balance, venting. You have eliminated time-based causes (drift, shift change, material lot over time) and within-cycle causes, because those families were small. The efficient next step is to compare cavities directly (e.g., is one cavity consistently off?) rather than testing process settings that affect all cavities equally."
+        },
+        {
+          "prompt": "Why is identifying the dominant family BEFORE testing specific causes more efficient than the usual 'brainstorm and test each cause' approach?",
+          "model_answer": "Because a family comparison rules out large groups of causes in a single investigation. Brainstorm-and-test checks causes one at a time, most of which turn out irrelevant. Finding that, say, part-to-part is the big family instantly eliminates every time-based and stream-based cause, shrinking a long list to a focused few. It is searching by elimination rather than by exhaustive trial."
+        }
+      ],
+      "flashcards": [
+        {"q": "Name four common families of variation.", "a": "Within-part, part-to-part, time-to-time, and stream-to-stream (cavity/spindle/fixture)."},
+        {"q": "What is a multivari study used for?", "a": "To estimate how much variation each family contributes, so you can identify the family holding the dominant cause."},
+        {"q": "Why find the dominant family before testing specific causes?", "a": "Each family comparison eliminates whole groups of causes at once — far more efficient than testing causes one by one."}
+      ],
+      "quiz": [
+        {"q": "A multivari shows part-to-part variation is huge while time-to-time and within-part are tiny. The cause most likely varies:", "choices": ["Slowly over the shift", "From one part to the next (e.g., incoming material, per-part handling)", "Between mold cavities", "Across measurement operators"], "answer": "B", "explanation": "A large part-to-part family points to causes that change part-to-part; time and stream causes are eliminated."},
+        {"q": "Differences between 4 grinding spindles running in parallel belong to which family?", "choices": ["Within-part", "Time-to-time", "Stream-to-stream", "Assembly-to-component"], "answer": "C", "explanation": "Parallel spindles/cavities/fixtures are streams — variation between them is the stream-to-stream family."},
+        {"q": "The strategic value of the families-of-variation idea is that it lets you:", "choices": ["Skip measurement checks", "Eliminate whole groups of causes with one investigation", "Avoid collecting data", "Prove the process is capable"], "answer": "B", "explanation": "Comparing families rules out large groups of causes at once, focusing the search."}
+      ]
+    },
+    {
+      "id": "pv-04",
+      "title": "The Dominant Cause & the Method of Elimination",
+      "source": "Statistical Engineering, Ch.9, 12",
+      "summary": "Among many causes of variation, one usually dominates. Find THAT one efficiently by eliminating families and candidates, not by testing everything.",
+      "reading": "A liberating fact sits at the center of variation reduction: of the many things that could cause variation, usually a single dominant cause (or a small handful) accounts for most of it. This is the same Pareto / 'Red X' principle that Shainin made famous — and it means you do not need to find and fix every cause to make a big improvement. Find the dominant one and the bulk of the variation goes with it.\n\nThe efficient way to find it is the method of elimination. Rather than listing every conceivable cause and testing each (slow, expensive, often inconclusive), you design comparisons that rule out large groups at once. Did the problem move when we swapped the component? If yes, the cause is in the component and we've eliminated the assembly process; if no, the reverse. Is the variation in the part-to-part family? Then time-based and stream-based causes are out. Each clever comparison eliminates a whole region of the cause space, converging on the dominant cause in a few well-chosen investigations instead of dozens of trials.\n\nA crucial discipline: 'talk to the parts.' Let measurements and comparisons — not opinions or the loudest voice in the room — decide which family and which cause survive elimination. Teams that brainstorm a cause and then immediately 'fix' it usually fix something that wasn't dominant, the variation barely moves, and they're back where they started. Confirm the dominant cause empirically before spending money on a solution.",
+      "key_points": [
+        "Usually ONE dominant cause (or a few) drives most of the variation — the Pareto / Red-X principle.",
+        "Method of elimination: design comparisons that rule out whole groups of causes at once.",
+        "You don't need every cause — finding the dominant one captures most of the gain.",
+        "'Talk to the parts': let data, not opinion, survive the elimination."
+      ],
+      "media": {
+        "image": "media/diagrams/pareto.png",
+        "image_caption": "A few causes (the 'vital few') drive most of the variation — find the dominant one"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A team brainstorms 12 possible causes for bore-diameter variation and immediately changes coolant concentration (their favorite theory). Variation barely improves. Diagnose their process error and prescribe a better next step.",
+          "model_answer": "They skipped finding the dominant cause and jumped to a pet solution — fixing a cause that probably wasn't dominant, so the variation hardly moved. The better approach is the method of elimination: run an investigation (e.g., multivari) to find which FAMILY holds most of the variation, then use comparisons to eliminate candidates until the dominant cause is confirmed by data. Only then spend money on a fix — and expect a large reduction because you're addressing the cause that actually drives the spread."
+        },
+        {
+          "prompt": "You swap a suspect supplier component from a 'bad' assembly into a 'good' one, and the defect follows the component. What have you learned, and what have you eliminated?",
+          "model_answer": "The dominant cause lives in the component (its variation travels with the part), not in your assembly process — because the defect moved with the swapped component. You've eliminated the entire assembly-process family of causes (fixtures, operators, your process settings) in a single, cheap comparison. Next, characterize what about the component varies (dimension, material) and address it at the supplier or desensitize your process to it."
+        }
+      ],
+      "flashcards": [
+        {"q": "What does the 'dominant cause' principle let you avoid?", "a": "Finding and fixing every cause — usually one dominant cause drives most of the variation, so addressing it captures most of the gain."},
+        {"q": "What is the method of elimination?", "a": "Finding the dominant cause by designing comparisons that rule out whole groups of causes at once, rather than testing each candidate."},
+        {"q": "What does 'talk to the parts' mean?", "a": "Let measurements and comparisons decide which cause is dominant — not opinions, theories, or seniority."}
+      ],
+      "quiz": [
+        {"q": "Swapping a suspect component between good and bad units, the defect follows the component. You have eliminated:", "choices": ["The component as a cause", "The entire assembly-process family of causes", "Measurement variation", "Time-to-time variation only"], "answer": "B", "explanation": "If the defect travels with the component, the cause is in the component — the assembly process is eliminated."},
+        {"q": "The 'dominant cause' (Red-X) principle states that:", "choices": ["All causes contribute equally", "One cause (or a few) usually accounts for most of the variation", "Variation has no identifiable cause", "You must fix every cause to improve"], "answer": "B", "explanation": "A single dominant cause typically drives most variation — find and address it for the biggest gain."},
+        {"q": "A team's biggest efficiency mistake in root-cause work is usually:", "choices": ["Collecting too much data", "Jumping to fix a favored cause before confirming it's dominant", "Using control charts", "Checking the measurement system"], "answer": "B", "explanation": "Fixing an unconfirmed pet cause wastes money and barely moves the variation; confirm the dominant cause first."}
+      ]
+    },
+    {
+      "id": "pv-05",
+      "title": "The Variation-Reduction Algorithm (+ QPDAC)",
+      "source": "Statistical Engineering, Ch.4-5",
+      "summary": "MacKay & Steiner's repeatable algorithm ties it all together — define, measure, find the dominant cause, assess, fix, validate — with QPDAC as the engine for each investigation.",
+      "reading": "Everything in this module fits into one repeatable algorithm. Step 1 — Define a focused problem with a baseline: pick a specific characteristic and quantify current performance (mean, standard deviation, % out of spec) so you can later prove improvement. Step 2 — Check the measurement system: confirm gauge variation is small relative to the process; if the gauge is the dominant cause, fix it first. Step 3 — Find the dominant cause: use families of variation and the method of elimination. Step 4 — Assess feasibility: can you economically address that cause? If not, reformulate the problem or pick a different approach. Step 5 — Apply a variation-reduction approach (next topic). Step 6 — Validate the solution and hold the gains: confirm the variation actually dropped, then lock it in with controls/SPC so it doesn't creep back.\n\nThe order is deliberate and skipping ahead is the classic failure mode — implementing a 'solution' before the dominant cause is known wastes money on the wrong thing. The discipline is what produces durable results.\n\nInside each step, investigations are run with QPDAC: Question (state precisely what you need to learn), Plan (what data, how sampled, with what measurement), Data (collect exactly as planned), Analysis (analyze it), Conclusion (answer the question and note the limits). QPDAC keeps an investigation honest — most failed studies fail at Question or Plan (vague aim, bad sampling), not at the math.",
+      "key_points": [
+        "Algorithm: (1) define+baseline → (2) check measurement → (3) find dominant cause → (4) assess feasibility → (5) apply approach → (6) validate & hold.",
+        "Order matters: implementing a fix before knowing the dominant cause is the classic, expensive mistake.",
+        "QPDAC runs each investigation: Question, Plan, Data, Analysis, Conclusion.",
+        "Most studies fail at Question/Plan (vague aim, poor sampling), not at the statistics."
+      ],
+      "media": {
+        "image": "media/diagrams/variation_algorithm.png",
+        "image_caption": "The six-step Statistical Engineering variation-reduction algorithm"
+      },
+      "case_study": {
+        "title": "Camshaft Lobe Runout (worked with the algorithm)",
+        "scenario": "Customer rejects camshafts for excessive lobe runout. Baseline: runout standard deviation is well above target and ~6% of lobes exceed the limit. Goal: cut the variation, not just sort the bad ones.",
+        "walkthrough": [
+          "Step 1 Define + baseline: characteristic = lobe runout; quantify current mean, SD, and % over limit so improvement is provable.",
+          "Step 2 Check measurement: a Gauge R&R on the runout gauge confirms measurement variation is small — the scatter is real process variation, not gauge noise.",
+          "Step 3 Find dominant cause (families): a multivari shows lobe-to-lobe (within-part) variation dwarfs part-to-part and time-to-time. The cause acts WITHIN a part, across lobes — pointing at the grinding cycle per lobe, not the incoming blanks or slow drift.",
+          "Step 4 Assess feasibility: it's feasible to address the per-lobe grinding behavior (fixture indexing / spindle) without a capital rebuild.",
+          "Step 5 Apply an approach: desensitize/correct the dominant cause (e.g., fix indexing so each lobe grinds consistently), rather than 100% sorting.",
+          "Step 6 Validate + hold: re-measure the baseline metric to confirm SD dropped and % over limit fell; lock it in with an SPC control chart so the gain holds."
+        ]
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A project skips Step 2 (check the measurement system) and spends three months 'reducing process variation' with no improvement. Late on, a Gauge R&R shows the gauge consumes 60% of the tolerance. What went wrong, and what should have happened?",
+          "model_answer": "They tried to reduce a 'process' variation that was largely measurement variation — so no process change could move the observed numbers. Skipping Step 2 meant they never learned the gauge was the dominant cause. The algorithm puts the measurement check second precisely to catch this: had they run the Gauge R&R first, they'd have fixed/replaced the gauge (the real dominant cause) and only then worked the process. Order matters."
+        },
+        {
+          "prompt": "Write a one-line QPDAC 'Question' and 'Plan' for investigating whether bore diameter varies more part-to-part or hour-to-hour.",
+          "model_answer": "Question: 'Is the dominant family of bore-diameter variation part-to-part or time-to-time (hour-to-hour) over a normal production day?' Plan: 'Measure 5 consecutive bores (part-to-part) at the top of each hour for 8 hours with the calibrated bore gauge; record part order and time; analyze with a multivari to compare the part-to-part vs hour-to-hour components.' (Precise question + sampling that can actually separate the two families is the whole game.)"
+        }
+      ],
+      "flashcards": [
+        {"q": "List the six steps of the variation-reduction algorithm.", "a": "1) Define a focused problem + baseline, 2) check the measurement system, 3) find the dominant cause, 4) assess feasibility, 5) apply a reduction approach, 6) validate and hold the gains."},
+        {"q": "What does QPDAC stand for and what is it for?", "a": "Question, Plan, Data, Analysis, Conclusion — a disciplined framework for running each empirical investigation."},
+        {"q": "Why is checking the measurement system Step 2 (so early)?", "a": "If the gauge is the dominant cause, no process change will help — you must rule out measurement variation before hunting process causes."}
+      ],
+      "quiz": [
+        {"q": "The single most common way teams break the algorithm is:", "choices": ["Spending too long on the baseline", "Implementing a solution before the dominant cause is known", "Using QPDAC", "Validating twice"], "answer": "B", "explanation": "Jumping to a 'fix' before identifying the dominant cause wastes money on the wrong thing — the algorithm is ordered to prevent this."},
+        {"q": "In QPDAC, most investigations actually fail at:", "choices": ["Analysis (the statistics)", "Question/Plan (vague aim or poor sampling)", "Conclusion", "Data entry"], "answer": "B", "explanation": "A fuzzy question or sampling that can't separate the families dooms a study before any math is done."},
+        {"q": "After a fix reduces variation, 'hold the gains' (Step 6) means:", "choices": ["Stop measuring — you're done", "Lock in the improvement with controls/SPC so it doesn't creep back", "Loosen the tolerance", "Run 100% inspection forever"], "answer": "B", "explanation": "Validation confirms the drop; holding the gains uses ongoing control (e.g., SPC) so the process doesn't regress."},
+        {"q": "Step 1 requires a 'baseline' mainly so that you can:", "choices": ["Skip the measurement check", "Prove later whether the variation actually improved", "Choose the operators", "Set the price"], "answer": "B", "explanation": "A quantified baseline (mean, SD, % defective) is what lets you demonstrate real improvement at validation."}
+      ]
+    },
+    {
+      "id": "pv-06",
+      "title": "Seven Approaches to Reduce Variation",
+      "source": "Statistical Engineering, Ch.15-20",
+      "summary": "Once you know the dominant cause, there are a fixed set of ways to act on it — from eliminating it to desensitizing the process to controlling it. Choosing the right one is an engineering judgment.",
+      "reading": "Knowing the dominant cause doesn't automatically tell you what to DO about it. MacKay & Steiner lay out a fixed menu of approaches, and a big part of QE skill is matching the approach to the situation and cost.\n\n1) Fix/eliminate the dominant cause at its source — the cleanest option when it's feasible (e.g., stop a fixture from shifting). 2) Desensitize the process (robustness) — if you can't remove the cause's variation, change process settings so the output barely responds to it; this is the Taguchi 'robust design' idea of flattening variation transmission. 3) Feedforward control — measure the incoming cause and compensate before it reaches the output (e.g., measure incoming part size and adjust the cut). 4) Feedback control — measure the output and correct drift automatically (automatic process control); good for slow drifts, not random noise. 5) Make the process robust by choice of operating point — a cousin of (2). 6) 100% inspection — sort good from bad; the last resort because it's costly, fallible, and adds no real capability. 7) Move the process center / reduce variation in the cause — re-center to target or tighten the cause's own variation.\n\nThe choice depends on feasibility and economics. Eliminating the cause is best but sometimes impossible; if the cause is incoming material you can't control, desensitizing or feedforward may win. Feedback suits steady drift; it can't chase part-to-part randomness. And 100% inspection is the firewall you lean on only until a real reduction is in place — it manages escapes, it doesn't reduce variation.",
+      "key_points": [
+        "Approaches: (1) eliminate the cause, (2) desensitize/robust design, (3) feedforward control, (4) feedback control, (5) robust operating point, (6) 100% inspection, (7) move center / tighten the cause.",
+        "Eliminating the dominant cause is cleanest — when feasible.",
+        "Desensitize/feedforward shine when you CAN'T control the cause (e.g., incoming material).",
+        "Feedback suits slow drift; it cannot fix part-to-part randomness. 100% inspection is a last-resort firewall, not a reduction."
+      ],
+      "media": {
+        "image": "media/diagrams/variation_algorithm.png",
+        "image_caption": "Approaches are Step 5 of the algorithm — chosen after the dominant cause is known"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "The dominant cause of a cut-to-length variation is incoming coil thickness, which your supplier can't tighten and you can't reject. Which approaches are viable, which aren't, and what would you try first?",
+          "model_answer": "Eliminating the cause is out (you can't control the supplier or reject the coil). Viable: feedforward control — gauge incoming thickness and adjust the cut in real time to compensate; or desensitize/robust design — find process settings where final length barely responds to thickness variation. Feedback could help only for slow systematic drift, not part-to-part thickness scatter. 100% inspection is a costly firewall, not a fix. Try feedforward first (it directly cancels the known incoming variation); pursue robustness in parallel as a settings change that needs no added sensor."
+        },
+        {
+          "prompt": "Why is 100% inspection considered the weakest of the seven approaches even though it 'catches' defects?",
+          "model_answer": "Because it doesn't reduce variation at all — the process still makes the same spread of parts; you're just sorting. It's costly (labor/automation), fallible (human inspection misses a notable fraction of defects), and adds no capability, so unit cost stays high and escapes still happen. It's a firewall to protect the customer while you implement a real reduction (eliminate/desensitize/control the dominant cause), not a destination."
+        }
+      ],
+      "flashcards": [
+        {"q": "When the dominant cause is incoming material you can't control, which two approaches fit best?", "a": "Feedforward control (measure the incoming cause and compensate) and desensitizing/robust design (settings where output barely responds to it)."},
+        {"q": "What kind of variation can feedback control handle — and not handle?", "a": "It corrects slow systematic drift; it cannot fix fast part-to-part random variation."},
+        {"q": "Why is 100% inspection the last-resort approach?", "a": "It only sorts parts — it doesn't reduce variation, it's costly, and human inspection is fallible. It's a firewall, not a fix."}
+      ],
+      "quiz": [
+        {"q": "The dominant cause is fast, random part-to-part variation in a purchased component. Which approach will NOT help?", "choices": ["Feedforward control", "Desensitizing the process (robustness)", "Feedback control", "Working with the supplier to reduce the component's variation"], "answer": "C", "explanation": "Feedback corrects slow drift, not fast part-to-part randomness — it can't keep up cycle-to-cycle."},
+        {"q": "'Choosing process settings where the output barely responds to a cause you can't remove' describes:", "choices": ["100% inspection", "Desensitizing / robust design", "Feedback control", "Re-centering"], "answer": "B", "explanation": "Robust/desensitizing design flattens variation transmission so the output is insensitive to the cause."},
+        {"q": "The best approach, when it's economically feasible, is generally to:", "choices": ["Add 100% inspection", "Eliminate the dominant cause at its source", "Widen the tolerance", "Install feedback control"], "answer": "B", "explanation": "Removing the dominant cause reduces variation at the source — the cleanest, most durable option when feasible."},
+        {"q": "Feedforward control works by:", "choices": ["Sorting finished parts", "Measuring the incoming cause and compensating before it affects the output", "Adjusting after measuring the output", "Brainstorming causes"], "answer": "B", "explanation": "Feedforward senses the dominant cause upstream and pre-compensates, canceling its effect on the output."}
+      ]
+    }
+  ]
+}

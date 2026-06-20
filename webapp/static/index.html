@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tesla QE Academy</title>
+  <meta name="theme-color" content="#1f4e79" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script>
+    try { var p = JSON.parse(localStorage.getItem("qe-prefs") || "{}"); var d = document.documentElement;
+      d.dataset.theme = p.theme || "light"; d.dataset.size = p.size || "md"; d.dataset.font = p.font || "sans"; } catch (e) {}
+  </script>
+  <!-- iOS: install to home screen as a standalone app -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QE Academy" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+</head>
+<body>
+  <main id="app" class="container"><div class="loading">Loading…</div></main>
+
+  <nav id="tabbar">
+    <a href="#/" data-tab="home"><span>🏠</span>Home</a>
+    <a href="#/review" data-tab="review"><span>🔁</span>Review</a>
+    <a href="#/tools" data-tab="tools"><span>🧰</span>Tools</a>
+    <a href="#/tutor" data-tab="tutor"><span>🤖</span>Tutor</a>
+    <a href="#/progress" data-tab="progress"><span>📊</span>Progress</a>
+  </nav>
+
+  <button id="prefsbtn" aria-label="Display settings">Aa</button>
+  <div id="prefs" class="prefs hidden">
+    <div class="prefs-title">📖 Display</div>
+    <div class="prefs-row"><span>Theme</span><div class="seg" data-pref="theme">
+      <button data-v="light">Light</button><button data-v="sepia">Sepia</button><button data-v="dark">Dark</button></div></div>
+    <div class="prefs-row"><span>Text size</span><div class="seg" data-pref="size">
+      <button data-v="sm">A−</button><button data-v="md">A</button><button data-v="lg">A+</button><button data-v="xl">A++</button></div></div>
+    <div class="prefs-row col"><span>Reading font</span><div class="seg wrap" data-pref="font">
+      <button data-v="system">System</button><button data-v="serif">Serif</button><button data-v="book">Book</button><button data-v="wide">Wide</button><button data-v="humanist">Humanist</button><button data-v="mono">Mono</button></div></div>
+    <button id="prefsdone" class="primary">Done</button>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      let reloaded = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (reloaded) return; reloaded = true; location.reload();
+      });
+      window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").then((r) => r.update()));
+    }
+  </script>
+</body>
+</html>

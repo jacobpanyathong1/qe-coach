@@ -1,0 +1,366 @@
+{
+  "module": "fmea",
+  "title": "FMEA (Failure Mode & Effects Analysis)",
+  "source_book": "AIAG & VDA FMEA Handbook (1st Ed.)",
+  "topics": [
+    {
+      "id": "fmea-01",
+      "title": "What FMEA Is and the Three Types",
+      "source": "AIAG-VDA Handbook Ch.1",
+      "summary": "FMEA is a structured, preventive method to identify potential failure modes, their effects, and their causes BEFORE they happen, then prioritize actions to reduce risk. The AIAG & VDA Handbook defines Design FMEA (DFMEA) — analyzing functions of a system/subsystem/component; Process FMEA (PFMEA) — analyzing manufacturing/assembly process steps for failures from process variation; and Supplemental FMEA-MSR (Monitoring & System Response) for analyzing in-service diagnostic/monitoring under safety/regulatory needs. FMEA is a living document, started early and updated as the design/process changes.",
+      "key_points": [
+        "FMEA is preventive: act before failures occur, prioritize by risk.",
+        "DFMEA → product functions (system/subsystem/component).",
+        "PFMEA → manufacturing & assembly process steps and process variation.",
+        "FMEA-MSR → monitoring and system response for in-field safety/regulatory.",
+        "It is a living document — begin early, update with every change."
+      ],
+      "flashcards": [
+        {
+          "q": "What are the three FMEA types in the AIAG & VDA Handbook?",
+          "a": "Design FMEA (DFMEA), Process FMEA (PFMEA), and Supplemental FMEA-MSR (Monitoring & System Response)."
+        },
+        {
+          "q": "Is FMEA reactive or preventive?",
+          "a": "Preventive — it identifies and mitigates potential failures before they occur."
+        },
+        {
+          "q": "What does a PFMEA analyze?",
+          "a": "Manufacturing/assembly process steps for potential failures arising from process variation."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A team analyzing whether a stamping process could produce a mislocated hole should use a:",
+          "choices": [
+            "DFMEA",
+            "PFMEA",
+            "FMEA-MSR",
+            "Control plan"
+          ],
+          "answer": "B",
+          "explanation": "Process failures from manufacturing variation are the domain of the PFMEA."
+        },
+        {
+          "q": "FMEA is best described as:",
+          "choices": [
+            "A reactive containment tool",
+            "A preventive risk-analysis method used early and updated continually",
+            "A final inspection record",
+            "A capability study"
+          ],
+          "answer": "B",
+          "explanation": "FMEA is a living, preventive analysis started early in development."
+        }
+      ]
+    },
+    {
+      "id": "fmea-02",
+      "title": "The 7-Step FMEA Approach",
+      "source": "AIAG-VDA Handbook Ch.2-3",
+      "summary": "The AIAG & VDA Handbook replaced the old worksheet flow with a 7-step approach grouped into three phases. System Analysis: (1) Planning & Preparation — the '5T' scope, (2) Structure Analysis — break the system into elements, (3) Function Analysis — define functions and requirements. Failure Analysis & Risk Mitigation: (4) Failure Analysis — failure modes, effects, causes, (5) Risk Analysis — rate Severity, Occurrence, Detection and assign Action Priority, (6) Optimization — take actions to reduce risk. Risk Communication: (7) Results Documentation — record and communicate outcomes.",
+      "key_points": [
+        "Step 1 Planning & Preparation (the 5T: InTent, Timing, Team, Tasks, Tools).",
+        "Step 2 Structure Analysis; Step 3 Function Analysis.",
+        "Step 4 Failure Analysis (modes, effects, causes).",
+        "Step 5 Risk Analysis (S, O, D → Action Priority).",
+        "Step 6 Optimization (reduce risk); Step 7 Results Documentation."
+      ],
+      "flashcards": [
+        {
+          "q": "List the 7 steps of the AIAG & VDA FMEA approach.",
+          "a": "1 Planning & Preparation, 2 Structure Analysis, 3 Function Analysis, 4 Failure Analysis, 5 Risk Analysis, 6 Optimization, 7 Results Documentation."
+        },
+        {
+          "q": "What is the '5T' in Step 1?",
+          "a": "InTent, Timing, Team, Tasks, Tools — the scope-setting elements of Planning & Preparation."
+        },
+        {
+          "q": "Which step assigns Severity, Occurrence, Detection and Action Priority?",
+          "a": "Step 5, Risk Analysis."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "In the 7-step approach, defining failure modes, effects, and causes happens in:",
+          "choices": [
+            "Step 2 Structure Analysis",
+            "Step 4 Failure Analysis",
+            "Step 6 Optimization",
+            "Step 7 Documentation"
+          ],
+          "answer": "B",
+          "explanation": "Step 4 Failure Analysis identifies the failure chain (effect–mode–cause)."
+        },
+        {
+          "q": "The three System Analysis steps are:",
+          "choices": [
+            "Failure, Risk, Optimization",
+            "Planning, Structure, Function",
+            "Severity, Occurrence, Detection",
+            "Plan, Do, Check"
+          ],
+          "answer": "B",
+          "explanation": "Steps 1-3 (Planning, Structure, Function) form the System Analysis phase."
+        }
+      ]
+    },
+    {
+      "id": "fmea-03",
+      "title": "The Failure Chain: Effect, Mode, Cause",
+      "source": "AIAG-VDA Handbook Ch.2 (Failure Analysis)",
+      "summary": "Every failure is analyzed as a chain of three linked elements. The Failure Mode is the manner in which the item/process fails to meet its function (e.g., 'hole drilled undersize'). The Failure Effect is the consequence of that mode on the customer/next operation/end user (e.g., 'fastener won't seat → assembly rework'); effects drive Severity. The Failure Cause is why the mode occurs (e.g., 'worn drill bit'); causes drive Occurrence and are where prevention controls act. One mode can have multiple effects and multiple causes.",
+      "key_points": [
+        "Failure Mode = HOW it fails to meet the function.",
+        "Failure Effect = the CONSEQUENCE to the customer/next step/end user → sets Severity.",
+        "Failure Cause = WHY the mode happens → sets Occurrence; target of prevention controls.",
+        "Define the function clearly first — a failure mode is the loss/degradation of that function."
+      ],
+      "flashcards": [
+        {
+          "q": "What are the three elements of the failure chain?",
+          "a": "Failure Effect, Failure Mode, and Failure Cause."
+        },
+        {
+          "q": "Which element of the failure chain determines the Severity rating?",
+          "a": "The Failure Effect (its consequence to the customer/end user)."
+        },
+        {
+          "q": "Which element determines Occurrence and is targeted by prevention controls?",
+          "a": "The Failure Cause."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "'Bolt torque too low' is the mode; 'joint loosens and leaks' is the:",
+          "choices": [
+            "Cause",
+            "Effect",
+            "Control",
+            "Detection"
+          ],
+          "answer": "B",
+          "explanation": "The consequence to the customer/next step is the failure Effect, which drives Severity."
+        },
+        {
+          "q": "Prevention controls are aimed primarily at the:",
+          "choices": [
+            "Failure effect",
+            "Failure mode",
+            "Failure cause",
+            "Severity rating"
+          ],
+          "answer": "C",
+          "explanation": "Prevention reduces the likelihood (Occurrence) of the cause."
+        }
+      ],
+      "media": {
+        "image": "media/book_figures/fmea-handbook-p53-x1459.png",
+        "image_caption": "FMEA 'focus element': analyze it with the levels above and below",
+        "video": {
+          "title": "AIAG-VDA FMEA: Ranking Severity, Occurrence, Detection",
+          "url": "https://www.youtube.com/watch?v=eL6Qo00EFm0"
+        },
+        "web_notes": "Every failure mode sits in a chain: a Cause triggers the failure Mode, which produces an Effect felt by the customer. The same problem is an 'effect' at one level and a 'cause' at the next — which is why FMEA analyzes the focus element together with the level above and below it.",
+        "sources": [
+          {
+            "title": "FMEA S/O/D Rating Tables (1–10)",
+            "url": "https://fmearatings.com/"
+          },
+          {
+            "title": "AIAG-VDA DFMEA Guide — Quality Engineer Stuff",
+            "url": "https://qualityengineerstuff.com/aiag-vda-dfmea/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fmea-04",
+      "title": "Severity, Occurrence, Detection",
+      "source": "AIAG-VDA Handbook Ch.2 (Risk Analysis)",
+      "summary": "Risk is rated on three 1–10 scales. Severity (S) rates how serious the EFFECT is (10 = hazardous/safety or regulatory non-compliance, 1 = no discernible effect) — it is a property of the effect and is usually only reduced by a design change. Occurrence (O) rates how likely the CAUSE is, considering prevention controls (10 = extremely high, 1 = very low/eliminated). Detection (D) rates how well current detection controls will CATCH the cause/mode before it ships (1 = almost certain detection, 10 = cannot detect). Note the scales: high S and O are bad; for D, high is bad too (poor detection).",
+      "key_points": [
+        "Severity (1-10) = seriousness of the effect; 10 = safety/regulatory. Usually only design change lowers S.",
+        "Occurrence (1-10) = likelihood of the cause given prevention controls.",
+        "Detection (1-10) = ability of detection controls to find it; 1 = certain to catch, 10 = cannot detect.",
+        "Severity is set by the effect, not by how often it happens."
+      ],
+      "flashcards": [
+        {
+          "q": "What does a Severity of 10 indicate?",
+          "a": "The most serious effect — typically a safety hazard or regulatory non-compliance."
+        },
+        {
+          "q": "On the Detection scale, does a HIGH number mean good or poor detection?",
+          "a": "Poor — D=10 means the control almost certainly will NOT detect the problem; D=1 means near-certain detection."
+        },
+        {
+          "q": "How can Severity usually be reduced?",
+          "a": "Only by a design change that removes or mitigates the effect (not by inspection)."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A Detection rating of 1 means:",
+          "choices": [
+            "The failure cannot be detected",
+            "Detection controls are almost certain to catch the issue",
+            "The failure is most severe",
+            "The cause never occurs"
+          ],
+          "answer": "B",
+          "explanation": "On the D scale, 1 = near-certain detection, 10 = cannot detect."
+        },
+        {
+          "q": "Severity is determined by:",
+          "choices": [
+            "How often the cause occurs",
+            "The seriousness of the effect",
+            "How well it's detected",
+            "The number of causes"
+          ],
+          "answer": "B",
+          "explanation": "Severity rates the consequence/effect, independent of frequency or detection."
+        }
+      ],
+      "media": {
+        "image": "media/diagrams/fmea_risk_matrix.png",
+        "image_caption": "Severity × Occurrence risk — Detection is the third axis of RPN",
+        "video": {
+          "title": "AIAG-VDA FMEA: Ranking Severity, Occurrence, Detection",
+          "url": "https://www.youtube.com/watch?v=eL6Qo00EFm0"
+        },
+        "web_notes": "Severity rates how bad the effect is (a 1–10 that detection can never reduce), Occurrence how often the cause happens, and Detection how likely current controls catch it before escape. Severity falls only by changing the design; Detection falls by improving controls.",
+        "sources": [
+          {
+            "title": "FMEA S/O/D Rating Tables (1–10)",
+            "url": "https://fmearatings.com/"
+          },
+          {
+            "title": "Severity in FMEA (AIAG-VDA) — Quality Assist",
+            "url": "https://quasist.com/fmea/severity-in-fmea/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fmea-05",
+      "title": "Action Priority (AP) — and Why It Replaced RPN",
+      "source": "AIAG-VDA Handbook Ch.2 (Risk Analysis)",
+      "summary": "The old AIAG 4th-edition method multiplied S×O×D into a Risk Priority Number (RPN, 1–1000) and often set an arbitrary threshold. RPN was criticized because very different risks share the same number (e.g., 9×2×5 = 5×9×2 = 90) and a low-severity item could outrank a safety item. The AIAG & VDA Handbook replaced RPN with Action Priority (AP): a High / Medium / Low rating from a logic table that weights Severity first, then Occurrence, then Detection. High AP means action is mandated (or justification why not); it focuses effort on the right risks instead of a raw product.",
+      "key_points": [
+        "Old method: RPN = S × O × D (1-1000); new method: Action Priority H/M/L.",
+        "RPN's flaw: equal products can mask very different real risks; thresholds were arbitrary.",
+        "AP prioritizes Severity first, then Occurrence, then Detection via a defined table.",
+        "High AP = action needed (or documented rationale); it guides where to spend effort."
+      ],
+      "flashcards": [
+        {
+          "q": "What replaced the RPN in the AIAG & VDA Handbook, and what are its levels?",
+          "a": "Action Priority (AP), rated High / Medium / Low."
+        },
+        {
+          "q": "What was the main criticism of RPN = S×O×D?",
+          "a": "Different risks produce the same number and thresholds were arbitrary, so it could mis-prioritize safety items."
+        },
+        {
+          "q": "In what order does Action Priority weight the three ratings?",
+          "a": "Severity first, then Occurrence, then Detection."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "The AIAG & VDA Handbook prioritizes risk using:",
+          "choices": [
+            "RPN threshold of 100",
+            "Action Priority (High/Medium/Low)",
+            "Cpk",
+            "Pareto rank"
+          ],
+          "answer": "B",
+          "explanation": "AP (H/M/L) from a logic table replaced the RPN product."
+        },
+        {
+          "q": "A key weakness of RPN that AP addresses is:",
+          "choices": [
+            "It was too slow to compute",
+            "Equal products can represent very different real risk",
+            "It ignored detection",
+            "It only used severity"
+          ],
+          "answer": "B",
+          "explanation": "Different S/O/D combinations multiply to the same RPN, masking which risk truly matters."
+        }
+      ],
+      "media": {
+        "image": "media/diagrams/fmea_risk_matrix.png",
+        "image_caption": "Action Priority weights Severity first, then Occurrence, then Detection",
+        "video": {
+          "title": "AIAG-VDA FMEA: Ranking Severity, Occurrence, Detection",
+          "url": "https://www.youtube.com/watch?v=eL6Qo00EFm0"
+        },
+        "web_notes": "The AIAG-VDA handbook replaced the old RPN (S×O×D) with Action Priority (H/M/L) because equal RPNs could hide very different risks. AP weights Severity first, then Occurrence, then Detection — so a high-severity failure is prioritized even when it is rare and easy to detect.",
+        "sources": [
+          {
+            "title": "FMEA Action Priority (AP) — Relyence",
+            "url": "https://relyence.com/help/user-guide/fmea-ap.html"
+          },
+          {
+            "title": "Action Priority in FMEA — Quality Engineer Stuff",
+            "url": "https://qualityengineerstuff.com/doc/action-priority-in-fmea/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fmea-06",
+      "title": "Prevention vs. Detection Controls and Optimization",
+      "source": "AIAG-VDA Handbook Ch.2 (Optimization)",
+      "summary": "Current controls come in two kinds. Prevention controls reduce the likelihood the cause occurs (better design margin, mistake-proofing/poka-yoke, process control) and they lower the Occurrence rating. Detection controls find the cause or mode after it occurs but before the customer (gauging, testing, inspection) and they lower the Detection rating. The preferred optimization order is: (1) eliminate/reduce severity via design, (2) reduce occurrence via prevention, (3) improve detection — because preventing a failure is better than catching it.",
+      "key_points": [
+        "Prevention controls lower Occurrence (stop the cause); Detection controls lower Detection (catch it).",
+        "Optimization priority: reduce Severity (design) → reduce Occurrence (prevention) → improve Detection.",
+        "Poka-yoke (mistake-proofing) is a powerful prevention control.",
+        "Adding inspection only improves Detection; it does not reduce how often the failure is produced."
+      ],
+      "flashcards": [
+        {
+          "q": "Which rating does a prevention control reduce? Which does a detection control reduce?",
+          "a": "Prevention reduces Occurrence; detection reduces the Detection rating."
+        },
+        {
+          "q": "What is the preferred order of optimization actions?",
+          "a": "Reduce Severity (design) first, then Occurrence (prevention), then improve Detection."
+        },
+        {
+          "q": "What is poka-yoke?",
+          "a": "Mistake-proofing — a prevention control that makes the error impossible or immediately obvious."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Adding a final inspection step to an FMEA primarily improves:",
+          "choices": [
+            "Severity",
+            "Occurrence",
+            "Detection",
+            "Action Priority directly"
+          ],
+          "answer": "C",
+          "explanation": "Inspection catches problems (Detection) but doesn't stop them from occurring (Occurrence)."
+        },
+        {
+          "q": "The most preferred way to reduce risk is to:",
+          "choices": [
+            "Add more inspectors",
+            "Reduce Severity through design change",
+            "Increase sample size",
+            "Tighten control limits"
+          ],
+          "answer": "B",
+          "explanation": "Eliminating or reducing the severity of the effect via design is the strongest action."
+        }
+      ]
+    }
+  ]
+}

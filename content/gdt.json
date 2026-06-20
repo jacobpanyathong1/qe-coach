@@ -1,0 +1,417 @@
+{
+  "module": "gdt",
+  "title": "GD&T / Dimensional Metrology",
+  "source_book": "Cogorno, GD&T for Mechanical Design (3rd Ed.)",
+  "topics": [
+    {
+      "id": "gdt-01",
+      "title": "What GD&T Is and Why It Beats Coordinate Tolerancing",
+      "source": "Cogorno Ch.1",
+      "summary": "GD&T is a symbolic language for specifying the size, shape, form, orientation, and location of part features relative to datums. You use it when parts need precise control for fit, function, or assembly. Compared to plus/minus coordinate tolerancing it reduces ambiguity, allows bonus tolerance via MMC, and uses round (cylindrical) tolerance zones that accept up to 57% more good parts than square zones.",
+      "key_points": [
+        "ASME Y14.5 is the authoritative standard governing GD&T application.",
+        "A cylindrical (diametral) tolerance zone covers ~57% more area than the square zone that the same +/- tolerance would produce, so more good parts pass.",
+        "GD&T controls size, form, orientation, location, and runout relative to datums.",
+        "It removes the ambiguity of coordinate dimensioning (where the tolerance zone shape and datum order are unstated)."
+      ],
+      "flashcards": [
+        {
+          "q": "What standard governs the proper application of GD&T?",
+          "a": "ASME Y14.5"
+        },
+        {
+          "q": "Roughly how much more tolerance does a cylindrical zone give vs. a square +/- zone?",
+          "a": "About 57% more area, so more good parts are accepted."
+        },
+        {
+          "q": "Name the five things GD&T controls.",
+          "a": "Size, form, orientation, location, and runout (relative to datums)."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "The main advantage of a cylindrical tolerance zone over a square +/- zone is:",
+          "choices": [
+            "It is easier to draw",
+            "It accepts ~57% more good parts for the same intent",
+            "It needs no datums",
+            "It eliminates the need for inspection"
+          ],
+          "answer": "B",
+          "explanation": "A round zone inscribes the corners a square zone would reject, accepting ~57% more conforming parts."
+        },
+        {
+          "q": "Which document is the authoritative GD&T reference?",
+          "choices": [
+            "ISO 9001",
+            "ASME Y14.5",
+            "AIAG PPAP",
+            "MIL-STD-105"
+          ],
+          "answer": "B",
+          "explanation": "ASME Y14.5 defines GD&T symbols, rules, and interpretation."
+        }
+      ]
+    },
+    {
+      "id": "gdt-02",
+      "title": "Dimensioning Fundamentals and the Fundamental Rules",
+      "source": "Cogorno Ch.2",
+      "summary": "Every dimension must carry a tolerance except those identified as reference, maximum, minimum, or stock. Use a single unit system (inch OR metric) and avoid dual dimensioning. Tolerances can be bilateral, unilateral, or limit dimensions; angular tolerances control orientation. If a tolerance is not on the drawing it must be defined in a referenced document.",
+      "key_points": [
+        "Rule of thumb: each dimension needs a tolerance unless it is reference, max, min, or stock.",
+        "Reference/max/min/stock dimensions are NOT used for manufacturing or inspection.",
+        "Bilateral (±), unilateral (one direction), and limit (high/low values shown) are the three ways to express size tolerance.",
+        "Avoid dual dimensioning; pick inch or metric."
+      ],
+      "flashcards": [
+        {
+          "q": "Which four dimension types are exempt from needing a tolerance?",
+          "a": "Reference, maximum, minimum, and stock."
+        },
+        {
+          "q": "Name the three forms of expressing a size tolerance.",
+          "a": "Bilateral, unilateral, and limit dimensions."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which dimension does NOT require a tolerance?",
+          "choices": [
+            "A locating hole position",
+            "A reference dimension",
+            "A mating shaft diameter",
+            "A slot width"
+          ],
+          "answer": "B",
+          "explanation": "Reference (and max/min/stock) dimensions are exempt and are not used for manufacture or inspection."
+        }
+      ]
+    },
+    {
+      "id": "gdt-03",
+      "title": "Symbols, Terms, and Rules #1 and #2",
+      "source": "Cogorno Ch.3",
+      "summary": "There are 12 geometric characteristic symbols in five categories: form, profile, orientation, location, and runout. Key terms include the feature control frame, datum feature symbol, virtual condition, and actual mating envelope. Rule #1 (the limits-of-size rule) says size limits also control form: at MMC the feature must have perfect form. Rule #2 says RFS (regardless of feature size) applies to all geometric tolerances and datum references unless a modifier states otherwise.",
+      "key_points": [
+        "12 geometric characteristic symbols → 5 categories: form, profile, orientation, location, runout.",
+        "Form tolerances (flatness, straightness, circularity, cylindricity) use NO datum.",
+        "Rule #1: limits of size control form — a feature at MMC must have perfect form.",
+        "Rule #2: RFS applies by default; use MMC/LMC modifiers explicitly where wanted.",
+        "The datum feature symbol is a capital letter inside a box (frame)."
+      ],
+      "flashcards": [
+        {
+          "q": "How many geometric characteristic symbols are there and what are the 5 categories?",
+          "a": "12 symbols: form, profile, orientation, location, runout."
+        },
+        {
+          "q": "What does Rule #1 (limits of size) require at MMC?",
+          "a": "Perfect form at maximum material condition."
+        },
+        {
+          "q": "Which category of geometric tolerance never references a datum?",
+          "a": "Form tolerances."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which type of geometric tolerance has NO datum feature?",
+          "choices": [
+            "Position",
+            "Orientation",
+            "Form",
+            "Runout"
+          ],
+          "answer": "C",
+          "explanation": "Form tolerances (flatness, straightness, circularity, cylindricity) apply to a single feature with no datum."
+        },
+        {
+          "q": "Rule #1 states that:",
+          "choices": [
+            "All tolerances apply at LMC",
+            "Limits of size also control form (perfect form at MMC)",
+            "Datums must be lettered A, B, C",
+            "Position always uses MMC"
+          ],
+          "answer": "B",
+          "explanation": "Rule #1 ties form to size: at MMC the feature must be perfectly formed."
+        }
+      ]
+    },
+    {
+      "id": "gdt-04",
+      "title": "Datums and the Datum Reference Frame",
+      "source": "Cogorno Ch.4",
+      "summary": "A datum is a theoretically perfect point, axis, line, or plane that establishes the origin from which dimensions are measured. Three mutually perpendicular datum planes form a datum reference frame that immobilizes all 6 degrees of freedom (3 translations + 3 rotations). Datum features are called out in order of precedence (primary, secondary, tertiary). Datum targets immobilize parts with rough or irregular surfaces.",
+      "key_points": [
+        "A datum reference frame = 3 perpendicular planes that lock all 6 degrees of freedom.",
+        "Primary datum contacts at 3 points, secondary at 2, tertiary at 1 (the 3-2-1 rule).",
+        "Datum precedence order matters — it changes how the part is held and measured.",
+        "Datum targets handle castings/forgings with uneven surfaces."
+      ],
+      "flashcards": [
+        {
+          "q": "How many degrees of freedom does a datum reference frame constrain, and how?",
+          "a": "All 6 (3 translation + 3 rotation), using 3 mutually perpendicular planes."
+        },
+        {
+          "q": "What is the 3-2-1 rule for datum contact?",
+          "a": "Primary plane = 3 contact points, secondary = 2, tertiary = 1."
+        },
+        {
+          "q": "What is a datum?",
+          "a": "A theoretically perfect point, axis, line, or plane establishing the reference origin for measurement."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A complete datum reference frame immobilizes how many degrees of freedom?",
+          "choices": [
+            "3",
+            "4",
+            "6",
+            "12"
+          ],
+          "answer": "C",
+          "explanation": "Three perpendicular planes constrain 3 translations + 3 rotations = 6 DOF."
+        },
+        {
+          "q": "Under the 3-2-1 rule, the secondary datum plane contacts the part at how many points?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "6"
+          ],
+          "answer": "B",
+          "explanation": "Primary = 3 points, secondary = 2, tertiary = 1."
+        }
+      ],
+      "media": {
+        "image": "media/diagrams/gdt_position_frame.png",
+        "image_caption": "Datums A→B→C form the datum reference frame in the control frame",
+        "video": {
+          "title": "GD&T: Understanding Datums",
+          "url": "https://www.youtube.com/watch?v=fUXMoz4va9g"
+        },
+        "web_notes": "A datum reference frame locks the part's six degrees of freedom using primary, secondary, and tertiary datums — the primary removes 3, the secondary 2, the tertiary 1. Datum order matters: it sets how the part seats for inspection, so swapping A and B changes the measured result.",
+        "sources": [
+          {
+            "title": "The Datum Reference Frame — GD&T Basics",
+            "url": "https://www.gdandtbasics.com/datum-reference-frame/"
+          },
+          {
+            "title": "Datum Reference Frame Explained — FARO",
+            "url": "https://www.faro.com/en/Resource-Library/Article/datum-reference-frame-in-gdt-an-explanation-with-figures"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gdt-05",
+      "title": "Form Controls: Flatness, Straightness, Circularity, Cylindricity",
+      "source": "Cogorno Ch.5",
+      "summary": "Form controls refine the shape of an individual feature and require no datum. Flatness keeps all surface points within two parallel planes. Straightness controls line elements of a surface or an axis. Circularity (roundness) controls each circular cross-section. Cylindricity controls the entire cylindrical surface at once (it combines circularity, straightness, and taper). All form tolerances are independent of other features.",
+      "key_points": [
+        "Form tolerances use no datum and apply to a single feature.",
+        "Flatness = points between two parallel planes; Straightness = line elements straight.",
+        "Circularity controls each cross-section; Cylindricity controls the whole surface.",
+        "Cylindricity is the most demanding form control (roundness + straightness + taper combined)."
+      ],
+      "flashcards": [
+        {
+          "q": "Which form control governs the entire cylindrical surface (roundness + straightness + taper)?",
+          "a": "Cylindricity."
+        },
+        {
+          "q": "Do form tolerances require a datum?",
+          "a": "No — they apply to an individual feature independently."
+        },
+        {
+          "q": "Difference between circularity and cylindricity?",
+          "a": "Circularity controls each circular cross-section; cylindricity controls the whole surface at once."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which form control is the most comprehensive for a cylinder?",
+          "choices": [
+            "Circularity",
+            "Flatness",
+            "Cylindricity",
+            "Straightness"
+          ],
+          "answer": "C",
+          "explanation": "Cylindricity simultaneously controls roundness, straightness, and taper of the full surface."
+        },
+        {
+          "q": "Form tolerances require:",
+          "choices": [
+            "A primary datum",
+            "Two datums",
+            "No datum",
+            "A datum target"
+          ],
+          "answer": "C",
+          "explanation": "Form applies to an individual feature and references no datum."
+        }
+      ]
+    },
+    {
+      "id": "gdt-06",
+      "title": "Orientation Controls: Perpendicularity, Parallelism, Angularity",
+      "source": "Cogorno Ch.6",
+      "summary": "Orientation tolerances control the angular relationship of a feature to a datum and always require a datum reference. Perpendicularity holds a feature at 90° to a datum, parallelism holds it parallel, and angularity holds it at a specified basic angle. Orientation controls the tilt of a feature but do NOT control its location. A tangent plane modifier can be applied to control the high points of a surface.",
+      "key_points": [
+        "Orientation always references a datum (unlike form).",
+        "Perpendicularity = 90°, parallelism = parallel, angularity = a basic angle.",
+        "Orientation controls tilt/angle but NOT location.",
+        "Orientation tolerances also refine form within the orientation zone."
+      ],
+      "flashcards": [
+        {
+          "q": "Do orientation tolerances control location?",
+          "a": "No — they control angular relationship (tilt) only, not where the feature is."
+        },
+        {
+          "q": "Name the three orientation controls.",
+          "a": "Perpendicularity (90°), parallelism, and angularity (basic angle)."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Orientation tolerances do NOT control a feature's:",
+          "choices": [
+            "Tilt",
+            "Angle to datum",
+            "Location",
+            "Parallelism"
+          ],
+          "answer": "C",
+          "explanation": "Orientation controls angular relationship only; location is controlled by position/profile."
+        }
+      ]
+    },
+    {
+      "id": "gdt-07",
+      "title": "Position Tolerancing, MMC, and Bonus Tolerance",
+      "source": "Cogorno Ch.7-8",
+      "summary": "Position controls the location (and orientation) of features of size such as holes and pins. When applied at MMC, the feature earns bonus tolerance as it departs from the maximum material condition toward LMC — more clearance means more allowable position error. Floating fastener formula: T = H − F. Fixed fastener formula: T = (H − F)/2. The positional zone for a hole or pin is cylindrical.",
+      "key_points": [
+        "Position locates features of size; the tolerance zone is cylindrical (diametral).",
+        "Bonus tolerance = the amount a feature departs from MMC; it is added to the position tolerance.",
+        "Floating fastener (clearance holes both parts): T = H − F.",
+        "Fixed fastener (one part threaded/pinned): T = (H − F)/2.",
+        "Total positional capability at LMC = stated tolerance + full bonus."
+      ],
+      "flashcards": [
+        {
+          "q": "What is bonus tolerance and when is it available?",
+          "a": "Extra position tolerance equal to a feature's departure from MMC; available only when MMC (or LMC) modifier is applied."
+        },
+        {
+          "q": "State the floating fastener formula.",
+          "a": "T = H − F (hole size minus fastener size)."
+        },
+        {
+          "q": "State the fixed fastener formula.",
+          "a": "T = (H − F)/2."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A hole has ⌀.250 position at MMC of ⌀.500. The actual hole is ⌀.508. Total position tolerance available is:",
+          "choices": [
+            "⌀.250",
+            "⌀.258",
+            "⌀.008",
+            "⌀.500"
+          ],
+          "answer": "B",
+          "explanation": "Bonus = .508 − .500 = .008. Total = .250 + .008 = .258."
+        },
+        {
+          "q": "The fixed fastener formula is:",
+          "choices": [
+            "T = H − F",
+            "T = (H − F)/2",
+            "T = H + F",
+            "T = 2(H − F)"
+          ],
+          "answer": "B",
+          "explanation": "Fixed fastener splits the clearance between two parts: T = (H − F)/2."
+        }
+      ],
+      "media": {
+        "image": "media/diagrams/gdt_position_frame.png",
+        "image_caption": "Reading a position control frame: symbol | Ø tol + Ⓜ | datums",
+        "video": {
+          "title": "GD&T Feature Control Frame Basics",
+          "url": "https://www.youtube.com/watch?v=mA6RrNrRYUI"
+        },
+        "web_notes": "Position with an Ⓜ (MMC) modifier grants bonus tolerance: as the feature departs from its maximum-material size, the allowable position tolerance grows by the same amount. This rewards parts with extra clearance and accepts more good parts than fixed (RFS) position.",
+        "sources": [
+          {
+            "title": "True Position — GD&T Basics",
+            "url": "https://www.gdandtbasics.com/true-position/"
+          },
+          {
+            "title": "Maximum Material Condition (MMC) — GD&T Basics",
+            "url": "https://www.gdandtbasics.com/maximum-material-condition/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gdt-08",
+      "title": "Runout and Profile",
+      "source": "Cogorno Ch.10-11",
+      "summary": "Runout is a composite control of a surface of revolution relative to a datum axis. Circular runout checks variation (Full Indicator Movement) at each single cross-section; total runout checks the entire surface during full rotation. Profile is the most versatile control: profile of a surface can simultaneously control size, form, orientation, and location of a surface relative to a true profile defined by basic dimensions. A part passes runout if the FIM does not exceed the tolerance.",
+      "key_points": [
+        "Circular runout = FIM at one cross-section; total runout = whole surface during rotation.",
+        "Runout requires a datum axis and applies to surfaces of revolution.",
+        "Profile of a surface can control size, form, orientation, AND location at once.",
+        "FIM = Full Indicator Movement; if FIM ≤ tolerance, the feature is acceptable."
+      ],
+      "flashcards": [
+        {
+          "q": "Difference between circular and total runout?",
+          "a": "Circular runout = variation at a single cross-section; total runout = variation over the entire surface during full rotation."
+        },
+        {
+          "q": "Why is profile called the most versatile control?",
+          "a": "Profile of a surface can simultaneously control size, form, orientation, and location."
+        },
+        {
+          "q": "What does FIM stand for and how is it used?",
+          "a": "Full Indicator Movement; if FIM does not exceed the tolerance, the feature passes."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Total runout differs from circular runout in that it:",
+          "choices": [
+            "Needs no datum",
+            "Controls the entire surface during full rotation",
+            "Only checks one cross-section",
+            "Applies to flat surfaces only"
+          ],
+          "answer": "B",
+          "explanation": "Total runout evaluates the complete surface as the part rotates, vs. one cross-section for circular runout."
+        },
+        {
+          "q": "Which single control can govern size, form, orientation, and location of a surface?",
+          "choices": [
+            "Flatness",
+            "Profile of a surface",
+            "Circular runout",
+            "Perpendicularity"
+          ],
+          "answer": "B",
+          "explanation": "Profile of a surface is the most comprehensive surface control."
+        }
+      ]
+    }
+  ]
+}

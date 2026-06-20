@@ -1,0 +1,293 @@
+{
+  "module": "spc",
+  "title": "Statistical Process Control",
+  "source_book": "Statistical Process Control for Quality Improvement (James Evans); Six Sigma: A Complete Step-by-Step Guide (CSSC)",
+  "topics": [
+    {
+      "id": "spc-01",
+      "title": "Why Control Charts Work: Voice of the Process & 3-Sigma Limits",
+      "source": "Evans SPC, Ch.1-3",
+      "summary": "A control chart listens to the 'voice of the process' — limits computed from the process's own variation, not from the spec — to separate signal from noise.",
+      "reading": "A control chart is not a pass/fail gauge. Its control limits are computed from the process's OWN variation — the 'voice of the process' — and have nothing to do with the specification limits, which are the 'voice of the customer.' This is the single most misunderstood point in SPC: a point inside the control limits is not 'in spec,' and a point outside them is not necessarily 'out of spec.' The chart answers a different question — is the process stable and predictable, or did something change?\n\nLimits are set at ±3 standard deviations of the plotted statistic around its center line. Why three? It is an economic balance between two errors. Set the limits too tight and you get frequent false alarms (calling common-cause noise a special cause — tampering). Set them too wide and you miss real signals. At ±3σ, a stable process throws a false alarm only about once every 370 points — rare enough to trust a signal, tight enough to catch real shifts.\n\nThe other pillar is rational subgrouping: you sample so that variation WITHIN a subgroup reflects only common cause (e.g., 5 consecutive parts), while variation BETWEEN subgroups can reveal special causes over time. Choose subgroups badly — say, one part from each of four machines — and you bury the very differences you want the chart to expose. Good charts begin with good subgrouping. (For the deeper philosophy of common vs special cause, see the Process Variation unit.)",
+      "key_points": [
+        "Control limits come from the PROCESS (voice of the process), not the spec (voice of the customer) — they answer 'stable?', not 'in spec?'.",
+        "±3σ limits balance false alarms vs missed signals (~1 false alarm per 370 points on a stable process).",
+        "Rational subgrouping: within-subgroup = common cause only; between-subgroup = chance to see special causes.",
+        "A point inside the limits is NOT a guarantee the part is in spec, and vice versa."
+      ],
+      "media": {
+        "image": "media/diagrams/spc_xbar_r.png",
+        "image_caption": "Control limits are computed from the process's own variation, not the tolerance"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A manager overlays the customer's spec limits onto an X-bar chart and reacts whenever a subgroup average approaches them. Explain why this misuses the control chart.",
+          "model_answer": "The X-bar chart plots subgroup AVERAGES, and its control limits describe the process's own variation — not the spec. Spec limits apply to INDIVIDUAL parts, not averages (averages vary less than individuals by √n), so plotting spec lines on an X-bar chart is a category error. Reacting to nearness-to-spec on this chart causes tampering and misses the chart's real job: detecting instability. Capability analysis — not the control chart — is where the process is compared to spec, and only after stability is established."
+        },
+        {
+          "prompt": "Why would sampling one part from each of four parallel machines into a single subgroup be a poor rational subgroup?",
+          "model_answer": "Because it mixes a special-cause family (machine-to-machine differences) INTO the within-subgroup variation. The chart's limits would then be inflated by the machine differences, making the very thing you want to detect (one machine off) look like normal common-cause spread. Rational subgroups keep within-subgroup variation to common cause only — here you'd chart each machine separately (or use the machine as the between-subgroup factor)."
+        }
+      ],
+      "flashcards": [
+        {"q": "What do control limits represent, and where do they come from?", "a": "The 'voice of the process' — ±3σ of the plotted statistic, computed from the process's own variation. NOT the spec limits."},
+        {"q": "Why ±3σ for control limits?", "a": "It balances false alarms (too tight) against missed signals (too wide) — a stable process false-alarms only ~once per 370 points."},
+        {"q": "What is rational subgrouping?", "a": "Sampling so within-subgroup variation is common-cause only (e.g., consecutive parts), while between-subgroup variation can expose special causes over time."}
+      ],
+      "quiz": [
+        {"q": "A subgroup average falls just inside the upper control limit. This tells you:", "choices": ["The parts are in spec", "The process is currently stable (no signal) — it says nothing about spec conformance", "The parts are out of spec", "Capability is acceptable"], "answer": "B", "explanation": "Control limits describe process stability, not spec conformance; that's a separate capability question."},
+        {"q": "Tightening control limits to ±2σ instead of ±3σ would mainly:", "choices": ["Reduce false alarms", "Increase false alarms (more tampering)", "Improve capability", "Have no effect"], "answer": "B", "explanation": "Tighter limits flag common-cause noise more often — more false alarms and tampering."},
+        {"q": "Putting one part from each of 4 machines into each subgroup will:", "choices": ["Improve detection of machine differences", "Inflate within-subgroup variation and hide machine differences", "Tighten the control limits", "Have no effect on the chart"], "answer": "B", "explanation": "Machine-to-machine (a special-cause family) leaks into within-subgroup spread, widening limits and masking the difference."}
+      ]
+    },
+    {
+      "id": "spc-02",
+      "title": "Measures of Location and Variability",
+      "source": "Evans SPC, Ch.2",
+      "summary": "Before charts, you need the language of data: where it centers (mean, median) and how it spreads (range, variance, standard deviation).",
+      "reading": "Every statistical tool in QE rests on two summaries of a dataset: location (where it's centered) and spread (how dispersed it is). Location is captured by the mean (the average, sensitive to outliers) and the median (the middle value, robust to outliers). Spread is captured by the range (max minus min — simple, used on control charts for small subgroups) and, more fundamentally, the variance and its square root, the standard deviation (σ).\n\nThe standard deviation is the true currency of variation: it is the root-mean-square distance of values from the mean, and it scales naturally with the normal distribution (the empirical rule: ~68% within ±1σ, 95% within ±2σ, 99.7% within ±3σ). That last fact is why ±3σ control limits and 6σ capability spreads are defined the way they are — σ is the ruler.\n\nA subtlety that trips people up: the standard deviation of subgroup AVERAGES is smaller than that of individuals, by a factor of √n. Average five parts and the averages cluster √5 ≈ 2.2× more tightly than single parts. This is exactly why X-bar charts are sensitive to small shifts (the averages have little noise) and why you must never compare subgroup averages to individual-part specs. Range, meanwhile, is used on small-subgroup charts because for n ≤ ~10 it estimates σ almost as well as the standard deviation while being trivial to compute on the floor.",
+      "key_points": [
+        "Location: mean (sensitive to outliers) vs median (robust). Spread: range, variance, standard deviation (σ).",
+        "σ is the 'ruler' of variation — the empirical rule (68-95-99.7) ties σ to the normal curve.",
+        "Standard deviation of averages = σ/√n — averages vary less than individuals.",
+        "Range estimates σ well for small subgroups (n ≤ ~10) and is easy to compute on the floor."
+      ],
+      "media": {
+        "image": "media/diagrams/empirical_rule.png",
+        "image_caption": "σ is the ruler: 68% within ±1σ, 95% within ±2σ, 99.7% within ±3σ",
+        "video": {"title": "Std Deviation, Normal Distribution & the 68-95-99.7 Rule", "url": "https://www.youtube.com/watch?v=rdmkSIpn6_U"}
+      },
+      "critical_thinking": [
+        {
+          "prompt": "Individual parts have σ = 0.6 mm. You plot subgroup averages of n = 9. How tightly will the averages spread, and why does this make X-bar charts good at catching small shifts?",
+          "model_answer": "The averages have standard deviation σ/√n = 0.6/√9 = 0.6/3 = 0.2 mm — three times tighter than individuals. Because the averages carry so little noise, a real shift in the process mean stands out clearly against their narrow band, so the X-bar chart detects small mean shifts that would be lost in the wider scatter of individual readings. (The flip side: never judge spec conformance from these averages.)"
+        }
+      ],
+      "flashcards": [
+        {"q": "Mean vs median — which is robust to outliers?", "a": "The median is robust to outliers; the mean is pulled by them."},
+        {"q": "How does the standard deviation of subgroup averages relate to individuals?", "a": "It equals σ/√n — averages of n parts vary √n times more tightly than individual parts."},
+        {"q": "Why is the range used on small-subgroup control charts?", "a": "For n ≤ ~10 it estimates σ nearly as well as the standard deviation, and it's trivial to compute on the floor."}
+      ],
+      "quiz": [
+        {"q": "Individuals have σ = 1.0. Subgroup averages of n = 4 will have a standard deviation of about:", "choices": ["1.0", "0.5", "0.25", "2.0"], "answer": "B", "explanation": "σ/√n = 1.0/√4 = 1.0/2 = 0.5 — averages spread half as much as individuals."},
+        {"q": "Which statistic is the 'ruler' that ties directly to the 68-95-99.7 rule?", "choices": ["The range", "The median", "The standard deviation", "The mode"], "answer": "C", "explanation": "The empirical rule is stated in multiples of the standard deviation."},
+        {"q": "A dataset has one huge outlier. Which center is least distorted?", "choices": ["Mean", "Median", "They distort equally", "Range"], "answer": "B", "explanation": "The median is robust; the mean is dragged toward the outlier."}
+      ]
+    },
+    {
+      "id": "spc-03",
+      "title": "Variables Control Charts: X-bar & R (and X-bar & S)",
+      "source": "Evans SPC, Ch.4",
+      "summary": "The workhorse charts for measured data: track the subgroup average and the subgroup spread together, and always read the spread chart first.",
+      "reading": "For measured (variables) data, the standard tool is a PAIR of charts plotted together: one for location and one for spread. X-bar & R pairs the subgroup average with the subgroup range; X-bar & S swaps range for standard deviation and is preferred for larger subgroups (n > ~10) where S uses the data more efficiently.\n\nConstruction uses tabulated constants so it's doable on the floor. The center lines are the grand average (X-double-bar) and the average range (R-bar). The X-bar limits are X-double-bar ± A2·R-bar, and the R limits are D4·R-bar (upper) and D3·R-bar (lower), where A2, D3, D4 depend only on subgroup size n. Notice the X-bar limits are built FROM R-bar — the spread chart feeds the location chart.\n\nThat dependency drives the cardinal rule: read the R chart first. If the range (spread) is unstable, the X-bar limits computed from R-bar are meaningless, and any conclusions about the average are untrustworthy. Get spread in control, THEN interpret location. A second discipline: charts are created in two phases — Phase 1 (a study period where you compute trial limits from ~20-25 in-control subgroups) and Phase 2 (ongoing monitoring against those fixed limits). Recomputing limits every shift defeats the purpose.",
+      "key_points": [
+        "Variables charts come in pairs: location (X-bar) + spread (R or S), plotted together.",
+        "Limits use constants by subgroup size: X-bar ± A2·R̄; R chart uses D3·R̄ and D4·R̄.",
+        "Read the R (spread) chart FIRST — X-bar limits are computed from R̄, so unstable spread invalidates them.",
+        "Phase 1 sets trial limits from ~20-25 in-control subgroups; Phase 2 monitors against fixed limits."
+      ],
+      "media": {
+        "image": "media/diagrams/spc_xbar_r.png",
+        "image_caption": "X̄ and R charts together — read the R chart first",
+        "video": {"title": "Control Charts Made Simple: X-bar & R Basics", "url": "https://www.youtube.com/watch?v=7xRQUEsU-Sw"}
+      },
+      "critical_thinking": [
+        {
+          "prompt": "An X-bar chart looks beautifully in control, but the R chart has several points above its upper limit. A colleague says 'the average is stable, so we're fine.' Why is that wrong?",
+          "model_answer": "The X-bar limits are computed from R̄, so if the range is out of control, R̄ is not a valid estimate of the process spread and the X-bar limits themselves are untrustworthy — a 'beautifully in control' X-bar chart built on bad limits is an illusion. Unstable spread also means the process is inconsistent part-to-part regardless of the average. The correct response is to investigate and stabilize the R chart first, recompute limits, then judge the average."
+        }
+      ],
+      "flashcards": [
+        {"q": "Why must you read the R chart before the X-bar chart?", "a": "Because the X-bar control limits are computed from R̄; if spread is unstable, those limits (and any conclusions about the average) are invalid."},
+        {"q": "When do you prefer X-bar & S over X-bar & R?", "a": "For larger subgroups (n > ~10), where the standard deviation S uses the data more efficiently than the range."},
+        {"q": "What are Phase 1 and Phase 2 of charting?", "a": "Phase 1: compute trial limits from ~20-25 in-control subgroups. Phase 2: monitor ongoing production against those fixed limits."}
+      ],
+      "quiz": [
+        {"q": "The X-bar chart's control limits are calculated using:", "choices": ["The specification limits", "The average range R̄ (via A2)", "The customer's Cpk target", "The sample size only"], "answer": "B", "explanation": "X̄ limits = X̄̄ ± A2·R̄ — they're built from the spread chart's R̄."},
+        {"q": "The R chart shows points beyond its upper limit while the X-bar looks stable. You should:", "choices": ["Accept the process — the average is fine", "Stabilize the R chart first; the X-bar limits aren't trustworthy yet", "Tighten the spec", "Switch to an attributes chart"], "answer": "B", "explanation": "Unstable spread invalidates the X-bar limits (computed from R̄); fix spread first."},
+        {"q": "Recomputing control limits every shift from that shift's data:", "choices": ["Is best practice", "Defeats Phase 2 monitoring — limits should be fixed from a Phase 1 study", "Improves capability", "Is required by the constants"], "answer": "B", "explanation": "Limits are fixed in Phase 1 and used to monitor in Phase 2; constantly recomputing hides drift."}
+      ]
+    },
+    {
+      "id": "spc-04",
+      "title": "Reading Control Chart Patterns (Out-of-Control Signals)",
+      "source": "Evans SPC, Ch.5",
+      "summary": "A point outside the limits is only the loudest signal. Runs, trends, cycles, and hugging patterns reveal special causes before any limit is breached.",
+      "reading": "Detecting instability is more than watching for points outside the limits. Shewhart's followers (Western Electric, later Nelson) codified RUN RULES that read the pattern of points using zones: divide the band between the center line and each control limit into three equal zones, A (outer, 2-3σ), B (middle, 1-2σ), and C (inner, 0-1σ). A stable process scatters randomly across the zones; departures form recognizable signatures.\n\nClassic signals: one point beyond 3σ (a clear special cause); 2 of 3 points in zone A on one side (a shift); 4 of 5 in zone B or beyond; a RUN of 8+ points on one side of the center line (a sustained shift); 6+ points steadily increasing or decreasing (a TREND — tool wear, fatigue, depletion); 14 alternating up-down (a systematic effect like two operators or fixtures); and 15 points hugging zone C (often too-good-to-be-true — stratification or miscalculated limits).\n\nThe interpretation matters as much as the detection: a trend whispers tool wear or temperature drift; a sudden shift whispers a new lot, setup, or operator; a cycle whispers shift changes or ambient cycles; hugging the center line whispers that something is wrong with the SAMPLING or the limits (e.g., mixing streams). Reading the pattern points you toward the family of causes before you ever touch the process.",
+      "key_points": [
+        "Zones A/B/C (each 1σ wide) let you read patterns, not just limit breaches.",
+        "Signals: point beyond 3σ; 2-of-3 in zone A; run of 8 on one side; trend of 6+; 14 alternating; 15 hugging center.",
+        "Patterns diagnose cause families: trend→wear/drift; shift→new lot/setup; cycle→shifts/ambient; hugging→sampling/limit error.",
+        "Run rules catch a shift BEFORE any single point crosses a control limit."
+      ],
+      "media": {
+        "image": "media/diagrams/spc_xbar_r.png",
+        "image_caption": "The flagged point is one signal — runs and trends are caught earlier",
+        "video": {"title": "Control Charts Made Simple: X-bar & R Basics", "url": "https://www.youtube.com/watch?v=7xRQUEsU-Sw"}
+      },
+      "case_study": {
+        "title": "Diagnosing a chart from its pattern",
+        "scenario": "An X-bar chart of a machined diameter shows no points outside the limits, but the last 7 subgroup averages each crept slightly higher than the one before, ending near the upper control limit.",
+        "walkthrough": [
+          "Identify the signal: 6+ steadily increasing points is a TREND rule violation — a special cause, even though nothing breached a limit.",
+          "Read the pattern's 'whisper': a slow, monotonic rise points to something that drifts gradually — tool wear, thermal growth as the machine warms, or a depleting coolant/offset.",
+          "Act before the limit: because the trend was caught early, you adjust/replace before parts go out of spec — the whole point of run rules.",
+          "Confirm: after the tool change, the averages drop back around the center line and the trend disappears — validating the diagnosis."
+        ]
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A chart shows points alternating high-low-high-low for 14 subgroups, all within limits. What family of causes does this 'whisper,' and what would you check?",
+          "model_answer": "A regular alternating (sawtooth) pattern over many points whispers a systematic two-source effect — e.g., two operators, two fixtures, two spindles, or alternating material lots feeding the line in turn. It is not random common-cause scatter. Check whether subgroups alternate between two streams (operator A/B, fixture 1/2) and chart them separately; the difference between the two sources is likely the dominant cause."
+        },
+        {
+          "prompt": "Why is '15 points in a row hugging the center line' a problem rather than a triumph of great quality?",
+          "model_answer": "Because real common-cause variation should scatter across zones A, B, and C — points clinging unnaturally to the center line are 'too good to be true.' It usually signals a problem with the sampling or the limits: mixed streams averaged together (stratification that cancels out), miscalculated/too-wide limits, or even falsified data. The right response is to audit the subgrouping and the limit calculation, not to celebrate."
+        }
+      ],
+      "flashcards": [
+        {"q": "What are the A/B/C zones on a control chart?", "a": "Three equal 1σ-wide bands between the center line and each control limit — A (2-3σ, outer), B (1-2σ), C (0-1σ, inner) — used to read run rules."},
+        {"q": "What does a steady trend of 6+ points usually indicate?", "a": "A gradually changing special cause — tool wear, thermal drift, or depletion."},
+        {"q": "Why do run rules matter if no point is outside the limits?", "a": "They detect shifts, trends, and cycles BEFORE a point ever breaches a limit, so you act before parts go out of spec."}
+      ],
+      "quiz": [
+        {"q": "Eight subgroup averages in a row fall below the center line (none beyond a limit). This is:", "choices": ["Normal random variation", "A run-rule signal of a sustained shift", "A trend caused by tool wear", "A measurement error"], "answer": "B", "explanation": "A run of 8 on one side of the center line is a recognized special-cause (shift) signal."},
+        {"q": "A slow, steady upward trend on a machined-diameter chart most likely whispers:", "choices": ["A new operator", "Tool wear or thermal growth", "A bad gauge", "Mixed cavities"], "answer": "B", "explanation": "Gradual monotonic drift points to wear/thermal effects rather than a sudden change."},
+        {"q": "Points hugging the center line for 15 subgroups most likely indicates:", "choices": ["An exceptionally capable process", "A sampling/limit problem such as mixed streams or wrong limits", "Severe tool wear", "A trend"], "answer": "B", "explanation": "Too little scatter is 'too good to be true' — usually stratification or miscalculated limits, worth auditing."}
+      ]
+    },
+    {
+      "id": "spc-05",
+      "title": "Attributes Control Charts: p, np, c, u",
+      "source": "Evans SPC, Ch.6",
+      "summary": "When data is counts (pass/fail or number of defects) rather than measurements, a different family of charts applies — and choosing the right one hinges on two questions.",
+      "reading": "Not all quality data is measured. Often you count: how many parts are defective, or how many defects appear on a unit. Attributes charts handle counts, and picking the right one comes down to two questions: (1) Are you counting defective ITEMS or DEFECTS? and (2) Is the sample size constant?\n\nDefective items (each unit is simply good or bad, a binomial situation): use the p-chart for the PROPORTION defective when sample size varies, or the np-chart for the NUMBER defective when sample size is constant. Defects/occurrences (a unit can have several flaws — scratches on a panel, a Poisson situation): use the c-chart for the COUNT of defects when the inspection area/opportunity is constant, or the u-chart for defects PER UNIT when it varies.\n\nA quick decision: defectives + varying n → p; defectives + constant n → np; defects + constant area → c; defects + varying area → u. The control limits come from the binomial (p, np) or Poisson (c, u) distributions rather than ±3σ of a normal, so for a p-chart with varying n the limits actually breathe in and out subgroup by subgroup (wider for small samples). Attributes charts are cheaper to collect (go/no-go) but less sensitive than variables charts — they need larger samples to detect the same shift, which is why measured data is preferred when you can get it.",
+      "key_points": [
+        "Two questions decide the chart: defective ITEMS vs DEFECTS, and constant vs varying sample size.",
+        "Defectives: p-chart (proportion, varying n) / np-chart (count, constant n) — binomial.",
+        "Defects: c-chart (count, constant area) / u-chart (per unit, varying area) — Poisson.",
+        "Attributes charts are cheaper but less sensitive than variables charts — they need larger samples."
+      ],
+      "media": {
+        "image": "media/diagrams/p_chart.png",
+        "image_caption": "A p-chart tracks fraction defective; limits widen for smaller samples"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "You inspect painted panels and record the NUMBER of paint defects (scratches, runs, specks) on each panel, where panels are all the same size. Which chart, and why not a p-chart?",
+          "model_answer": "Use a c-chart. You are counting DEFECTS (multiple per unit), not classifying each panel as simply good/bad, and the inspection area (panel size) is constant. A p-chart is for the PROPORTION of DEFECTIVE items (binomial, each unit good or bad) — it can't represent 'this panel has 4 defects.' Counting events per constant opportunity is the Poisson c-chart's job; if panel sizes varied, you'd switch to a u-chart (defects per unit area)."
+        }
+      ],
+      "flashcards": [
+        {"q": "Which two questions select an attributes chart?", "a": "(1) Are you counting defective items or defects? (2) Is the sample size constant or varying?"},
+        {"q": "Defective items with a VARYING sample size → which chart?", "a": "A p-chart (proportion defective); use np if the sample size is constant."},
+        {"q": "Why are attributes charts less sensitive than variables charts?", "a": "Go/no-go counts carry less information than measurements, so larger samples are needed to detect the same shift."}
+      ],
+      "quiz": [
+        {"q": "You track the proportion of defective units with a daily sample size that changes. Use a:", "choices": ["c-chart", "np-chart", "p-chart", "X-bar chart"], "answer": "C", "explanation": "Proportion defective with varying n is the p-chart (binomial)."},
+        {"q": "Counting total scratches per same-size sheet of glass calls for a:", "choices": ["p-chart", "c-chart", "np-chart", "u-chart"], "answer": "B", "explanation": "Counting defects per constant inspection area is the Poisson c-chart."},
+        {"q": "A key reason to prefer a variables (X-bar/R) chart over an attributes chart when possible:", "choices": ["It needs no subgrouping", "It detects shifts with smaller samples (more sensitive)", "It ignores the spec", "It has no false alarms"], "answer": "B", "explanation": "Measured data is richer, so variables charts catch the same shift with fewer samples."}
+      ]
+    },
+    {
+      "id": "spc-06",
+      "title": "Histograms and Distribution Shape",
+      "source": "Evans SPC, Ch.2-3",
+      "summary": "A histogram is the quickest read on a process: its shape exposes centering, spread, and — crucially — whether the data is even one process or two mixed together.",
+      "reading": "Before any chart or capability index, plot a histogram. Its shape carries an enormous amount of diagnostic information at a glance: where the data centers, how wide it spreads, whether it's symmetric, and whether it bumps against a limit. A roughly bell-shaped, symmetric histogram suggests a single stable process behaving normally — the assumption most capability math relies on.\n\nDepartures from the bell are clues. SKEW (a long tail one way) often comes from a natural boundary (e.g., flatness or runout can't go below zero, so they pile up near zero with a tail upward) — and it warns that normal-based capability indices may mislead. A BIMODAL histogram (two peaks) is the loudest signal of all: it usually means two processes are mixed — two machines, two shifts, two material lots, two cavities — averaged into one dataset. TRUNCATION (a cliff edge) suggests the data was sorted/inspected before you saw it (100% inspection removed the tails). A spike or outliers suggest measurement errors or a distinct special cause.\n\nThe practical discipline: never compute a capability index from a histogram you haven't looked at. If it's bimodal, the single mean and σ are fiction — split the streams and analyze each. If it's skewed, either transform the data or use a capability method that doesn't assume normality. The histogram is the cheap insurance that the fancier statistics that follow aren't built on a false picture.",
+      "key_points": [
+        "Plot the histogram FIRST — shape reveals center, spread, symmetry, and boundary effects at a glance.",
+        "Skew often comes from a natural limit (zero); it warns normal-based capability may mislead.",
+        "Bimodal = two processes mixed (machines/shifts/lots/cavities) — split them before analyzing.",
+        "Truncation (a cliff) suggests prior sorting/100% inspection; spikes/outliers suggest measurement errors."
+      ],
+      "media": {
+        "image": "media/diagrams/histogram.png",
+        "image_caption": "Shape tells the story — symmetric, skewed, bimodal, or truncated"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A capability study reports Cpk = 1.4 (looks great), but the histogram clearly has two separate peaks. Why is the Cpk untrustworthy, and what should you do?",
+          "model_answer": "A bimodal histogram means two distinct processes are mixed into one dataset, so the single mean and standard deviation that Cpk uses are meaningless averages of two different distributions — the index is fiction even though the number looks good. Identify the two streams (e.g., two cavities, two machines, two shifts), split the data, and assess each stream's capability separately. Often one stream is fine and the other is the real problem, which the blended Cpk completely hid."
+        }
+      ],
+      "flashcards": [
+        {"q": "What does a bimodal (two-peak) histogram usually mean?", "a": "Two processes are mixed together — e.g., two machines, shifts, lots, or cavities — and should be separated before analysis."},
+        {"q": "Why does skew matter for capability?", "a": "Skew (often from a natural zero boundary) breaks the normality assumption, so normal-based capability indices can mislead."},
+        {"q": "What does a sharp 'cliff' edge on a histogram suggest?", "a": "Truncation — the data was sorted/100%-inspected before you saw it, removing the tail."}
+      ],
+      "quiz": [
+        {"q": "A histogram shows two distinct peaks. The best next step is:", "choices": ["Compute Cpk from all the data", "Separate the two streams and analyze each", "Widen the tolerance", "Switch to an attributes chart"], "answer": "B", "explanation": "Bimodal = mixed processes; a single mean/σ is meaningless until you split the streams."},
+        {"q": "A strong right-skew on a runout measurement most likely reflects:", "choices": ["A measurement blunder", "A natural lower boundary at zero (runout can't be negative)", "Two mixed machines", "Tampering"], "answer": "B", "explanation": "Characteristics bounded at zero pile up near zero with a tail upward — a natural skew."},
+        {"q": "Why plot a histogram before computing a capability index?", "choices": ["It's required by AIAG", "To confirm the data is a single, roughly normal process so the index is meaningful", "To set control limits", "To replace the control chart"], "answer": "B", "explanation": "Capability math assumes one normal process; the histogram is the cheap check that this holds."}
+      ]
+    },
+    {
+      "id": "spc-07",
+      "title": "Process Capability: Cp & Cpk (Stability First)",
+      "source": "Evans SPC, Ch.7",
+      "summary": "Capability compares the process spread to the tolerance — but the indices are only valid AFTER the control chart proves the process is stable.",
+      "reading": "Capability answers the customer's question: can this process reliably make parts inside the tolerance? Cp compares the total tolerance width to the process spread: Cp = (USL − LSL) / 6σ. It's a best case that ignores centering. Cpk corrects for that by measuring the distance from the process mean to the NEARER spec limit in units of 3σ: Cpk = min(USL − μ, μ − LSL) / 3σ. Cpk ≤ Cp always, and they're equal only when the process is perfectly centered. A common automotive floor is Cpk ≥ 1.33; critical characteristics often demand ≥ 1.67.\n\nThe non-negotiable prerequisite — and the most violated rule in all of SPC — is that capability is only meaningful for a STABLE process. The control chart must show statistical control FIRST. Why? Because σ and μ only describe a single, predictable distribution if the process isn't being jerked around by special causes. Compute Cpk on an unstable process and the number is a snapshot of a moving target: it will be different tomorrow, so it predicts nothing. The correct order is always: stabilize (control chart) → confirm shape (histogram/normality) → THEN compute capability.\n\nThis topic is the bridge to the Capability & Validation unit, where we separate short-term capability (Cp/Cpk, within-subgroup σ) from long-term performance (Pp/Ppk, overall σ) and connect capability to formal product validation.",
+      "key_points": [
+        "Cp = (USL − LSL)/6σ (spread vs tolerance, ignores centering); Cpk = min(USL−μ, μ−LSL)/3σ (penalizes off-center).",
+        "Cpk ≤ Cp always; equal only when perfectly centered. Common floor Cpk ≥ 1.33 (critical ≥ 1.67).",
+        "Capability is ONLY valid for a stable process — prove control on the chart first.",
+        "Order: stabilize (control chart) → check shape (histogram/normality) → compute capability."
+      ],
+      "media": {
+        "image": "media/diagrams/process_capability.png",
+        "image_caption": "Cp vs Cpk — an off-center process drags Cpk below Cp",
+        "video": {"title": "Process Capability: Cp, Cpk, Sigma Level (ASQ Fellow)", "url": "https://www.youtube.com/watch?v=zJS4o2lkGak"}
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A supplier submits Cpk = 1.6 but their control chart shows several out-of-control points during the study. Should you accept the capability claim? Explain.",
+          "model_answer": "No. Capability indices are only meaningful for a process in statistical control. If the chart shows special causes during the study, the process isn't a single predictable distribution — its μ and σ are a snapshot of a moving target, so Cpk = 1.6 doesn't predict future performance and could be very different next lot. Require the supplier to first demonstrate statistical control (stable chart), then recompute capability on the stable data. A high Cpk on an unstable process is not a valid claim."
+        }
+      ],
+      "flashcards": [
+        {"q": "Cp vs Cpk in one line each.", "a": "Cp = tolerance width / 6σ (ignores centering); Cpk = distance from mean to nearest spec / 3σ (penalizes off-center). Cpk ≤ Cp."},
+        {"q": "What must be true BEFORE a capability index is valid?", "a": "The process must be in statistical control (stable) — proven by the control chart — and reasonably normal."},
+        {"q": "What's a common automotive Cpk floor, and for critical characteristics?", "a": "Cpk ≥ 1.33 generally; often ≥ 1.67 for critical/safety characteristics."}
+      ],
+      "quiz": [
+        {"q": "Cpk is computed on a process whose control chart is clearly unstable. The Cpk value is:", "choices": ["Valid and predictive", "Not meaningful — capability requires statistical control first", "Always higher than Cp", "Equal to Pp"], "answer": "B", "explanation": "Capability indices only describe a stable, predictable distribution; on an unstable process they predict nothing."},
+        {"q": "A process has Cp = 1.8 but Cpk = 0.9. This means:", "choices": ["The spread is too wide", "The process is badly off-center (re-centering could raise Cpk toward Cp)", "The gauge is bad", "The data is bimodal"], "answer": "B", "explanation": "Large gap between Cp and Cpk indicates off-center; the spread is fine, the centering isn't."},
+        {"q": "The correct order of operations is:", "choices": ["Capability → control chart → histogram", "Control chart (stabilize) → histogram (shape) → capability", "Histogram → capability → control chart", "Capability first, always"], "answer": "B", "explanation": "Stabilize, confirm shape/normality, then compute capability — capability needs a stable, normal process."}
+      ]
+    },
+    {
+      "id": "spc-08",
+      "title": "SPC Problem-Solving Tools: Pareto, Fishbone, Scatter",
+      "source": "Evans SPC, Ch.8 (7 QC Tools)",
+      "summary": "Charts tell you WHEN a process changed; the problem-solving tools help you find out WHY — focusing effort, organizing causes, and testing relationships.",
+      "reading": "Control charts detect that something changed, but they don't explain why. The classic problem-solving tools — part of the 'seven basic QC tools' — turn a signal into a root cause. Three do the heavy lifting.\n\nThe Pareto chart ranks problem categories by frequency (or cost) so you attack the 'vital few' rather than the 'trivial many' — the 80/20 principle made visual. It answers 'where do we spend our limited effort?' before anyone argues from anecdote. The cause-and-effect (fishbone / Ishikawa) diagram organizes brainstormed causes into families — classically the 6 M's: Man, Machine, Method, Material, Measurement, Environment (Mother Nature) — so a team explores the whole cause space instead of fixating on the first idea. It structures thinking; it does not by itself prove anything. The scatter diagram tests a suspected relationship between two variables (e.g., oven temperature vs. weld strength), revealing correlation, its direction, and strength — a cheap empirical check before committing to a theory.\n\nThe key judgment is sequencing: use Pareto to pick the battle, fishbone to map candidate causes, and scatter (or a designed experiment) to TEST the leading candidate with data. The tools are most powerful in that order, and they pair naturally with the variation-reduction algorithm — Pareto and elimination find the dominant cause, scatter and DOE confirm it.",
+      "key_points": [
+        "Pareto chart: rank categories to attack the 'vital few' (80/20) — pick the battle worth fighting.",
+        "Fishbone (Ishikawa): organize candidate causes into the 6 M's — structures thinking, doesn't prove cause.",
+        "Scatter diagram: test a suspected relationship between two variables (correlation, direction, strength).",
+        "Sequence: Pareto (where) → fishbone (what might) → scatter/DOE (test it) — pairs with finding the dominant cause."
+      ],
+      "media": {
+        "image": "media/diagrams/pareto.png",
+        "image_caption": "Pareto: attack the vital few categories first"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A team jumps straight to a fishbone, brainstorms 30 causes, and starts 'fixing' several at once. What two tools/steps would have made their effort far more efficient, and in what order?",
+          "model_answer": "First a Pareto chart to focus on the one or two defect categories that dominate — so they aren't spreading effort across 30 causes for problems that barely matter. Then, after the fishbone maps candidate causes for THAT focused problem, a scatter diagram (or a designed experiment) to TEST the leading candidate before changing anything. Order: Pareto (pick the vital-few battle) → fishbone (map causes) → scatter/DOE (confirm the dominant cause). Fixing many unconfirmed causes at once is exactly the inefficient anti-pattern the tools are meant to prevent."
+        }
+      ],
+      "flashcards": [
+        {"q": "What question does a Pareto chart answer?", "a": "Where to focus limited effort — it ranks categories so you attack the 'vital few' (80/20) instead of the trivial many."},
+        {"q": "What are the 6 M's of a fishbone diagram?", "a": "Man, Machine, Method, Material, Measurement, and Environment (Mother Nature)."},
+        {"q": "What does a fishbone diagram NOT do?", "a": "It organizes candidate causes but doesn't prove any of them — you still must test with data (scatter/DOE)."}
+      ],
+      "quiz": [
+        {"q": "To decide which of many defect types to tackle first, use a:", "choices": ["Scatter diagram", "Pareto chart", "Control chart", "Fishbone"], "answer": "B", "explanation": "Pareto ranks categories so you focus on the vital few."},
+        {"q": "A fishbone diagram's main contribution is to:", "choices": ["Prove the root cause", "Organize candidate causes into families so the whole cause space is explored", "Set control limits", "Rank defects by cost"], "answer": "B", "explanation": "It structures brainstorming into the 6 M's; it doesn't prove cause — that needs data."},
+        {"q": "To test whether weld strength depends on oven temperature, the cheapest first tool is a:", "choices": ["Pareto chart", "Scatter diagram", "np-chart", "Histogram"], "answer": "B", "explanation": "A scatter diagram reveals the correlation (direction/strength) between two variables."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "module": "msa",
+  "title": "Measurement Systems Analysis (MSA)",
+  "source_book": "Six Sigma: A Complete Step-by-Step Guide (CSSC); AIAG MSA conventions; Advanced Quality Planning (Stamatis)",
+  "topics": [
+    {
+      "id": "msa-01",
+      "title": "Can You Trust Your Data? Why MSA Comes First",
+      "source": "Six Sigma Guide; AIAG MSA",
+      "summary": "Every number you act on is produced by a measurement system. If that system is noisy or biased, every chart, capability index, and accept/reject decision built on it is suspect.",
+      "reading": "Quality engineering runs on data — but data isn't reality, it's the output of a measurement SYSTEM: the gauge, the fixture, the operator, the method, and the environment, all acting together. What you record is the true value plus measurement error. Formally, observed variation = process variation + measurement variation (σ²_observed = σ²_process + σ²_measurement). That single equation is why MSA comes before SPC and capability: if measurement variation is large, the 'process' problems you chase may be gauge problems, and the indices you compute are partly measuring your gauge.\n\nThe classic mental model is accuracy vs precision (the dartboard). Accuracy is whether you're centered on the true value (a location issue — bias); precision is how tightly repeated readings cluster (a spread issue — repeatability/reproducibility). A gauge can be precise but biased (tight cluster, wrong spot), accurate but imprecise (centered but scattered), both, or neither — and the fix differs for each. You cannot tell which from a single reading; you need a study.\n\nThe consequences of skipping MSA are concrete and expensive: an inflated σ makes a capable process look incapable and triggers needless 'improvement' projects; it makes control charts throw false alarms (tampering) or miss real shifts; and at the inspection station it causes misclassification — good parts rejected (scrap, supplier friction) and bad parts shipped (escapes). Before trusting any measurement-based decision, you ask: is the measurement system adequate for THIS characteristic and tolerance?",
+      "key_points": [
+        "Observed variation = process variation + measurement variation — measurement error is baked into every number.",
+        "Accuracy (centered on truth = bias) and precision (tight repeats = R&R) are different problems with different fixes.",
+        "Bad MSA inflates σ: capable processes look incapable, charts false-alarm or miss, parts get misclassified.",
+        "MSA must precede trusting any SPC, capability, or accept/reject decision."
+      ],
+      "media": {
+        "image": "media/diagrams/accuracy_precision.png",
+        "image_caption": "Accuracy (bias) vs precision (repeatability) — a gauge can fail at either, independently"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A plant launches a 3-month project to 'reduce process variation' on a characteristic, with no improvement. Later a Gauge R&R shows measurement variation is 50% of the total. Explain, using the variance equation, why the project was doomed and what should have come first.",
+          "model_answer": "Observed variance = process variance + measurement variance. If measurement variation is 50% of the total, a huge chunk of the 'process' scatter is actually gauge noise — and no change to the process can shrink the measurement component, so the observed numbers barely move no matter what they do. The project was doomed because it targeted the wrong variance term. MSA should have come first: a Gauge R&R would have revealed the measurement system as the dominant contributor, and fixing/replacing the gauge (or the method) would have cut the observed variation immediately — and only then would process work show up in the data."
+        }
+      ],
+      "flashcards": [
+        {"q": "Write the variance equation MSA is built on.", "a": "σ²_observed = σ²_process + σ²_measurement — what you measure includes both real process and measurement variation."},
+        {"q": "Accuracy vs precision — which is bias, which is R&R?", "a": "Accuracy = being centered on the true value (bias issue); precision = tightness of repeated readings (repeatability/reproducibility)."},
+        {"q": "Name three consequences of an inadequate measurement system.", "a": "Capable processes look incapable (inflated σ), control charts false-alarm or miss signals, and parts are misclassified (good scrapped, bad shipped)."}
+      ],
+      "quiz": [
+        {"q": "Observed variation is large. A Gauge R&R shows measurement variation is 50% of it. The best first action is:", "choices": ["Launch a process-improvement project", "Improve/replace the measurement system first", "Loosen the tolerance", "Add 100% inspection"], "answer": "B", "explanation": "Half the observed variation is measurement noise; no process change reduces that term — fix the gauge first."},
+        {"q": "A gauge gives tightly clustered readings that are all 0.2 mm above the true value. It is:", "choices": ["Accurate but imprecise", "Precise but biased (inaccurate)", "Both accurate and precise", "Neither"], "answer": "B", "explanation": "Tight cluster = precise; offset from truth = biased (a location/accuracy error)."},
+        {"q": "Why must MSA precede capability analysis?", "choices": ["It's required paperwork", "Measurement variation is inside the observed σ used by Cpk, so a bad gauge corrupts the index", "It replaces the control chart", "It sets the tolerance"], "answer": "B", "explanation": "Capability uses observed σ, which includes gauge variation — an inadequate gauge invalidates the index."}
+      ]
+    },
+    {
+      "id": "msa-02",
+      "title": "Anatomy of Measurement Error",
+      "source": "Six Sigma Guide; AIAG MSA",
+      "summary": "Measurement error splits into location errors (bias, linearity, stability) and spread errors (repeatability, reproducibility) — plus resolution. Each has its own cause and cure.",
+      "reading": "Measurement error is not one thing. It divides cleanly into location (accuracy) errors and spread (precision) errors, and naming which one you have tells you how to fix it.\n\nLocation errors shift the reading away from the true value. BIAS is a constant offset between the gauge's average and a reference (true) value — caught by measuring a calibrated standard. LINEARITY is bias that CHANGES across the measurement range — the gauge reads fine small but drifts at the high end (or vice versa). STABILITY is bias that CHANGES over TIME — the gauge drifts day to day. All three are accuracy problems and are addressed by calibration, maintenance, and the right standard.\n\nSpread errors scatter repeated readings. REPEATABILITY (equipment variation, EV) is the variation when the SAME operator measures the SAME part with the SAME gauge repeatedly — it's the gauge's own inherent noise. REPRODUCIBILITY (appraiser variation, AV) is the variation added when DIFFERENT operators measure the same part — differences in technique, seating, reading. Repeatability points at the gauge/fixture; reproducibility points at the operators/method (training, work instructions).\n\nUnderneath everything sits RESOLUTION (discrimination): the gauge must read finely enough to actually SEE the variation. A rule of thumb is that the increment should be ≤ 1/10 of the process variation or tolerance (the '10-bucket' rule), formalized as the number of distinct categories (ndc ≥ 5). A micrometer reading only to 0.01 mm cannot assess a 0.02 mm tolerance — it lacks the discrimination, and no R&R math rescues it.",
+      "key_points": [
+        "Location/accuracy: BIAS (constant offset), LINEARITY (bias varies across range), STABILITY (bias varies over time) — fix by calibration.",
+        "Spread/precision: REPEATABILITY (equipment, same operator) and REPRODUCIBILITY (appraiser, between operators).",
+        "Repeatability → gauge/fixture; Reproducibility → operator technique/method/training.",
+        "Resolution/discrimination: increment ≤ ~1/10 of variation/tolerance (ndc ≥ 5) or the gauge can't even see the variation."
+      ],
+      "media": {
+        "image": "media/diagrams/msa_components.png",
+        "image_caption": "Location errors (bias/linearity/stability) vs spread errors (repeatability/reproducibility)"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A gauge reads accurately on small parts but increasingly over-reads on larger parts within its range. Name the error type, distinguish it from stability, and state the fix.",
+          "model_answer": "This is a LINEARITY error — the bias changes across the measurement range (accurate low, over-reading high). It differs from STABILITY, which is bias changing over TIME (drift day-to-day at a fixed size), not across size. Both are accuracy/location errors. The fix is calibration across the full range using standards at several sizes (not just one mid-range master), and investigating the cause (e.g., a worn anvil, nonlinear sensor) — recalibrating at a single point would miss the range-dependent error entirely."
+        },
+        {
+          "prompt": "A tolerance is 0.02 mm and the available gauge reads only to 0.01 mm increments. Why will a Gauge R&R study be meaningless here, and what's the real issue?",
+          "model_answer": "The issue is RESOLUTION/discrimination, not R&R. With 0.01 mm increments against a 0.02 mm tolerance, the gauge can only place a part into a couple of buckets across the whole tolerance — it literally can't see the variation (ndc far below 5; the increment is ½ the tolerance, not the ≤1/10 rule). An R&R study would produce numbers, but they'd be dominated by rounding artifacts and tell you nothing useful. The real fix is a finer-resolution gauge; no statistical analysis compensates for inadequate discrimination."
+        }
+      ],
+      "flashcards": [
+        {"q": "Bias vs linearity vs stability — distinguish in one line.", "a": "Bias = constant offset from truth; linearity = bias that changes across the range; stability = bias that changes over time. All are accuracy errors fixed by calibration."},
+        {"q": "Repeatability vs reproducibility — what does each point to?", "a": "Repeatability (equipment, same operator) points at the gauge/fixture; reproducibility (appraiser, between operators) points at operator technique/method/training."},
+        {"q": "What is the resolution rule of thumb?", "a": "The gauge increment should be ≤ ~1/10 of the process variation or tolerance (number of distinct categories, ndc ≥ 5)."}
+      ],
+      "quiz": [
+        {"q": "A gauge's average reading drifts higher week over week at the same part size. This is:", "choices": ["Linearity", "Bias", "Stability", "Repeatability"], "answer": "C", "explanation": "Bias changing over TIME is a stability problem."},
+        {"q": "Variation when different operators measure the same part is:", "choices": ["Repeatability", "Reproducibility", "Linearity", "Resolution"], "answer": "B", "explanation": "Between-operator variation is reproducibility (appraiser variation, AV)."},
+        {"q": "A gauge increment equal to half the tolerance fails on:", "choices": ["Bias", "Reproducibility", "Resolution/discrimination", "Stability"], "answer": "C", "explanation": "It can't resolve the variation (ndc far below 5) — a resolution problem no R&R math fixes."},
+        {"q": "Linearity error is best detected by:", "choices": ["One master at mid-range", "Standards at several sizes across the range", "Repeated reads by one operator", "A control chart"], "answer": "B", "explanation": "Linearity is range-dependent bias — you must check bias at several points across the range."}
+      ]
+    },
+    {
+      "id": "msa-03",
+      "title": "Gauge R&R: Repeatability vs Reproducibility",
+      "source": "Six Sigma Guide; AIAG MSA",
+      "summary": "The Gauge R&R study quantifies how much of your observed variation is the measurement system — and the standard thresholds tell you whether the gauge is fit for use.",
+      "reading": "A Gauge R&R study is the workhorse of MSA: it quantifies the precision of a measurement system by separating repeatability and reproducibility. The classic crossed study has several operators each measure the same set of parts multiple times — a common design is 10 parts × 3 operators × 2-3 trials — chosen and ordered so the parts span the real range and operators can't remember prior readings.\n\nThe analysis partitions the variation. Repeatability (equipment variation, EV) comes from the spread of one operator's repeated reads. Reproducibility (appraiser variation, AV) comes from the differences between operators' averages. Together they form Gauge R&R = √(EV² + AV²), and the part-to-part variation is what's left. The headline number is %GR&R — the measurement variation as a percentage — reported either against the total study variation or against the tolerance (the precision-to-tolerance, P/T, ratio).\n\nThe AIAG decision rules are worth memorizing: %GR&R under 10% is acceptable; 10-30% is marginal (acceptable depending on the application's importance, the cost of the gauge, and the risk); over 30% is unacceptable — the gauge must be improved. A companion metric, the number of distinct categories (ndc), should be ≥ 5, meaning the system can reliably distinguish at least five groups of parts across the range. Read the two components together: a high %GR&R driven by EV says fix the gauge/fixture; driven by AV says fix the operators/method.",
+      "key_points": [
+        "Gauge R&R study: e.g., 10 parts × 3 operators × 2-3 trials, randomized so operators can't recall readings.",
+        "GR&R = √(EV² + AV²): EV = repeatability (equipment), AV = reproducibility (appraisers).",
+        "%GR&R thresholds: <10% acceptable, 10-30% marginal, >30% unacceptable; ndc ≥ 5.",
+        "%GR&R can be vs total study variation or vs tolerance (P/T ratio) — know which is quoted."
+      ],
+      "media": {
+        "image": "media/diagrams/gauge_rr.png",
+        "image_caption": "Gauge R&R splits measurement variation into repeatability + reproducibility, vs part-to-part"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A Gauge R&R returns %GR&R = 28%, with reproducibility (AV) far larger than repeatability (EV). Is the gauge usable, and what is the most productive fix?",
+          "model_answer": "28% is in the marginal 10-30% band — possibly acceptable depending on how critical the characteristic is, the gauge's cost, and the decision risk, but not clearly good. The key diagnostic is that AV (between-operator) dominates: the gauge itself repeats well, but operators disagree — pointing at technique, part seating, or reading method, NOT the hardware. The most productive (and cheapest) fix is to standardize the method: clear work instructions, fixturing to control seating, and operator training — then re-run the study. Buying a new gauge would waste money, since equipment repeatability isn't the problem."
+        }
+      ],
+      "flashcards": [
+        {"q": "What is a typical Gauge R&R study design?", "a": "About 10 parts × 3 operators × 2-3 trials, randomized so operators can't recall prior readings; parts should span the real range."},
+        {"q": "State the %GR&R acceptance thresholds.", "a": "<10% acceptable; 10-30% marginal (depends on application/cost/risk); >30% unacceptable. Also want ndc ≥ 5."},
+        {"q": "How does GR&R combine EV and AV?", "a": "GR&R = √(EV² + AV²), where EV = repeatability (equipment) and AV = reproducibility (appraiser)."}
+      ],
+      "quiz": [
+        {"q": "A study reports %GR&R = 8%. The measurement system is:", "choices": ["Unacceptable", "Marginal", "Acceptable", "Impossible to judge"], "answer": "C", "explanation": "Under 10% %GR&R is acceptable by the AIAG rule."},
+        {"q": "%GR&R = 35% means you should:", "choices": ["Use the gauge as-is", "Improve the measurement system before trusting its data", "Tighten the tolerance", "Increase the sample size on the control chart"], "answer": "B", "explanation": "Over 30% is unacceptable — the gauge/method must be improved."},
+        {"q": "High %GR&R driven mostly by repeatability (EV) points the fix at:", "choices": ["Operator training", "The gauge/fixture itself", "The specification", "The sampling plan"], "answer": "B", "explanation": "Repeatability is equipment variation — improve the gauge or fixturing."},
+        {"q": "The number of distinct categories (ndc) should be at least:", "choices": ["1", "5", "10", "30"], "answer": "B", "explanation": "ndc ≥ 5 indicates the system can reliably distinguish at least five groups of parts."}
+      ]
+    },
+    {
+      "id": "msa-04",
+      "title": "Attribute Agreement Analysis (Go/No-Go MSA)",
+      "source": "Six Sigma Guide; AIAG MSA",
+      "summary": "When the 'gauge' is a human judgment or a go/no-go check, you can't compute a Gauge R&R — you assess agreement instead, and these systems are usually weaker than people assume.",
+      "reading": "Not every measurement produces a number. Visual inspection (scratch / no scratch), go/no-go gauges, and pass/fail checks produce ATTRIBUTE data, and a continuous Gauge R&R doesn't apply. Instead you run an attribute agreement analysis: have multiple appraisers judge the same set of parts (including known good and known bad ones) more than once, and measure how well they agree — with each other, with themselves, and with the truth.\n\nThree numbers matter. Effectiveness is the percentage of parts each appraiser classifies correctly against the known standard. The MISS RATE is how often a truly defective part is called good (a dangerous escape). The FALSE-ALARM RATE is how often a good part is called bad (scrap and friction). Agreement beyond chance is summarized by KAPPA: Kappa above ~0.75 is good agreement, below ~0.40 is poor — and crucially, two inspectors can agree with EACH OTHER while both being consistently wrong against the standard, which is why you include known-truth parts.\n\nThe honest lesson is that attribute systems are typically far weaker than people assume — human visual inspection commonly misses a notable fraction of defects, agreement is inconsistent, and borderline parts split appraisers. That's a major reason QE prefers measured (variables) data and error-proofing over relying on human sorting: it connects straight back to 'you can't inspect quality in.' When an attribute check is unavoidable, the agreement study tells you how much to trust it and where to invest (standards, boundary samples, training).",
+      "key_points": [
+        "Attribute data (pass/fail, go/no-go, visual) needs agreement analysis, not a continuous Gauge R&R.",
+        "Run multiple appraisers × repeated judgments on known good/bad parts.",
+        "Metrics: effectiveness (% correct), miss rate (bad called good = escape), false-alarm rate (good called bad = scrap); Kappa > 0.75 good, < 0.40 poor.",
+        "Appraisers can agree with each other yet both be wrong — include known-truth parts."
+      ],
+      "media": {
+        "image": "media/diagrams/accuracy_precision.png",
+        "image_caption": "Attribute checks add the same accuracy/consistency questions — measured against known-truth parts"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "Two inspectors agree with each other 95% of the time on a visual check, and management calls the system validated. Why is that conclusion premature, and what's missing?",
+          "model_answer": "High inspector-to-inspector agreement only proves they're CONSISTENT with each other — it says nothing about whether they're CORRECT. Both could be applying the same wrong standard (e.g., systematically passing a borderline defect), agreeing 95% of the time while both missing real defects. What's missing is agreement against the TRUTH: include known good and known defective parts, then measure effectiveness, miss rate, and false-alarm rate against that standard. Only agreement-with-truth (not just agreement-with-each-other) validates the system."
+        }
+      ],
+      "flashcards": [
+        {"q": "Why can't you run a standard Gauge R&R on a go/no-go visual check?", "a": "It produces attribute (pass/fail) data, not continuous measurements; you assess agreement (effectiveness, miss/false-alarm rates, Kappa) instead."},
+        {"q": "What do miss rate and false-alarm rate mean?", "a": "Miss rate = a truly defective part called good (an escape); false-alarm rate = a good part called bad (scrap/friction)."},
+        {"q": "What Kappa value signals good agreement, and what's the trap?", "a": "Kappa > ~0.75 is good (< 0.40 poor). The trap: appraisers can agree with each other while both being wrong — so test against known-truth parts."}
+      ],
+      "quiz": [
+        {"q": "A go/no-go visual inspection should be assessed with:", "choices": ["A continuous Gauge R&R", "An attribute agreement analysis (effectiveness, miss/false-alarm, Kappa)", "A Cpk study", "An OC curve"], "answer": "B", "explanation": "Attribute data needs an agreement analysis, not a continuous R&R."},
+        {"q": "Calling a truly defective part 'good' is a:", "choices": ["False alarm", "Miss (escape)", "Bias", "Repeatability error"], "answer": "B", "explanation": "A miss passes a defect downstream — a dangerous escape."},
+        {"q": "Two appraisers agreeing 95% with each other proves:", "choices": ["The system is accurate", "Only that they're consistent — not that they're correct vs the standard", "Kappa > 0.75 vs truth", "The miss rate is zero"], "answer": "B", "explanation": "Agreement with each other isn't agreement with truth; you must test against known-good/bad parts."}
+      ]
+    },
+    {
+      "id": "msa-05",
+      "title": "Interpreting MSA & Fixing the Right Thing",
+      "source": "Six Sigma Guide; AIAG MSA",
+      "summary": "An MSA result is only useful if it changes what you do. Read the components to target the real culprit — gauge, fixture, operator, method, or resolution — and know the downstream damage of ignoring it.",
+      "reading": "The point of MSA isn't the number; it's the action. A %GR&R figure with no decomposition is wasted — you must read WHICH component is large to fix the right thing. Walk the anatomy: Is it a location error (bias/linearity/stability)? Then it's a calibration/standard problem — recalibrate, fix the master, check across the range and over time. Is it repeatability (EV)? Then the gauge or fixture is noisy — improve the instrument, the clamping/seating, or the environment. Is it reproducibility (AV)? Then operators disagree — standardize the method with work instructions, fixturing, and training. Is ndc < 5 or the increment too coarse? Then it's resolution — you need a finer gauge, and no analysis substitutes.\n\nThis targeting matters because the wrong fix wastes money: buying a new gauge when the real issue is operator technique (AV), or retraining operators when the gauge itself is noisy (EV), both leave the problem in place. Read the components, then spend.\n\nFinally, hold the downstream consequences in mind to justify the effort. An inadequate measurement system inflates the observed σ, so capability indices understate the true process (you 'fail' a process that's actually fine), control charts both false-alarm (tampering) and miss real shifts, and at the gate you misclassify parts — scrapping good ones (false alarms) and shipping bad ones (misses). Every SPC, capability, and validation result you've studied silently assumes the measurement system passed MSA first. That's why MSA isn't a box to tick — it's the foundation the rest of QE stands on.",
+      "key_points": [
+        "Decompose before acting: location error → calibration; repeatability (EV) → gauge/fixture; reproducibility (AV) → operator method/training; low ndc → finer gauge.",
+        "The wrong fix wastes money — a new gauge won't fix an operator (AV) problem, and training won't fix a noisy gauge (EV).",
+        "Bad MSA inflates observed σ: capability understated, charts false-alarm AND miss, parts misclassified.",
+        "Every SPC/capability/validation result assumes the measurement system already passed MSA."
+      ],
+      "media": {
+        "image": "media/diagrams/gauge_rr.png",
+        "image_caption": "Read which bar is large — it tells you whether to fix the gauge or the operators"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A characteristic 'fails' capability at Cpk = 1.0 and a team is about to start an expensive process-improvement project. What MSA check would you insist on first, and how could it change the plan?",
+          "model_answer": "Insist on a Gauge R&R first. Because observed σ includes measurement variation, an inadequate gauge inflates σ and DEPRESSES the apparent Cpk — so the 'failing' 1.0 could be a measurement artifact, with the true process capability higher. If the study shows, say, %GR&R = 30%+, the priority shifts entirely: fix the measurement system (calibration, fixturing, or operator method, depending on which component dominates) and recompute capability — the process may already pass, saving a needless improvement project. Only if MSA is adequate is the low Cpk a real process problem worth a project."
+        }
+      ],
+      "flashcards": [
+        {"q": "High reproducibility (AV) vs high repeatability (EV) — different fixes?", "a": "High AV (operators disagree) → standardize method/fixturing/training. High EV (gauge noisy) → improve the gauge/fixture. Don't confuse them or you'll spend on the wrong fix."},
+        {"q": "How does inadequate MSA bias a capability index?", "a": "It inflates observed σ, which lowers Cpk — so a capable process can 'fail' capability purely due to measurement noise."},
+        {"q": "Why is MSA called the foundation of QE?", "a": "Every SPC, capability, and validation result assumes the measurements are trustworthy — bad MSA corrupts all of them."}
+      ],
+      "quiz": [
+        {"q": "An MSA shows reproducibility (AV) is the dominant component. The correct investment is:", "choices": ["Buy a new gauge", "Standardize operator method/fixturing/training", "Tighten the tolerance", "Add more parts to the study"], "answer": "B", "explanation": "AV is operator-driven; a new gauge wouldn't help — fix the method and training."},
+        {"q": "A process 'fails' at Cpk = 1.0 with a 30%+ %GR&R. The most likely truth is:", "choices": ["The process is genuinely incapable", "Measurement noise is depressing the apparent capability — fix MSA and recompute", "The tolerance is wrong", "The operators need discipline"], "answer": "B", "explanation": "Gauge variation inflates σ and lowers Cpk; fixing MSA may reveal the process is actually capable."},
+        {"q": "Ignoring a poor measurement system at the inspection gate causes:", "choices": ["Only scrap", "Only escapes", "Both scrap (good parts rejected) and escapes (bad parts shipped)", "Neither"], "answer": "C", "explanation": "Measurement error misclassifies in both directions — false alarms (scrap) and misses (escapes)."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Tesla QE Trainer Curriculum",
+  "description": "Adaptive Quality Engineering curriculum built from Jacob's own reference books.",
+  "module_order": [
+    "physics_materials",
+    "spc",
+    "process_variation",
+    "capability",
+    "msa",
+    "doe",
+    "gdt",
+    "fmea",
+    "apqp",
+    "sevenD",
+    "vision_systems"
+  ],
+  "modules": {
+    "physics_materials": {"file": "physics_materials.json", "emoji": "⚛️", "blurb": "Physics & materials fundamentals — the engineering bedrock."},
+    "spc": {"file": "spc.json", "emoji": "📈", "blurb": "Statistical Process Control — variation, control charts, capability."},
+    "process_variation": {"file": "process_variation.json", "emoji": "🎯", "blurb": "Process variation & reduction — dominant cause, families, the SE algorithm."},
+    "capability": {"file": "capability.json", "emoji": "✅", "blurb": "Capability & validation — Cp/Cpk/Pp/Ppk, sigma level, IQ/OQ/PQ, PPAP, sampling."},
+    "msa": {"file": "msa.json", "emoji": "📏", "blurb": "Measurement systems analysis — bias, Gauge R&R, attribute agreement, ndc."},
+    "doe": {"file": "doe.json", "emoji": "🧪", "blurb": "Design of experiments — factorials, interactions, screening, confirmation runs."},
+    "gdt": {"file": "gdt.json", "emoji": "📐", "blurb": "GD&T / dimensional metrology — datums, tolerancing, position."},
+    "fmea": {"file": "fmea.json", "emoji": "⚠️", "blurb": "FMEA — failure modes, S/O/D, Action Priority."},
+    "apqp": {"file": "apqp.json", "emoji": "📋", "blurb": "APQP & core tools — PPAP, control plans, MSA."},
+    "sevenD": {"file": "sevenD.json", "emoji": "🔍", "blurb": "Structured problem solving — GM 7-Diamonds, 5 Whys, PCB."},
+    "vision_systems": {"file": "vision_systems.json", "emoji": "📷", "blurb": "Machine vision & Eines inspection systems."}
+  }
+}

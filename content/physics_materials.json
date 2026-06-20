@@ -1,0 +1,202 @@
+{
+  "module": "physics_materials",
+  "title": "Physics & Materials Fundamentals",
+  "source_book": "Gibilisco, Teach Yourself Electricity & Electronics; Carraher, Giant Molecules",
+  "topics": [
+    {
+      "id": "phys-01",
+      "title": "Units, Measurement, and Significant Figures",
+      "source": "Engineering fundamentals",
+      "summary": "Quality engineering lives on measurement, so the basics matter. SI base units include the meter (length), kilogram (mass), second (time), ampere (current), and kelvin (temperature). Every measurement has uncertainty; significant figures communicate how precise a value is, and you never report more precision than your instrument resolves. Accuracy (closeness to the true value) is different from precision (repeatability of readings) — a gauge can be precise but biased (consistently off). Resolution is the smallest increment an instrument can display.",
+      "key_points": [
+        "SI base units: meter, kilogram, second, ampere, kelvin (+ mole, candela).",
+        "Accuracy = closeness to true value; Precision = repeatability of readings.",
+        "Resolution = smallest increment an instrument can display.",
+        "Significant figures convey precision; don't report beyond instrument resolution."
+      ],
+      "flashcards": [
+        {
+          "q": "Difference between accuracy and precision?",
+          "a": "Accuracy is closeness to the true value; precision is the repeatability/consistency of repeated readings."
+        },
+        {
+          "q": "What is instrument resolution?",
+          "a": "The smallest increment the instrument can display or distinguish."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A scale reads 50.02, 50.01, 50.03 g for a true 49.00 g mass. The scale is:",
+          "choices": [
+            "Accurate but imprecise",
+            "Precise but inaccurate (biased)",
+            "Both accurate and precise",
+            "Neither"
+          ],
+          "answer": "B",
+          "explanation": "Readings are tightly clustered (precise) but consistently ~1 g high (inaccurate/biased)."
+        }
+      ]
+    },
+    {
+      "id": "phys-02",
+      "title": "Force, Stress, and Strain",
+      "source": "Mechanics fundamentals",
+      "summary": "Mechanical quality work rests on stress and strain. Stress (σ) = force / cross-sectional area (units: pascals or psi). Strain (ε) = change in length / original length (dimensionless). In the elastic region they follow Hooke's law, σ = E·ε, where E is the Young's (elastic) modulus — the material's stiffness. Loading past the yield strength causes permanent (plastic) deformation; the ultimate tensile strength is the peak stress before failure. This is why fastener torque, press fits, and material selection all trace back to stress vs. strength.",
+      "key_points": [
+        "Stress σ = Force / Area; Strain ε = ΔL / L (dimensionless).",
+        "Hooke's law (elastic region): σ = E·ε; E = Young's modulus (stiffness).",
+        "Yield strength = onset of permanent deformation; UTS = peak stress before failure.",
+        "Elastic = recoverable deformation; plastic = permanent."
+      ],
+      "flashcards": [
+        {
+          "q": "Define stress and strain.",
+          "a": "Stress = force ÷ cross-sectional area; strain = change in length ÷ original length (dimensionless)."
+        },
+        {
+          "q": "What does Young's modulus (E) represent and how does it relate stress and strain?",
+          "a": "Material stiffness; in the elastic region σ = E·ε (Hooke's law)."
+        },
+        {
+          "q": "Difference between yield strength and ultimate tensile strength?",
+          "a": "Yield = onset of permanent (plastic) deformation; UTS = maximum stress the material withstands before failure."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A part loaded beyond its yield strength will:",
+          "choices": [
+            "Return to original shape",
+            "Deform permanently (plastically)",
+            "Get stiffer",
+            "Lose all stress"
+          ],
+          "answer": "B",
+          "explanation": "Past yield, deformation is plastic (permanent) rather than elastic (recoverable)."
+        },
+        {
+          "q": "Hooke's law in the elastic region states:",
+          "choices": [
+            "σ = E·ε",
+            "σ = F·A",
+            "ε = σ·E",
+            "F = m·a"
+          ],
+          "answer": "A",
+          "explanation": "Stress equals the elastic modulus times strain in the linear-elastic region."
+        }
+      ]
+    },
+    {
+      "id": "phys-03",
+      "title": "Electricity Basics: Voltage, Current, Resistance (Ohm's Law)",
+      "source": "Gibilisco, Teach Yourself Electricity & Electronics",
+      "summary": "Electrical fundamentals underpin EV and sensor quality work. Voltage (V, volts) is the electrical 'pressure' or potential difference; current (I, amperes) is the flow of charge; resistance (R, ohms) opposes that flow. Ohm's law ties them together: V = I·R. Electrical power is P = V·I (watts), which also equals I²·R. Series circuits share the same current and add resistances; parallel circuits share the same voltage and add conductances (reciprocals of resistance). These relations govern wiring, battery packs, and sensor signal integrity.",
+      "key_points": [
+        "Voltage (V) = potential difference; Current (I) = charge flow; Resistance (R) = opposition.",
+        "Ohm's law: V = I·R.",
+        "Power: P = V·I = I²·R (watts).",
+        "Series: same current, resistances add. Parallel: same voltage, conductances add."
+      ],
+      "flashcards": [
+        {
+          "q": "State Ohm's law.",
+          "a": "V = I × R (voltage equals current times resistance)."
+        },
+        {
+          "q": "Write two forms of the electrical power equation.",
+          "a": "P = V·I and P = I²·R."
+        },
+        {
+          "q": "In a series circuit, what is shared and what adds up?",
+          "a": "Current is the same throughout; resistances add."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A 12 V source drives 3 A through a resistor. The resistance is:",
+          "choices": [
+            "4 Ω",
+            "36 Ω",
+            "0.25 Ω",
+            "15 Ω"
+          ],
+          "answer": "A",
+          "explanation": "R = V/I = 12/3 = 4 Ω."
+        },
+        {
+          "q": "The power dissipated by that resistor (12 V, 3 A) is:",
+          "choices": [
+            "4 W",
+            "15 W",
+            "36 W",
+            "9 W"
+          ],
+          "answer": "C",
+          "explanation": "P = V·I = 12 × 3 = 36 W."
+        }
+      ],
+      "media": {
+        "image": "media/book_figures/teach-yourself-electricity-and-electroni-p31-x1128.png",
+        "image_caption": "Atomic structure — protons, neutrons, and the electrons that carry current",
+        "web_notes": "Current is the flow of electrons through a conductor, voltage is the pressure pushing them, and resistance opposes that flow. Ohm's law ties them together: V = I × R — the single most-used relationship in basic electronics and when reading instrumentation on the floor."
+      }
+    },
+    {
+      "id": "phys-04",
+      "title": "Materials & Polymers: Structure Drives Properties",
+      "source": "Carraher, Giant Molecules",
+      "summary": "Materials are grouped into metals, polymers, ceramics, and composites, and a material's structure dictates its properties. Polymers ('giant molecules') are long chains of repeating units (monomers); their molecular weight, chain branching, and degree of crystallinity set strength, flexibility, and melting behavior. Thermoplastics soften and can be remelted (reshapeable/recyclable); thermosets cure into a permanent cross-linked network and cannot be remelted. The glass transition temperature (Tg) is where an amorphous polymer shifts from rigid/glassy to soft/rubbery — critical for automotive interior and under-hood parts that must survive temperature extremes.",
+      "key_points": [
+        "Material classes: metals, polymers, ceramics, composites — structure drives properties.",
+        "Polymers = long chains of repeating monomers; molecular weight & crystallinity set properties.",
+        "Thermoplastics remelt/reshape; thermosets cure permanently (cross-linked) and cannot remelt.",
+        "Glass transition temperature (Tg): glassy/rigid below, rubbery/soft above — key for temperature-exposed parts."
+      ],
+      "flashcards": [
+        {
+          "q": "Difference between a thermoplastic and a thermoset?",
+          "a": "Thermoplastics soften and can be remelted/reshaped; thermosets cure into a permanent cross-linked network and cannot be remelted."
+        },
+        {
+          "q": "What is the glass transition temperature (Tg)?",
+          "a": "The temperature where an amorphous polymer transitions from a rigid glassy state to a soft rubbery state."
+        },
+        {
+          "q": "What molecular factors most influence a polymer's properties?",
+          "a": "Molecular weight, chain branching, and degree of crystallinity."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A material that cures permanently and cannot be remelted is a:",
+          "choices": [
+            "Thermoplastic",
+            "Thermoset",
+            "Metal",
+            "Crystal"
+          ],
+          "answer": "B",
+          "explanation": "Thermosets form a permanent cross-linked network; they char rather than remelt."
+        },
+        {
+          "q": "Below its Tg, an amorphous polymer is:",
+          "choices": [
+            "Rubbery and soft",
+            "Rigid and glassy",
+            "Molten",
+            "Crystalline"
+          ],
+          "answer": "B",
+          "explanation": "Below the glass transition temperature the polymer is in a rigid, glassy state."
+        }
+      ],
+      "media": {
+        "image": "media/book_figures/giant-molecules-materials-science-carrah-p114-x309.png",
+        "image_caption": "Folded, aligned polymer chains form stiff crystalline regions",
+        "web_notes": "A polymer's properties come from how its long chains are arranged. Tightly folded, aligned chains form crystalline regions that are stiff and strong; tangled random coils form amorphous regions that are flexible and tough. The crystalline-to-amorphous ratio is what makes one plastic rigid and another rubbery."
+      }
+    }
+  ]
+}

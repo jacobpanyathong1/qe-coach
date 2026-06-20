@@ -1,0 +1,206 @@
+{
+  "module": "capability",
+  "title": "Capability & Validation",
+  "source_book": "Six Sigma: A Complete Step-by-Step Guide (CSSC); Advanced Quality Planning (Stamatis); Evans SPC",
+  "topics": [
+    {
+      "id": "cap-01",
+      "title": "Short-Term vs Long-Term: Cp/Cpk vs Pp/Ppk",
+      "source": "Six Sigma Guide; AIAG SPC",
+      "summary": "Two families of indices measure the same process over two time horizons. Confusing them is one of the most common — and consequential — capability mistakes.",
+      "reading": "Capability and performance indices look almost identical but answer different questions, and the difference is the standard deviation they use. Cp and Cpk are CAPABILITY indices: they use the WITHIN-subgroup (short-term) standard deviation — the variation present in the brief, ideal window of a few consecutive parts, estimated from R̄ or pooled subgroup S. They describe the BEST the process can do when only common cause is acting. Pp and Ppk are PERFORMANCE indices: they use the OVERALL (long-term) standard deviation computed from all the individual data, which also captures drift, shifts, and between-subgroup variation that accumulate over time.\n\nBecause long-term variation is almost always larger, Ppk ≤ Cpk in practice. The GAP between them is itself diagnostic: if Cpk is healthy but Ppk is much lower, the process is capable moment-to-moment but is wandering over time (setup-to-setup drift, tool wear, lot changes) — a stability/control problem, not a fundamental spread problem. If Cpk and Ppk are both low and close, the inherent short-term spread is too wide and you need genuine variation reduction.\n\nThe famous '1.5σ shift' convention in Six Sigma formalizes this: it assumes a typical process mean drifts about 1.5σ over the long run, which is why a '6 sigma' short-term process (Cp = 2.0) is quoted as 3.4 defects per million long-term rather than essentially zero. Whenever someone quotes a capability number, your first question should be: short-term or long-term — Cpk or Ppk?",
+      "key_points": [
+        "Cp/Cpk use WITHIN-subgroup (short-term) σ; Pp/Ppk use OVERALL (long-term) σ.",
+        "Ppk ≤ Cpk almost always; the gap measures how much the process drifts over time.",
+        "Big Cpk-vs-Ppk gap = stability/drift problem; both low and close = inherent spread too wide.",
+        "The 1.5σ shift convention links short-term capability to long-term DPMO (6σ → 3.4 DPMO)."
+      ],
+      "media": {
+        "image": "media/diagrams/process_capability.png",
+        "image_caption": "Same process, two horizons: within-subgroup (Cpk) vs overall (Ppk) spread",
+        "video": {"title": "Process Capability: Cp, Cpk, Sigma Level (ASQ Fellow)", "url": "https://www.youtube.com/watch?v=zJS4o2lkGak"}
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A process shows Cpk = 1.6 but Ppk = 0.9. Diagnose what's happening and what kind of fix it needs — and contrast it with a process where Cpk = 0.9 and Ppk = 0.85.",
+          "model_answer": "Cpk 1.6 / Ppk 0.9: short-term the process is tight and capable, but long-term performance is poor — so the inherent spread is fine and the problem is that the process WANDERS over time (drift, setup-to-setup shifts, tool wear, lot changes). The fix is stability/control: find and control what moves the mean (SPC, setup standardization, tool-life management), not reduce inherent spread. Cpk 0.9 / Ppk 0.85: both are low and nearly equal, so even in the ideal short-term window the spread is too wide — this needs genuine variation reduction (find and address the dominant cause), not just better control."
+        }
+      ],
+      "flashcards": [
+        {"q": "What standard deviation does Cpk use vs Ppk?", "a": "Cpk uses the within-subgroup (short-term) σ; Ppk uses the overall (long-term) σ from all the data."},
+        {"q": "What does a large gap between Cpk and Ppk tell you?", "a": "The process is capable short-term but drifts/shifts over time — a stability/control problem, not an inherent-spread problem."},
+        {"q": "Why is a '6 sigma' process quoted as 3.4 DPMO, not ~0?", "a": "The 1.5σ long-term shift convention assumes the mean drifts ~1.5σ, degrading the long-term defect rate to 3.4 per million."}
+      ],
+      "quiz": [
+        {"q": "Cpk uses which standard deviation?", "choices": ["Overall/long-term σ", "Within-subgroup/short-term σ", "The spec range", "σ of the averages"], "answer": "B", "explanation": "Cp/Cpk are short-term (within-subgroup); Pp/Ppk are long-term (overall)."},
+        {"q": "Cpk = 1.5, Ppk = 0.8. The priority is to:", "choices": ["Reduce inherent short-term spread", "Stabilize the process — it's drifting/shifting over time", "Loosen the tolerance", "Re-run the gauge study"], "answer": "B", "explanation": "Good short-term but poor long-term means drift/shift — a control/stability problem."},
+        {"q": "In practice, which relationship holds?", "choices": ["Ppk ≥ Cpk", "Ppk ≤ Cpk", "Ppk = Cpk always", "No relationship"], "answer": "B", "explanation": "Long-term variation is usually larger, so Ppk ≤ Cpk."}
+      ]
+    },
+    {
+      "id": "cap-02",
+      "title": "From Capability to PPM: Sigma Level & DPMO",
+      "source": "Six Sigma Guide (CSSC)",
+      "summary": "Capability indices translate directly into a defect rate. Being able to convert Cpk ↔ ppm ↔ sigma level is how you turn a number into a business decision.",
+      "reading": "A capability index is only useful if you can translate it into something a customer cares about: how many bad parts per million? The bridge is the normal distribution. A Cpk measures how many 3σ-widths fit between the mean and the nearest spec limit, so it maps directly to a tail area (defect fraction). Useful anchors to memorize: Cpk 1.00 ≈ 2,700 ppm out (centered, both tails); Cpk 1.33 ≈ 63 ppm; Cpk 1.67 ≈ 0.6 ppm; Cpk 2.00 ≈ essentially zero short-term. These are why 1.33 and 1.67 are the common floors — each step roughly cuts the defect rate by an order of magnitude or more.\n\nSigma level (process sigma, or Z) is the same idea on a different scale: Z = 3 × Cpk. A Cpk of 1.0 is a '3 sigma' process; Cpk 2.0 is '6 sigma.' DPMO (defects per million opportunities) is the defect rate expressed per million, and the Six Sigma program's signature '3.4 DPMO at six sigma' figure already bakes in the 1.5σ long-term shift — so a 6σ short-term process delivers 3.4 DPMO long-term.\n\nThe engineering point is judgment, not formula recall: these conversions let you decide. If a customer needs 50 ppm and your process is Cpk 1.20, you can see immediately you're short (Cpk 1.20 ≈ 318 ppm) and quantify how much variation reduction or re-centering is required to clear the bar — turning a vague 'improve quality' into a specific, provable target.",
+      "key_points": [
+        "Cpk maps to a defect fraction via the normal tails: 1.00≈2700 ppm, 1.33≈63 ppm, 1.67≈0.6 ppm.",
+        "Sigma level Z = 3 × Cpk (Cpk 1.0 = 3σ; Cpk 2.0 = 6σ).",
+        "DPMO = defects per million opportunities; '3.4 DPMO at 6σ' already includes the 1.5σ shift.",
+        "Use the conversions to set provable targets: 'we need Cpk ≥ X to hit Y ppm.'"
+      ],
+      "media": {
+        "image": "media/diagrams/empirical_rule.png",
+        "image_caption": "Capability is just how many σ fit between the mean and the spec — that sets the tail (defect) area"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A customer requires ≤ 100 ppm defective. Your stable, centered process runs Cpk = 1.15. Are you compliant? Roughly what Cpk would you need, and name two ways to get there.",
+          "model_answer": "Not compliant. Cpk 1.15 corresponds to well over 100 ppm (around 500 ppm, between the 1.00≈2700 and 1.33≈63 anchors), so you're failing the 100 ppm bar. You'd need roughly Cpk ≥ 1.33 (≈63 ppm) to clear 100 ppm with margin. Two routes: (1) reduce variation — find and address the dominant cause to shrink σ (raises Cpk directly); (2) if the process is off-center, re-center to target (raises Cpk toward Cp at no spread cost). Quantifying it this way turns 'improve quality' into a specific, checkable goal."
+        }
+      ],
+      "flashcards": [
+        {"q": "Roughly what defect rates correspond to Cpk 1.00, 1.33, 1.67?", "a": "≈2700 ppm, ≈63 ppm, and ≈0.6 ppm respectively (centered)."},
+        {"q": "How does sigma level relate to Cpk?", "a": "Z (process sigma) = 3 × Cpk — so Cpk 1.0 is 3σ and Cpk 2.0 is 6σ."},
+        {"q": "Why is six sigma quoted as 3.4 DPMO rather than ~0?", "a": "The 3.4 DPMO figure includes the assumed 1.5σ long-term mean shift."}
+      ],
+      "quiz": [
+        {"q": "A centered process at Cpk = 1.33 yields roughly:", "choices": ["2700 ppm", "63 ppm", "6200 ppm", "0 ppm"], "answer": "B", "explanation": "Cpk 1.33 ≈ 63 ppm — a common quality floor."},
+        {"q": "Process sigma (Z) for a process with Cpk = 1.0 is:", "choices": ["6σ", "1σ", "3σ", "4.5σ"], "answer": "C", "explanation": "Z = 3 × Cpk = 3 × 1.0 = 3σ."},
+        {"q": "The main engineering value of Cpk↔ppm↔sigma conversions is to:", "choices": ["Avoid using control charts", "Turn 'improve quality' into a specific, provable capability target", "Replace the customer spec", "Eliminate sampling"], "answer": "B", "explanation": "They let you quantify exactly how much improvement is needed to hit a ppm requirement."}
+      ]
+    },
+    {
+      "id": "cap-03",
+      "title": "When Capability Lies: Assumptions & Traps",
+      "source": "Six Sigma Guide; Evans SPC",
+      "summary": "A capability number is only as trustworthy as its assumptions. Four traps routinely produce confident, wrong indices.",
+      "reading": "Every capability index quietly assumes three things: the process is STABLE (in statistical control), the data is reasonably NORMAL, and the MEASUREMENT system is adequate. Violate any one and the index becomes confident fiction. We covered stability (capability is meaningless on an out-of-control process) — here are the other traps.\n\nNon-normality: the Cpk-to-ppm translation rides on the normal curve. Naturally skewed or bounded characteristics (flatness, runout, concentricity — things that can't go below zero) break it, and a normal-based Cpk can badly over- or under-state the true defect rate. The fix is to transform the data (e.g., Box-Cox) or use a percentile-based capability method (Ppk from the actual distribution's 0.135 and 99.865 percentiles). Measurement inadequacy: capability uses total observed σ, which includes gauge variation; if Gauge R&R eats a big fraction of the tolerance, your 'process' capability is partly measuring your gauge. A poor gauge makes capability look WORSE than reality (inflated σ). Mixed streams: a bimodal histogram (two machines/cavities) makes the pooled mean and σ describe a distribution that doesn't exist. Rounding/resolution and sorted data: coarse measurement resolution or parts that were already 100%-inspected (truncated tails) both distort the estimate.\n\nThe discipline is a pre-flight checklist before trusting any Cpk: Is it stable (control chart)? Is it roughly normal (histogram/normality test)? Is the gauge adequate (Gauge R&R)? Is it one process (not bimodal)? Only then does the number mean what it claims.",
+      "key_points": [
+        "Capability assumes STABILITY + NORMALITY + an adequate MEASUREMENT system.",
+        "Non-normal (skewed/bounded) data breaks the Cpk↔ppm link — transform or use percentile capability.",
+        "Gauge variation is inside observed σ — a poor gauge makes capability look worse than it is.",
+        "Bimodal (mixed streams), coarse resolution, and pre-sorted data all distort indices."
+      ],
+      "media": {
+        "image": "media/diagrams/histogram.png",
+        "image_caption": "Shape first: skew or two peaks means a normal-based Cpk is suspect"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A position-tolerance characteristic (bounded at zero, naturally right-skewed) reports a normal-based Cpk of 0.8, predicting heavy scrap — but actual scrap is tiny. Explain the discrepancy and the correct approach.",
+          "model_answer": "The characteristic is bounded at zero and right-skewed, so the normal model mis-predicts its tails. The normal-based Cpk projects a left tail crossing into impossible negative territory and mis-estimates the right tail, producing a pessimistic 0.8 that doesn't match the tiny real scrap rate. The fix is to stop forcing a normal model: either transform the data (e.g., Box-Cox) and compute capability on the transformed scale, or use a percentile (non-normal) capability method that reads the actual 0.135%/99.865% points of the real distribution. The true capability is better than the naive index claimed."
+        }
+      ],
+      "flashcards": [
+        {"q": "What three assumptions underlie every capability index?", "a": "Statistical stability (in control), approximate normality, and an adequate measurement system."},
+        {"q": "How does a poor gauge bias capability?", "a": "Gauge variation is part of observed σ, so it inflates σ and makes capability look WORSE than the true process."},
+        {"q": "How do you compute capability for genuinely non-normal data?", "a": "Transform the data (e.g., Box-Cox) or use a percentile-based method on the actual distribution (0.135%/99.865% points)."}
+      ],
+      "quiz": [
+        {"q": "A normal-based Cpk on strongly skewed, zero-bounded data is likely to:", "choices": ["Be exactly right", "Mis-estimate the true defect rate", "Always read 2.0", "Equal Ppk"], "answer": "B", "explanation": "The normal model mis-predicts the tails of skewed/bounded data, so the index can badly mislead."},
+        {"q": "A Gauge R&R consuming 40% of tolerance makes the reported process capability:", "choices": ["Better than reality", "Worse than reality (σ is inflated by gauge variation)", "Unaffected", "Exactly correct"], "answer": "B", "explanation": "Gauge variation is inside observed σ, inflating it and depressing the apparent capability."},
+        {"q": "Before trusting any Cpk, you should confirm the process is stable, the gauge is adequate, and the data is:", "choices": ["Sorted", "Roughly normal and a single stream (not bimodal)", "Rounded to whole numbers", "100% inspected"], "answer": "B", "explanation": "Normality and a single process are required; bimodality and pre-sorting distort the index."}
+      ]
+    },
+    {
+      "id": "cap-04",
+      "title": "Process Validation: IQ / OQ / PQ",
+      "source": "Advanced Quality Planning (Stamatis); validation practice",
+      "summary": "Validation is the documented proof that a process will reliably make conforming product — built up in qualification stages from equipment to performance.",
+      "reading": "Capability tells you a process CAN make good parts today; validation is the documented, approved proof that it WILL do so reliably going forward. First, a vocabulary distinction QE interviews love: verification asks 'did we build it right?' (does it meet the spec/requirement), while validation asks 'did we build the right thing?' (does it meet the user/customer need in actual use). Process validation is the structured demonstration that a manufacturing process consistently produces output meeting its requirements.\n\nIt is built up in qualification stages, often drawn as DQ → IQ → OQ → PQ. DQ (Design Qualification): the equipment/process design is suitable for its intended purpose. IQ (Installation Qualification): the equipment is installed and configured correctly, to spec, calibrated, with utilities and documentation in place. OQ (Operational Qualification): the process performs correctly across its operating RANGE — often challenging the edges (worst-case settings) to find the operating window. PQ (Performance Qualification): the process performs consistently over EXTENDED, real production conditions — typically several runs demonstrating sustained capability and stability (this is where capability indices and control charts provide the evidence).\n\nThe logic is a staircase: you don't run a performance study on equipment you haven't proven is correctly installed and operationally sound. Each stage gates the next, and each is documented and approved. In regulated industries (medical, aerospace, pharma) this is mandatory; in automotive it shows up through APQP/PPAP and the run-at-rate. Either way, validation is what converts 'we think it's capable' into signed, auditable evidence.",
+      "key_points": [
+        "Verification = 'built it right' (meets spec); Validation = 'built the right thing' (meets the need in use).",
+        "Stages: DQ (design suitable) → IQ (installed correctly) → OQ (works across the operating range) → PQ (consistent over extended real production).",
+        "OQ often challenges worst-case/edge settings; PQ demonstrates sustained capability + stability.",
+        "Each stage gates and documents the next — capability/SPC evidence lives in PQ."
+      ],
+      "media": {
+        "image": "media/diagrams/iq_oq_pq.png",
+        "image_caption": "Validation staircase: each qualification stage gates the next"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "Distinguish verification from validation with a concrete example, and say which qualification stage (IQ/OQ/PQ) would catch a process that works at nominal settings but fails at the edges of its operating range.",
+          "model_answer": "Verification = 'built it right': e.g., confirming a welded joint meets the drawing's strength spec. Validation = 'built the right thing': confirming the weld actually performs in the assembled product's real-world loading. A process that's fine at nominal but fails at the edges of its range would be caught in OQ (Operational Qualification), which deliberately challenges the worst-case/edge settings to map the operating window — exactly so you don't discover the failure later in production. PQ would then confirm sustained performance within that validated window."
+        }
+      ],
+      "flashcards": [
+        {"q": "Verification vs validation in one line each.", "a": "Verification = 'did we build it right?' (meets spec). Validation = 'did we build the right thing?' (meets the user need in use)."},
+        {"q": "What do IQ, OQ, and PQ demonstrate?", "a": "IQ: equipment installed/configured correctly. OQ: process works across its operating range (often worst-case). PQ: consistent performance over extended real production."},
+        {"q": "Which stage carries the capability/SPC evidence of sustained performance?", "a": "PQ (Performance Qualification) — extended runs demonstrating sustained capability and stability."}
+      ],
+      "quiz": [
+        {"q": "'Did we build the right thing for the user's actual need?' is:", "choices": ["Verification", "Validation", "Calibration", "Inspection"], "answer": "B", "explanation": "Validation addresses fitness for the real need; verification addresses meeting the written spec."},
+        {"q": "Challenging a process at worst-case/edge settings to map its operating window is:", "choices": ["IQ", "OQ", "PQ", "DQ"], "answer": "B", "explanation": "Operational Qualification exercises the operating range, including edges."},
+        {"q": "Running an extended production demonstration of sustained capability is:", "choices": ["IQ", "OQ", "PQ", "Verification"], "answer": "C", "explanation": "Performance Qualification proves consistent performance over real, extended production."}
+      ]
+    },
+    {
+      "id": "cap-05",
+      "title": "PPAP & Demonstrating Capability for Production",
+      "source": "Advanced Quality Planning (Stamatis); AIAG PPAP",
+      "summary": "PPAP is the automotive package that proves — with evidence from a real production run — that a process is ready to make conforming parts at rate.",
+      "reading": "In automotive, the formal gate that says 'this process is validated and approved for production' is PPAP — the Production Part Approval Process. PPAP is a standardized package of evidence the supplier submits (and the customer approves) before shipping production parts. Its purpose is to demonstrate that the supplier understands all customer requirements AND that the actual production process can make conforming parts consistently at the required rate.\n\nThe evidence is generated from a SIGNIFICANT PRODUCTION RUN — real tooling, real process, real rate (commonly 300 consecutive pieces or an 8-hour run), not lab prototypes. That run feeds the capability studies (initial Ppk on key characteristics, often with a ≥1.67 initial bar) and the measurement-systems analysis. PPAP bundles up to 18 elements — including the design records, DFMEA/PFMEA, the process flow, the Control Plan, MSA/Gauge R&R results, dimensional results, initial process studies (capability), and the Part Submission Warrant (PSW) that signs it all off. Submissions have five levels; Level 3 (full documentation submitted to the customer) is the common default.\n\nThis is where the whole curriculum connects: APQP plans it, the FMEAs identify the risks, the Control Plan says how each characteristic is monitored, MSA proves the gauges, SPC/capability prove the process, and PPAP packages the proof for sign-off. PPAP is product validation made auditable — the difference between 'we believe we're ready' and 'here is the signed evidence that we are.'",
+      "key_points": [
+        "PPAP = the automotive approval package proving a process is ready to make conforming parts at rate.",
+        "Evidence comes from a significant production run (real tooling/rate, e.g., 300 pieces or 8 hours), not prototypes.",
+        "Up to 18 elements: design records, D/PFMEA, process flow, Control Plan, MSA, dimensional results, initial capability (Ppk, often ≥1.67), and the PSW sign-off.",
+        "Five submission levels; Level 3 (full docs to customer) is the common default."
+      ],
+      "media": {
+        "image": "media/diagrams/control_plan.png",
+        "image_caption": "The Control Plan is a core PPAP element — how each characteristic is monitored at rate"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A supplier submits PPAP capability based on 30 carefully made prototype parts on a soft tool. Why is this not acceptable, and what would a valid submission require?",
+          "model_answer": "PPAP capability must come from a SIGNIFICANT PRODUCTION RUN using production tooling, the production process, and the production rate — because the point is to prove the REAL process (with its real variation, operators, and rate) makes conforming parts, not that careful prototypes can. Thirty hand-made parts on a soft tool don't represent production variation and would hide the very stream-to-stream and time-to-time variation PPAP exists to expose. A valid submission needs the initial capability/Ppk computed from the required significant run (e.g., 300 consecutive pieces) on production tooling, plus the supporting MSA, Control Plan, and PSW."
+        }
+      ],
+      "flashcards": [
+        {"q": "What does PPAP demonstrate?", "a": "That the supplier understands all requirements AND the real production process can make conforming parts consistently at rate — packaged as approved evidence."},
+        {"q": "Where does PPAP capability evidence come from?", "a": "A significant production run on production tooling at production rate (e.g., 300 consecutive pieces / 8 hours) — not prototypes."},
+        {"q": "Name four of the PPAP elements.", "a": "Design records, PFMEA, the Control Plan, MSA/Gauge R&R, initial process (capability) study, and the Part Submission Warrant (any four)."}
+      ],
+      "quiz": [
+        {"q": "PPAP capability studies must be based on:", "choices": ["Lab prototypes", "A significant production run with production tooling at rate", "Supplier opinion", "The design FMEA only"], "answer": "B", "explanation": "PPAP proves the REAL production process — evidence comes from a significant production run."},
+        {"q": "Which document, a core PPAP element, specifies how each characteristic is monitored in production?", "choices": ["The PSW", "The Control Plan", "The DFMEA", "The histogram"], "answer": "B", "explanation": "The Control Plan defines the monitoring/control method, sample size/frequency, and reaction plan per characteristic."},
+        {"q": "PPAP is best described as:", "choices": ["A control chart", "Product validation made auditable for production approval", "A sampling plan", "A capability formula"], "answer": "B", "explanation": "PPAP packages the evidence (capability, MSA, control plan, FMEAs) into an approved production sign-off."}
+      ]
+    },
+    {
+      "id": "cap-06",
+      "title": "Acceptance Sampling & Why You Can't Inspect Quality In",
+      "source": "Evans SPC; Six Sigma Guide",
+      "summary": "Sampling plans decide lot accept/reject from a sample — but they only sort, they don't improve, and the OC curve shows exactly how much they can (and can't) protect you.",
+      "reading": "Acceptance sampling judges a whole lot by inspecting a sample: take n parts, accept the lot if no more than c are defective. It's cheaper than 100% inspection and useful for incoming lots you can't influence — but its behavior, and its limits, are captured entirely by the Operating-Characteristic (OC) curve, which plots the probability of accepting a lot against the lot's true fraction defective.\n\nRead the OC curve and the trade-offs appear. The AQL (Acceptable Quality Level) is a quality level the plan accepts almost always; the producer's risk (α) is the chance of rejecting a lot that's actually at the AQL (a good lot wrongly rejected). The RQL/LTPD is a bad quality level; the consumer's risk (β) is the chance of ACCEPTING such a bad lot. A steeper OC curve (bigger n) discriminates better between good and bad lots; changing the accept number c slides the curve. Crucially, no sampling plan gives perfect discrimination — there's always a band of lot qualities that get accepted or rejected partly by luck.\n\nThe deeper lesson is Deming's: you cannot inspect quality into a product. Sampling (and even 100% inspection) only SORTS what the process already made; it adds no capability and, being fallible, still passes defects. It's a firewall for incoming or transitional protection, not a substitute for a capable, controlled process. The QE goal is to make the process so capable that sampling becomes a formality — to build quality in, not inspect it in.",
+      "key_points": [
+        "Acceptance sampling: inspect n, accept if ≤ c defective — judges a lot from a sample.",
+        "The OC curve plots P(accept) vs true % defective; it fully describes a plan's behavior.",
+        "AQL = quality accepted nearly always; producer's risk α (reject a good lot); RQL/LTPD with consumer's risk β (accept a bad lot).",
+        "Bigger n = steeper curve = better discrimination; no plan is perfect. You can't inspect quality in — build it in."
+      ],
+      "media": {
+        "image": "media/diagrams/oc_curve.png",
+        "image_caption": "The OC curve: producer's risk (α) at the AQL, consumer's risk (β) at the RQL"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A receiving team relies on tightening their sampling plan (bigger n) to 'improve quality' from a struggling supplier. Why is this the wrong fix, and what does tightening actually buy them?",
+          "model_answer": "Sampling only sorts lots — it adds zero capability to the supplier's process, so it cannot improve quality; the supplier still makes the same fraction of defects. Tightening the plan (larger n) only steepens the OC curve, improving DISCRIMINATION between good and bad lots and lowering the consumer's risk of accepting a bad lot — at higher inspection cost and more good lots rejected (producer's risk). The real fix is upstream: help the supplier make the process capable and in control (variation reduction, SPC, PPAP) so good lots are produced in the first place. You can't inspect quality in."
+        }
+      ],
+      "flashcards": [
+        {"q": "What does an OC curve plot?", "a": "The probability of accepting a lot versus the lot's true fraction defective — it fully characterizes a sampling plan."},
+        {"q": "Define producer's risk (α) and consumer's risk (β).", "a": "α = probability of rejecting a good lot (at the AQL); β = probability of accepting a bad lot (at the RQL/LTPD)."},
+        {"q": "Why can't you 'inspect quality in'?", "a": "Sampling/inspection only sorts what the process already made; it adds no capability and, being fallible, still passes defects. Quality must be built in."}
+      ],
+      "quiz": [
+        {"q": "The probability of accepting a bad-quality lot (at the RQL) is the:", "choices": ["Producer's risk (α)", "Consumer's risk (β)", "AQL", "Cpk"], "answer": "B", "explanation": "Consumer's risk β is accepting a lot that's actually at the rejectable quality level."},
+        {"q": "Increasing the sample size n in a sampling plan mainly:", "choices": ["Improves the supplier's process", "Steepens the OC curve — better discrimination between good and bad lots", "Eliminates consumer's risk entirely", "Raises the process Cpk"], "answer": "B", "explanation": "Bigger n steepens the OC curve and improves discrimination; it doesn't change the process."},
+        {"q": "The core lesson of acceptance sampling is:", "choices": ["Sampling improves quality", "You can't inspect quality in — sorting adds no capability; build it in", "100% inspection is always best", "AQL guarantees zero defects"], "answer": "B", "explanation": "Inspection only sorts existing output; a capable, controlled process is the real solution."}
+      ]
+    }
+  ]
+}

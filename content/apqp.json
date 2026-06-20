@@ -1,0 +1,265 @@
+{
+  "module": "apqp",
+  "title": "APQP & Core Quality Tools",
+  "source_book": "Stamatis, Advanced Quality Planning (AQP/APQP)",
+  "topics": [
+    {
+      "id": "apqp-01",
+      "title": "What APQP Is and the Five Phases",
+      "source": "Stamatis, AQP/APQP",
+      "summary": "Advanced Product Quality Planning (APQP) is a structured framework to develop a product and its process so quality is built in up front, not inspected in later. It runs in five phases: (1) Plan & Define Program — turn customer voice into design goals; (2) Product Design & Development — DFMEA, design reviews, prototypes; (3) Process Design & Development — PFMEA, process flow, floor layout; (4) Product & Process Validation — production trial run, MSA, capability, PPAP; (5) Feedback, Assessment & Corrective Action — reduce variation, lessons learned. It front-loads effort to catch problems when changes are cheap.",
+      "key_points": [
+        "APQP builds quality in during planning instead of inspecting it in afterward.",
+        "Phase 1 Plan & Define; Phase 2 Product Design & Development; Phase 3 Process Design & Development; Phase 4 Product & Process Validation; Phase 5 Feedback & Corrective Action.",
+        "DFMEA lives in Phase 2; PFMEA and process flow in Phase 3.",
+        "Phase 4 includes the significant production run, MSA, capability, and PPAP.",
+        "Front-loading effort = cheaper changes early vs. expensive fixes in production."
+      ],
+      "flashcards": [
+        {
+          "q": "Name the five APQP phases.",
+          "a": "1 Plan & Define, 2 Product Design & Development, 3 Process Design & Development, 4 Product & Process Validation, 5 Feedback/Assessment/Corrective Action."
+        },
+        {
+          "q": "In which APQP phase does PPAP occur?",
+          "a": "Phase 4, Product & Process Validation."
+        },
+        {
+          "q": "What is the core philosophy of APQP?",
+          "a": "Build quality in during planning (prevention) rather than inspect it in later (detection)."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "The DFMEA is primarily developed in which APQP phase?",
+          "choices": [
+            "Phase 1 Plan & Define",
+            "Phase 2 Product Design & Development",
+            "Phase 4 Validation",
+            "Phase 5 Feedback"
+          ],
+          "answer": "B",
+          "explanation": "Design FMEA is part of Product Design & Development (Phase 2)."
+        },
+        {
+          "q": "APQP's central idea is to:",
+          "choices": [
+            "Inspect every part 100%",
+            "Build quality in up front through planning",
+            "Outsource quality to suppliers",
+            "Rely on final test"
+          ],
+          "answer": "B",
+          "explanation": "APQP front-loads planning so quality is designed in, not inspected in."
+        }
+      ],
+      "media": {
+        "image": "media/diagrams/apqp_phases.png",
+        "image_caption": "The five phases of APQP, gated from planning to corrective action",
+        "video": {
+          "title": "APQP Explained: Advanced Product Quality Planning",
+          "url": "https://www.youtube.com/watch?v=HHwCNm8WM4Q"
+        },
+        "web_notes": "APQP runs in five gated phases — Plan & Define, Product Design, Process Design, Product & Process Validation, and Feedback/Corrective Action — each with required deliverables. The core tools (DFMEA, PFMEA, Control Plan, MSA, SPC, PPAP) are produced across these phases, not bolted on at the end.",
+        "sources": [
+          {
+            "title": "5 Phases of APQP — Unichrone",
+            "url": "https://unichrone.com/blog/quality-management/5-phases-of-advanced-product-quality-planning/"
+          },
+          {
+            "title": "APQP — Quality-One",
+            "url": "https://quality-one.com/apqp/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "apqp-02",
+      "title": "PPAP — Production Part Approval Process",
+      "source": "Stamatis, AQP/APQP (validation)",
+      "summary": "PPAP is the standardized package a supplier submits to prove it can make conforming parts at the required rate before mass production is approved. It bundles evidence — design records, DFMEA/PFMEA, process flow, control plan, MSA studies, dimensional results, initial process capability, and more (the classic 18 elements) — summarized on a Part Submission Warrant (PSW). Submission levels 1–5 control how much is sent to the customer (Level 3 is the common default; Level 1 is just the PSW). PPAP answers: 'Do you understand the requirement, and can your process consistently meet it?'",
+      "key_points": [
+        "PPAP = supplier's evidence that it can consistently produce conforming parts at rate.",
+        "Built from ~18 elements (design records, FMEAs, control plan, MSA, dimensional, capability, etc.).",
+        "Summarized/approved on the Part Submission Warrant (PSW).",
+        "5 submission levels; Level 3 is the typical full submission, Level 1 = PSW only.",
+        "Required at first production, engineering changes, or process/source changes."
+      ],
+      "flashcards": [
+        {
+          "q": "What is PPAP and what question does it answer?",
+          "a": "Production Part Approval Process — proof a supplier can consistently make conforming parts at rate; it answers 'do you understand and can you meet the requirement?'"
+        },
+        {
+          "q": "What document summarizes and authorizes a PPAP submission?",
+          "a": "The Part Submission Warrant (PSW)."
+        },
+        {
+          "q": "Which PPAP submission level is the common default full submission?",
+          "a": "Level 3."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "The single summary/approval document for a PPAP is the:",
+          "choices": [
+            "Control plan",
+            "Part Submission Warrant (PSW)",
+            "DFMEA",
+            "Capability report"
+          ],
+          "answer": "B",
+          "explanation": "The PSW is signed to summarize and authorize the PPAP package."
+        },
+        {
+          "q": "PPAP is typically required when:",
+          "choices": [
+            "Every shift starts",
+            "There is a new part, engineering change, or process/source change",
+            "An operator changes",
+            "Stock is reordered"
+          ],
+          "answer": "B",
+          "explanation": "PPAP triggers on new parts and significant design/process/source changes."
+        }
+      ]
+    },
+    {
+      "id": "apqp-03",
+      "title": "The Control Plan",
+      "source": "Stamatis, AQP/APQP (process control)",
+      "summary": "A control plan is a living document that describes how each product/process characteristic will be controlled during production: what is measured, the specification/tolerance, the measurement method and gauge, the sample size and frequency, and the reaction plan if a result is out of limits. It links the PFMEA's identified risks to actual shop-floor controls and ties to the process flow. Control plans exist in three stages: prototype, pre-launch, and production. Special characteristics (safety/critical, often flagged with symbols) get tighter controls.",
+      "key_points": [
+        "Control plan = the documented strategy for controlling each characteristic in production.",
+        "For each characteristic: spec, measurement method/gauge, sample size & frequency, reaction plan.",
+        "Three stages: prototype → pre-launch → production.",
+        "It translates PFMEA risks into concrete shop-floor controls; ties to process flow.",
+        "Special/critical characteristics receive enhanced controls."
+      ],
+      "flashcards": [
+        {
+          "q": "What five things does a control plan specify for each characteristic?",
+          "a": "The spec/tolerance, measurement method/gauge, sample size, frequency, and the reaction plan."
+        },
+        {
+          "q": "What are the three stages of a control plan?",
+          "a": "Prototype, pre-launch, and production."
+        },
+        {
+          "q": "How does the control plan relate to the PFMEA?",
+          "a": "It turns the PFMEA's identified risks/controls into concrete, ongoing shop-floor controls."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "The part of a control plan that says what to do when a measurement is out of tolerance is the:",
+          "choices": [
+            "Specification",
+            "Reaction plan",
+            "Sample size",
+            "Gauge R&R"
+          ],
+          "answer": "B",
+          "explanation": "The reaction plan defines the response to a nonconforming result."
+        },
+        {
+          "q": "Control plans progress through which three stages?",
+          "choices": [
+            "Plan, Do, Check",
+            "Prototype, Pre-launch, Production",
+            "Design, Build, Test",
+            "S, O, D"
+          ],
+          "answer": "B",
+          "explanation": "Prototype → pre-launch → production are the three control-plan stages."
+        }
+      ]
+    },
+    {
+      "id": "apqp-04",
+      "title": "Measurement Systems Analysis (MSA) & Gauge R&R",
+      "source": "Stamatis, AQP/APQP (validation)",
+      "summary": "Before trusting any measurement, you must prove the measurement system itself is good — that's MSA. Total observed variation = actual part variation + measurement system variation. Gauge R&R quantifies the measurement piece: Repeatability (same operator, same part, same gauge — equipment variation) and Reproducibility (different operators measuring the same part — appraiser variation). Guidance: %GRR under 10% is acceptable, 10–30% may be acceptable depending on cost/criticality, and over 30% is unacceptable. Other MSA properties include bias, linearity, and stability.",
+      "key_points": [
+        "Observed variation = part variation + measurement-system variation.",
+        "Repeatability = equipment variation (same operator/part/gauge).",
+        "Reproducibility = appraiser variation (different operators, same part).",
+        "%GRR: <10% good, 10-30% marginal, >30% unacceptable.",
+        "Also assess bias, linearity, and stability of the gauge."
+      ],
+      "flashcards": [
+        {
+          "q": "Repeatability vs. reproducibility in Gauge R&R?",
+          "a": "Repeatability = same operator/part/gauge (equipment variation); Reproducibility = different operators on the same part (appraiser variation)."
+        },
+        {
+          "q": "What %GRR is generally acceptable vs. unacceptable?",
+          "a": "Under 10% acceptable; 10-30% marginal/conditional; over 30% unacceptable."
+        },
+        {
+          "q": "Why do MSA before a capability study?",
+          "a": "Observed variation includes measurement error; a bad gauge corrupts the capability result."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Two operators get different readings measuring the same part with the same gauge. This is poor:",
+          "choices": [
+            "Repeatability",
+            "Reproducibility",
+            "Bias",
+            "Linearity"
+          ],
+          "answer": "B",
+          "explanation": "Operator-to-operator (appraiser) variation is reproducibility."
+        },
+        {
+          "q": "A %GRR of 35% should be considered:",
+          "choices": [
+            "Excellent",
+            "Acceptable",
+            "Unacceptable — fix the measurement system",
+            "Irrelevant"
+          ],
+          "answer": "C",
+          "explanation": "Above 30% the measurement system is unacceptable and must be improved."
+        }
+      ]
+    },
+    {
+      "id": "apqp-05",
+      "title": "The Core Tools Work Together",
+      "source": "Stamatis, AQP/APQP (overview)",
+      "summary": "The automotive 'core tools' are not separate islands — APQP is the umbrella process, and the others plug into its phases. The DFMEA/PFMEA identify risks; the Control Plan turns those risks into production controls; MSA validates the gauges used by those controls; SPC monitors the controlled characteristics over time; and PPAP packages all the evidence for customer approval. A 'special characteristic' identified in design flows through DFMEA → PFMEA → Control Plan → SPC, keeping the critical few under tight, traceable control end to end.",
+      "key_points": [
+        "APQP is the umbrella; FMEA, Control Plan, MSA, SPC, and PPAP are its tools.",
+        "Risk flow: DFMEA/PFMEA → Control Plan → MSA validates gauges → SPC monitors → PPAP approves.",
+        "Special characteristics are traceable across DFMEA, PFMEA, Control Plan, and SPC.",
+        "Each tool feeds the next; gaps between them are where defects escape."
+      ],
+      "flashcards": [
+        {
+          "q": "How do the core tools connect a risk to production control?",
+          "a": "FMEA identifies the risk → Control Plan controls it → MSA validates the gauge → SPC monitors it → PPAP approves the evidence."
+        },
+        {
+          "q": "What ties APQP, FMEA, Control Plan, MSA, SPC, and PPAP together?",
+          "a": "APQP is the umbrella process; the others are tools used within its phases, each feeding the next."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A safety-critical 'special characteristic' should be traceable through:",
+          "choices": [
+            "Only the DFMEA",
+            "DFMEA → PFMEA → Control Plan → SPC",
+            "Only the PPAP",
+            "Only the control chart"
+          ],
+          "answer": "B",
+          "explanation": "Special characteristics flow end-to-end so the critical few stay under traceable control."
+        }
+      ]
+    }
+  ]
+}

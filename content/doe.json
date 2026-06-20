@@ -1,0 +1,182 @@
+{
+  "module": "doe",
+  "title": "Design of Experiments (DOE)",
+  "source_book": "Six Sigma: A Complete Step-by-Step Guide (CSSC); Statistical Engineering (MacKay & Steiner)",
+  "topics": [
+    {
+      "id": "doe-01",
+      "title": "Why DOE: Beyond One-Factor-at-a-Time",
+      "source": "Six Sigma Guide (DOE)",
+      "summary": "Changing one factor at a time feels careful but is slow and blind to interactions. DOE varies factors together to learn more, faster, and to catch effects OFAT can never see.",
+      "reading": "The instinctive way to experiment is one-factor-at-a-time (OFAT): hold everything fixed, change factor A, find its best level, lock it, then change B, and so on. It feels rigorous, but it has two fatal weaknesses. First, it's inefficient — each run teaches you about only one factor. Second, and worse, OFAT is BLIND TO INTERACTIONS: cases where the effect of one factor depends on the level of another. If the best temperature depends on which catalyst you use, OFAT — having locked the catalyst first — can walk right past the real optimum and never know it existed.\n\nDesign of Experiments (DOE) varies several factors SIMULTANEOUSLY according to a plan, so the same set of runs estimates every factor's main effect AND the interactions between them. Because the design is balanced (orthogonal), each effect is estimated independently and with the full data set behind it — more precision from fewer runs than OFAT, plus information OFAT structurally cannot provide.\n\nDOE is also the rigorous end of the variation-reduction story: where families-of-variation and elimination help you FIND a suspected dominant cause, a designed experiment CONFIRMS it and quantifies how much each factor (and interaction) actually moves the response — turning 'we think temperature matters' into 'temperature changes the response by X, but only when pressure is high.' That is the difference between an opinion and a model you can optimize.",
+      "key_points": [
+        "OFAT is inefficient (one factor learned per run) and structurally blind to interactions.",
+        "DOE varies factors together → estimates all main effects AND interactions from the same runs.",
+        "Balanced (orthogonal) designs estimate each effect independently, with more precision from fewer runs.",
+        "DOE confirms and quantifies a suspected dominant cause — opinion → a model you can optimize."
+      ],
+      "media": {
+        "image": "media/diagrams/doe_interaction.png",
+        "image_caption": "Interactions (right) are exactly what one-factor-at-a-time can never reveal"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "An engineer optimizes oven temperature with the catalyst fixed at type A, locks in the best temp, then later switches to catalyst B because it's cheaper — and yield collapses. Explain in DOE terms what was missed and how a designed experiment would have caught it.",
+          "model_answer": "There is a temperature×catalyst INTERACTION: the best temperature for catalyst A is not the best for catalyst B. OFAT locked the catalyst first, so it only ever explored temperature within catalyst A's world and never saw that the optimal temperature shifts with catalyst — the classic interaction blind spot. A factorial DOE varying temperature AND catalyst together would have estimated the interaction directly (non-parallel lines on the interaction plot), revealing that the temperature setting must change with catalyst, so switching to B without re-optimizing temperature was predictable to avoid."
+        }
+      ],
+      "flashcards": [
+        {"q": "What two weaknesses make OFAT inferior to DOE?", "a": "It's inefficient (one factor learned per run) and it's blind to interactions (can't see when one factor's effect depends on another's level)."},
+        {"q": "What does a balanced/orthogonal DOE buy you?", "a": "Independent estimates of every main effect and interaction, with more precision from fewer runs than OFAT."},
+        {"q": "How does DOE relate to finding the dominant cause?", "a": "Elimination helps FIND a suspected cause; a designed experiment CONFIRMS it and quantifies each factor's and interaction's effect."}
+      ],
+      "quiz": [
+        {"q": "The biggest thing one-factor-at-a-time experimentation can MISS is:", "choices": ["Main effects", "Interactions between factors", "The response variable", "Replication"], "answer": "B", "explanation": "By locking factors in sequence, OFAT can't reveal interactions — effects that depend on another factor's level."},
+        {"q": "A key efficiency advantage of factorial DOE over OFAT is that:", "choices": ["It needs no response measurement", "Every run contributes to estimating all factor effects", "It ignores interactions", "It uses only one factor"], "answer": "B", "explanation": "Balanced designs let the whole dataset estimate each effect, so you learn more per run."},
+        {"q": "Non-parallel lines on an interaction plot indicate:", "choices": ["No interaction", "An interaction (one factor's effect depends on the other)", "A measurement error", "A main effect only"], "answer": "B", "explanation": "Crossing/diverging lines are the signature of an interaction."}
+      ]
+    },
+    {
+      "id": "doe-02",
+      "title": "The Language of Experiments",
+      "source": "Six Sigma Guide (DOE)",
+      "summary": "Factors, levels, responses, main effects, interactions, replication, randomization, blocking — the vocabulary that makes an experiment interpretable and trustworthy.",
+      "reading": "DOE has a precise vocabulary, and using it correctly is half the battle. A FACTOR is an input you deliberately vary (temperature, pressure, supplier); a LEVEL is a setting of that factor (e.g., 150°C and 200°C — a two-level factor); the RESPONSE is the output you measure (yield, strength). A single combination of factor levels that you run is a TREATMENT or RUN.\n\nTwo effects are the goal. A MAIN EFFECT is the average change in the response when a factor goes from its low to high level, averaged over the other factors. An INTERACTION exists when a factor's effect depends on another factor's level — the thing OFAT misses. Good designs estimate both.\n\nThree disciplines protect the conclusions. REPLICATION (repeating runs) gives you an estimate of pure experimental error, so you can judge whether an effect is real or noise — without it you can't tell signal from chance. RANDOMIZATION (running the treatments in random order) guards against lurking variables and time trends: if you happen to run all the 'high temperature' trials last, a slow ambient drift could masquerade as a temperature effect; randomizing breaks that confounding. BLOCKING removes a known nuisance source: if an experiment spans two days or two material batches, you make 'day' or 'batch' a block so its variation is accounted for and removed from the comparison, rather than inflating the error. Replicate to measure error, randomize against the unknown, block against the known.",
+      "key_points": [
+        "Factor = input you vary; level = its setting; response = measured output; run/treatment = one level-combination.",
+        "Main effect = average response change low→high of a factor; interaction = a factor's effect depends on another.",
+        "Replication → estimates experimental error (real effect vs noise).",
+        "Randomization guards against unknown lurking variables/trends; blocking removes a KNOWN nuisance (day, batch)."
+      ],
+      "media": {
+        "image": "media/diagrams/doe_cube.png",
+        "image_caption": "Three two-level factors (A,B,C) define 8 treatment combinations"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "An experiment must span two material lots that might differ. Should 'lot' be randomized, blocked, or ignored — and why? Contrast with an unknown ambient temperature drift.",
+          "model_answer": "Material lot is a KNOWN nuisance source, so it should be a BLOCK: assign runs so each lot forms a block, and the analysis removes lot-to-lot variation from the comparison instead of letting it inflate the error or bias a factor. Ignoring it risks confounding lot with a factor; randomizing alone would spread lot variation into the error term, reducing power. By contrast, an UNKNOWN ambient temperature drift can't be blocked (you don't know it's there), so you defend against it with RANDOMIZATION of run order — that prevents the drift from systematically aligning with any factor. Rule of thumb: block what you know, randomize against what you don't."
+        }
+      ],
+      "flashcards": [
+        {"q": "Define main effect vs interaction.", "a": "Main effect = average response change when a factor goes low→high. Interaction = when a factor's effect depends on another factor's level."},
+        {"q": "What does replication give you that a single run can't?", "a": "An estimate of pure experimental error, so you can judge whether an effect is real or just noise."},
+        {"q": "Randomization vs blocking — when do you use each?", "a": "Block a KNOWN nuisance (day, batch, machine) to remove it; randomize run order to defend against UNKNOWN lurking variables/trends."}
+      ],
+      "quiz": [
+        {"q": "Running treatments in random order primarily protects against:", "choices": ["Known batch differences", "Unknown lurking variables and time trends", "Interactions", "Small sample size"], "answer": "B", "explanation": "Randomization breaks the alignment between unknown drifts and your factors."},
+        {"q": "An experiment spans three known machines. The best way to handle machine differences is to:", "choices": ["Ignore them", "Block on machine", "Randomize and hope", "Increase replication only"], "answer": "B", "explanation": "A known nuisance source should be blocked so its variation is removed from the comparison."},
+        {"q": "Without replication, you cannot:", "choices": ["Set factor levels", "Estimate experimental error to separate real effects from noise", "Randomize", "Define a response"], "answer": "B", "explanation": "Replication provides the pure-error estimate needed to judge significance."}
+      ]
+    },
+    {
+      "id": "doe-03",
+      "title": "Full Factorial Designs (2^k)",
+      "source": "Six Sigma Guide (DOE)",
+      "summary": "Run every combination of factor levels and you can estimate every main effect and every interaction — the gold standard when the number of factors is small.",
+      "reading": "A full factorial design runs every combination of factor levels. With k factors at two levels each, that's 2^k runs: 2 factors → 4 runs, 3 factors → 8 (the cube), 4 factors → 16. In return you get the complete picture — every main effect and every interaction (two-way, three-way, …) is estimable, and because the design is orthogonal, each effect is estimated cleanly and independently of the others.\n\nComputing an effect is simple: for each factor, average the response at its high level minus the average at its low level — that's the main effect. Interactions come from comparing how one factor's effect changes across another's levels (the interaction plot). Plotting effects on a Pareto or normal plot quickly separates the vital few large effects from the trivial many.\n\nThe limit is cost: 2^k explodes — 7 factors would need 128 runs for a full factorial. So full factorials shine when you have a SMALL number of well-chosen factors (say 2-4) and want the complete map including interactions. When factors are many, you switch to fractional designs (next topic) to screen first. A good experimental strategy often nests the two: screen many factors cheaply to find the vital few, then run a full factorial (or response-surface design) on those few to map interactions and optimize.",
+      "key_points": [
+        "Full factorial = every level-combination; k two-level factors → 2^k runs (3 factors = 8, the cube).",
+        "Estimates ALL main effects and ALL interactions; orthogonal → clean, independent estimates.",
+        "Main effect = mean(high) − mean(low) for a factor; interactions from the interaction plot.",
+        "Cost grows as 2^k — best for a SMALL number of factors (2-4); screen first when factors are many."
+      ],
+      "media": {
+        "image": "media/diagrams/doe_cube.png",
+        "image_caption": "A 2³ full factorial: 8 runs estimate 3 main effects + 3 two-way + 1 three-way interaction"
+      },
+      "case_study": {
+        "title": "A 2² factorial finds a hidden interaction",
+        "scenario": "Maximize weld strength using two factors: Current (low/high) and Speed (low/high). A 2² full factorial (4 runs, replicated) gives mean strengths — Current low/Speed low: 60; Current high/Speed low: 80; Current low/Speed high: 62; Current high/Speed high: 68.",
+        "walkthrough": [
+          "Main effect of Current = avg(high) − avg(low) = ((80+68)/2) − ((60+62)/2) = 74 − 61 = +13: more current helps on average.",
+          "Main effect of Speed = ((62+68)/2) − ((60+80)/2) = 65 − 70 = −5: higher speed slightly hurts on average.",
+          "Interaction: at LOW speed, going high-current adds 80−60 = +20; at HIGH speed it adds only 68−62 = +6. The benefit of current DEPENDS on speed → a real Current×Speed interaction.",
+          "Decision: the best cell is Current-high/Speed-low (80) — OFAT optimizing speed first (which 'prefers' low) then current would also land here by luck, but only the factorial reveals WHY (the interaction), so you know not to raise speed when you raise current."
+        ]
+      },
+      "critical_thinking": [
+        {
+          "prompt": "You have 6 candidate factors and a tight budget. Why is a full 2^6 factorial usually the wrong first move, and what strategy fits better?",
+          "model_answer": "A full 2^6 factorial is 64 runs — expensive — and most of that effort estimates high-order interactions (4-, 5-, 6-way) that are almost always negligible, so it's wasteful as a FIRST step. The better strategy is sequential: start with a fractional-factorial (or Plackett-Burman) SCREENING design to cheaply identify which 2-3 factors actually matter (the vital few), then spend the budget on a full factorial or response-surface design on just those few to map interactions and optimize. Screen wide and cheap, then study deep and narrow."
+        }
+      ],
+      "flashcards": [
+        {"q": "How many runs in a full factorial with k two-level factors?", "a": "2^k — e.g., 3 factors = 8 runs, 4 factors = 16."},
+        {"q": "How do you compute a factor's main effect?", "a": "Average response at the factor's high level minus the average at its low level."},
+        {"q": "When is a full factorial the right choice?", "a": "When you have a small number of well-chosen factors (≈2-4) and want the complete map including all interactions."}
+      ],
+      "quiz": [
+        {"q": "A full factorial with 4 two-level factors requires how many runs?", "choices": ["8", "16", "32", "4"], "answer": "B", "explanation": "2^k = 2^4 = 16 runs."},
+        {"q": "At low speed, high current adds +20; at high speed it adds +6. This shows:", "choices": ["No interaction", "A Current×Speed interaction", "A measurement error", "Only a main effect of speed"], "answer": "B", "explanation": "The effect of current depends on speed — a clear interaction."},
+        {"q": "Full factorials become impractical mainly because:", "choices": ["They can't estimate interactions", "Run count grows as 2^k", "They require randomization", "They ignore main effects"], "answer": "B", "explanation": "2^k explodes with the number of factors, so screening is used when factors are many."}
+      ]
+    },
+    {
+      "id": "doe-04",
+      "title": "Fractional Factorials & Screening",
+      "source": "Six Sigma Guide (DOE)",
+      "summary": "When factors are many, run a carefully chosen FRACTION of the full factorial to screen for the vital few — accepting some confounding in exchange for far fewer runs.",
+      "reading": "When you have many candidate factors, a full factorial is unaffordable, and most high-order interactions are negligible anyway. A fractional factorial runs a carefully chosen subset — 2^(k−p) runs — exploiting that to learn about the main effects and low-order interactions cheaply. The price you pay is CONFOUNDING (aliasing): with fewer runs, some effects are estimated together and can't be separated. For example, a main effect might be aliased with a two-factor interaction, so a large estimate could be either one.\n\nThe RESOLUTION of a design tells you how bad the confounding is. Resolution III: main effects are aliased with two-factor interactions (cheapest, riskiest — pure screening). Resolution IV: main effects are clear of two-factor interactions, but two-factor interactions are aliased with each other. Resolution V: main effects and two-factor interactions are all clear of each other (you can trust both). Higher resolution costs more runs — you trade clarity for economy.\n\nFor pure screening of many factors, Plackett-Burman designs are extremely efficient (e.g., 12 runs for up to 11 factors) — they assume interactions are negligible and just rank main effects to find the vital few. The disciplined strategy is sequential experimentation: screen wide with a low-resolution or Plackett-Burman design, identify the 2-3 dominant factors, then AUGMENT with more runs (fold-over or a full factorial on the survivors) to resolve the ambiguities and map interactions. You don't need one perfect giant experiment — you need a smart sequence of small ones.",
+      "key_points": [
+        "Fractional factorial = 2^(k−p) runs — a chosen subset of the full design for many factors.",
+        "Cost of fewer runs is CONFOUNDING/aliasing: some effects can't be separated.",
+        "Resolution III (main effects aliased with 2-factor interactions) < IV (main effects clear) < V (main + 2-factor all clear).",
+        "Plackett-Burman screens many factors cheaply; strategy = screen wide → augment on the vital few (sequential experimentation)."
+      ],
+      "media": {
+        "image": "media/diagrams/doe_cube.png",
+        "image_caption": "A fractional design runs a chosen subset of the full factorial's combinations"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A Resolution III screening design flags factor C as having a large effect. A colleague wants to immediately set C and stop. Why is caution warranted, and what's the right next step?",
+          "model_answer": "In a Resolution III design, main effects are aliased with two-factor interactions, so C's 'large effect' could actually be a two-factor interaction (say A×B) masquerading as C — you can't tell them apart from this design alone. Acting on it risks chasing the wrong factor. The right next step is to AUGMENT the experiment — e.g., a fold-over to raise the resolution, or a small full factorial on the few surviving candidates — to de-alias C from the interaction and confirm whether C itself, or an interaction, drives the response. Screening points you at candidates; you confirm before committing."
+        }
+      ],
+      "flashcards": [
+        {"q": "What do you trade away in a fractional factorial?", "a": "Runs for confounding — some effects are aliased (estimated together) and can't be separated."},
+        {"q": "What does design Resolution V guarantee?", "a": "Main effects and two-factor interactions are all clear of each other (none aliased together), so both can be trusted."},
+        {"q": "What is a Plackett-Burman design for?", "a": "Cheaply screening many factors (e.g., up to 11 in 12 runs) to rank main effects and find the vital few, assuming interactions are negligible."}
+      ],
+      "quiz": [
+        {"q": "In a Resolution III design, main effects are aliased with:", "choices": ["Nothing", "Two-factor interactions", "The response", "Replicates"], "answer": "B", "explanation": "Resolution III confounds main effects with two-factor interactions — fine for screening, risky for conclusions."},
+        {"q": "The smart strategy when you have many candidate factors is to:", "choices": ["Run one giant full factorial", "Screen wide with a fractional/Plackett-Burman design, then augment on the vital few", "Use OFAT", "Skip experimentation"], "answer": "B", "explanation": "Sequential experimentation: screen cheaply, then study the survivors deeply."},
+        {"q": "A fractional factorial's main benefit is:", "choices": ["No confounding", "Far fewer runs than the full factorial", "Estimating all high-order interactions", "Eliminating randomization"], "answer": "B", "explanation": "It dramatically cuts run count, accepting some aliasing in return."}
+      ]
+    },
+    {
+      "id": "doe-05",
+      "title": "Running & Analyzing a Sound Experiment",
+      "source": "Six Sigma Guide (DOE); Statistical Engineering",
+      "summary": "A good design is wasted by sloppy execution or over-interpreted analysis. Plan the runs to protect the conclusions, separate real effects from noise, and always confirm.",
+      "reading": "Even a perfect design fails if executed or analyzed carelessly. Execution rests on the three disciplines: replicate (to estimate error), randomize (against unknown drifts), and block (against known nuisances). Set factor levels far enough apart to produce a detectable effect but within a realistic operating range, define the response and measurement method up front (and make sure the gauge passed MSA!), and hold non-factors as constant as you can.\n\nAnalysis moves from picture to test. Start visual: main-effects plots (steeper line = bigger effect) and interaction plots (non-parallel = interaction). Rank effects on a Pareto or normal probability plot to separate the vital few large effects from the trivial many that are just noise. Then test formally with ANOVA, which uses the replication-based error estimate to compute whether each effect is statistically significant (a p-value) — guarding against reading meaning into random scatter. Build the simplest model that captures the significant effects and interactions.\n\nThe step amateurs skip is the CONFIRMATION RUN. The model predicts an optimum; you then go run that predicted setting and check the response matches the prediction. If it does, you've validated the model; if it doesn't, you've learned the model is incomplete (a missing factor, a curvature you didn't model, or an aliased effect you misread) — far better to discover that in one confirmation run than after changing production. Design, execute with discipline, analyze with skepticism, and confirm before you commit.",
+      "key_points": [
+        "Execute with the three disciplines: replicate (error), randomize (unknowns), block (known nuisances).",
+        "Set levels far enough apart to see an effect but within a realistic range; confirm the gauge passed MSA first.",
+        "Analyze visually (main-effects/interaction plots, Pareto of effects), then test significance with ANOVA (p-values).",
+        "ALWAYS run a confirmation run at the predicted optimum before committing — it validates or breaks the model."
+      ],
+      "media": {
+        "image": "media/diagrams/pareto.png",
+        "image_caption": "A Pareto of effects separates the vital-few real effects from the trivial many (noise)"
+      },
+      "critical_thinking": [
+        {
+          "prompt": "A DOE identifies a setting predicted to give 95% yield. The team is ready to change production immediately. What single run would you insist on first, and what are the two possible outcomes and their meanings?",
+          "model_answer": "Insist on a CONFIRMATION RUN: actually run the predicted optimal setting and measure the yield. Outcome 1 — it lands near 95%: the model is validated and you can implement with confidence. Outcome 2 — it comes in well below prediction: the model is incomplete — likely a missing factor, unmodeled curvature (the true optimum is between your two levels, needing a response-surface design), or an aliased effect you misinterpreted (especially from a fractional design). Discovering this in one cheap confirmation run is far better than rolling a wrong setting into production. Never commit on prediction alone."
+        }
+      ],
+      "flashcards": [
+        {"q": "What three execution disciplines protect a DOE's conclusions?", "a": "Replication (estimate error), randomization (defend against unknown drifts), and blocking (remove known nuisance sources)."},
+        {"q": "What does ANOVA add beyond effect plots?", "a": "A formal significance test (p-values) using the replication-based error estimate — separating real effects from random scatter."},
+        {"q": "Why is a confirmation run essential?", "a": "It tests whether the model's predicted optimum actually holds — validating the model or exposing a missing factor/curvature/aliasing before you commit."}
+      ],
+      "quiz": [
+        {"q": "The step most often skipped — and most important before committing — is:", "choices": ["Randomization", "The confirmation run at the predicted optimum", "Setting factor levels", "Drawing the cube"], "answer": "B", "explanation": "A confirmation run validates the model's prediction before you change production."},
+        {"q": "ANOVA in a DOE is used to:", "choices": ["Randomize the runs", "Decide which effects are statistically significant vs noise", "Set the tolerance", "Replace the interaction plot"], "answer": "B", "explanation": "ANOVA uses the error estimate to test each effect's significance (p-values)."},
+        {"q": "A confirmation run comes in far below the predicted optimum. The best interpretation is:", "choices": ["The DOE was useless", "The model is incomplete — missing factor, curvature, or misread alias — investigate before committing", "Production should change anyway", "The response was measured wrong by definition"], "answer": "B", "explanation": "A failed confirmation reveals an incomplete model (curvature/missing factor/aliasing) — exactly why you confirm first."}
+      ]
+    }
+  ]
+}
