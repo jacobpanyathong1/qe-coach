@@ -35,7 +35,7 @@ import db
 from content_loader import Curriculum
 
 USER_ID = 1                       # single-user app
-COURSE_TITLE = "Tesla QE Academy"
+COURSE_TITLE = "QE Academy"
 STATIC = Path(__file__).parent / "static"
 MEDIA = BASE / "media"
 
@@ -356,7 +356,7 @@ def api_interview():
                         "need_key": True})
     history = request.get_json(force=True).get("history", [])
     system = (
-        "You are a senior Quality Engineering hiring manager at Tesla running a realistic interview "
+        "You are a senior Quality Engineering hiring manager running a realistic interview "
         "for a QE role. Ask ONE question at a time, alternating technical (SPC, capability/Cpk, MSA/Gauge "
         "R&R, GD&T, FMEA, DOE, root-cause/8D) and behavioral. After each answer, give brief honest feedback "
         "(1-2 sentences) — strengths and what to improve — then ask the next question, getting progressively "
@@ -407,7 +407,7 @@ def api_ask():
 # --------------------------------------------------------------------------
 TUTOR_MODEL = os.environ.get("QE_TUTOR_MODEL", "claude-opus-4-8")
 SYSTEM_TUTOR = (
-    "You are an expert Quality Engineering tutor coaching a learner toward a Tesla-level QE role. "
+    "You are an expert Quality Engineering tutor coaching a learner toward a QE role. "
     "Be precise, use correct terminology, and teach with intuition and real manufacturing examples. "
     "When book excerpts are provided, ground your answer in them and cite the book and page. Keep it focused."
 )

@@ -1,4 +1,4 @@
-"""Tesla QE Trainer — a Telegram tutor bot that teaches Quality Engineering
+"""QE Trainer — a Telegram tutor bot that teaches Quality Engineering
 from Jacob's own reference books, with adaptive sessions, spaced repetition,
 a progress dashboard, and book-grounded Q&A (/ask).
 """
@@ -277,7 +277,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     db.get_or_create_user(chat_id)
     n_topics = len(CURR.ordered_topic_ids)
     text = (
-        "👋 *Welcome to your Tesla QE Trainer*\n\n"
+        "👋 *Welcome to your QE Trainer*\n\n"
         f"I'll coach you toward a Quality Engineer role using your own books — "
         f"{n_topics} lessons across GD\\&T, SPC, FMEA, APQP, problem solving, vision systems, and physics/materials\\.\n\n"
         "*Commands*\n"
@@ -474,7 +474,7 @@ async def answer_with_books(question):
 
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     system = (
-        "You are a Quality Engineering tutor for someone training for a Tesla QE role. "
+        "You are a Quality Engineering tutor for someone training for a QE role. "
         "Answer the question using the provided book excerpts as your primary source. "
         "Be concise and practical (a few short paragraphs or bullets max). "
         "If the excerpts don't cover it, answer from general QE knowledge but say so. "

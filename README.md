@@ -1,4 +1,4 @@
-# 🏎️ Tesla QE Trainer Bot
+# 🏎️ QE Trainer Bot
 
 A personal Telegram tutor that coaches you toward a **Quality Engineer** role using
 **your own reference books**. It runs on your Mac, pings you on your phone, and adapts

@@ -463,7 +463,7 @@ async function routeTutor() {
   h += st.enabled
     ? `<div class="crumb">Ask anything about quality engineering — grounded in your books.</div>`
     : `<div class="empty">🔑 The AI Tutor needs your Anthropic API key.<br>Add <b>ANTHROPIC_API_KEY</b> to <code>~/qe-trainer/.env</code> and restart the server, then ask me anything.</div>`;
-  h += `<a class="primary" href="#/interview">🎤 Tesla-QE Mock Interview ›</a>
+  h += `<a class="primary" href="#/interview">🎤 QE Mock Interview ›</a>
     <div id="chat" class="chat"></div>
     <div class="askbar">
       <input id="askq" placeholder="e.g. When do I use a u-chart vs a c-chart?" ${st.enabled ? "" : "disabled"}>
@@ -557,7 +557,7 @@ async function routeCertificate() {
     <div class="cert-sub">This certifies that</div>
     <div class="cert-name">Jacob</div>
     <div class="cert-sub">has completed</div>
-    <div class="cert-course">Tesla QE Academy</div>
+    <div class="cert-course">QE Academy</div>
     <div class="cert-body">Mastering all ${e.total_modules} units of Quality Engineering — SPC, Process
       Variation, Capability &amp; Validation, MSA, DOE, GD&amp;T, FMEA, APQP, and structured problem-solving.</div>
     <div class="cert-date">${d}</div>
@@ -583,7 +583,7 @@ async function interviewTurn(userText) {
 }
 async function routeInterview() {
   let h = `<a class="back" href="#/tutor">‹ Tutor</a><h1>🎤 Mock Interview</h1>
-    <div class="crumb">A Tesla-style QE interview — answer each question, get feedback + a harder follow-up.
+    <div class="crumb">A realistic QE interview — answer each question, get feedback + a harder follow-up.
     <a href="#" id="ivrestart">↺ restart</a></div>
     <div id="chat" class="chat"></div>
     <div class="askbar"><input id="ivq" placeholder="Type your answer…"><button class="primary" id="ivsend">Send</button></div>`;

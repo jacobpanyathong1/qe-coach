@@ -1,5 +1,5 @@
 [Unit]
-Description=Tesla QE Trainer Telegram bot
+Description=QE Trainer Telegram bot
 After=network-online.target
 Wants=network-online.target
 

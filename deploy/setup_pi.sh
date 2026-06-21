@@ -23,7 +23,7 @@ mkdir -p logs
 echo "[3/5] Generating systemd service for user '$RUN_USER' at $APP_DIR..."
 sudo tee /etc/systemd/system/qe-trainer.service >/dev/null <<EOF
 [Unit]
-Description=Tesla QE Academy (PWA web app)
+Description=QE Academy (PWA web app)
 After=network-online.target
 Wants=network-online.target
 
